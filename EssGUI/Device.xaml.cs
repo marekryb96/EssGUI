@@ -21,54 +21,25 @@ namespace EssGUI
     /// </summary>
     public partial class Device : Window
     {
-        String info1;
-        String info2;
-        String info3;
+        //String info1;
+        //String info2;
+        //String info3;
 
-        String clientId;
-        Logic logic = new Logic();
-        public Device()
+        private Logic logic = new Logic();
+        private Order order;
+
+
+        public Device(Order order)
         {
             InitializeComponent();
-       
+            this.order = order;
+
             DeviceResponseDTO[] devices = this.logic.GetAllDevices();
             deviceinfo.ItemsSource = devices;
         }
 
-        public Device(String client, String label1, String label2, String label3)
-        {
-            InitializeComponent();
-
-            DeviceResponseDTO[] devices = this.logic.GetAllDevices();
-            deviceinfo.ItemsSource = devices;
-            clientId = client;
-            info1 = label1;
-            info2 = label2;
-            info3 = label3;
-            
-        }
-
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void noBt_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void filter_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+     
+        private void Button_Click(object sender, RoutedEventArgs e)// Utworz DEVICE
         {
             Brand brand = new Brand();
             brand.City = "a";
@@ -93,48 +64,58 @@ namespace EssGUI
             request.AddHeader("accept", "application/json");
             request.AddJsonBody(json);
             client.Execute(request);
-
-            /*Order order = new Order(clientId, createDeviceRequestDTO.Id);
-            order.deviceLabel1.Content = createDeviceRequestDTO.Name + " " + createDeviceRequestDTO.Model;
-            order.deviceLabel2.Content = createDeviceRequestDTO.SerialNumber;
-            order.deviceLabel3.Content = createDeviceRequestDTO.Description;
-            order.clientLabel1.Content = info1;
-            order.clientLabel2.Content = info2;
-            order.clientLabel3.Content = info3;
-            order.data1Bt.Content = "Edytuj";
-            order.data1Bt.IsEnabled = false;
-            order.data2Bt.Content = "Edytuj";
-            order.data2Bt.IsEnabled = false;
-            order.Show();*/
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)//Wybierz Device
         {
             object item = deviceinfo.SelectedItem;
-            String str = Convert.ToString((deviceinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
-            Order order = new Order(clientId, Convert.ToString((deviceinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text));
-            order.deviceLabel1.Content = Convert.ToString((deviceinfo.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((deviceinfo.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text);
-            order.deviceLabel2.Content = Convert.ToString((deviceinfo.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text);
-            order.deviceLabel3.Content = Convert.ToString((deviceinfo.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text);
-            order.clientLabel1.Content = info1;
-            order.clientLabel2.Content = info2;
-            order.clientLabel3.Content = info3;
-            order.data1Bt.Content = "Edytuj";
-            order.data1Bt.IsEnabled = false;
-            order.data2Bt.Content = "Edytuj";
-            order.data2Bt.IsEnabled = false;
-            order.Show();
+            String deviceId = Convert.ToString((deviceinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
+
+            this.order.deviceId = deviceId;
+
+            this.order.deviceLabel1.Content = Convert.ToString((deviceinfo.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((deviceinfo.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text);
+            this.order.deviceLabel2.Content = Convert.ToString((deviceinfo.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text);
+            this.order.deviceLabel3.Content = Convert.ToString((deviceinfo.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text);
+            this.order.data1Bt.Content = "Edytuj";
+            this.order.data1Bt.IsEnabled = false;
+            this.order.data2Bt.Content = "Edytuj";
+            this.order.data2Bt.IsEnabled = false;
+            this.order.Focus();
+            this.Close();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
+    
         private void Refersh_Click(object sender, RoutedEventArgs e)
         {
             DeviceResponseDTO[] devices = this.logic.GetAllDevices();
             deviceinfo.ItemsSource = devices;
         }
+
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void noBt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void filter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
     }
 }

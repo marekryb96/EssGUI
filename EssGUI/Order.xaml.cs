@@ -23,26 +23,55 @@ namespace EssGUI
     {
         public String clientId;
         public String deviceId;
-
+        Logic logic = new Logic();
         public Order()
         {
             InitializeComponent();
 
         }
+       
 
-        public Order(String client)
+        private void saveBt_Click(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
-            clientId = client;
+        
+         
+   
+            if (this.clientId == null || this.deviceId == null)
+            {
+                MessageBox.Show("Error - clientId or deviceId is null");
+            }
+            else
+
+            {
+                CreateOrderRequestDTO createOrderRequest = new CreateOrderRequestDTO();
+                createOrderRequest.ClientId = this.clientId;
+                createOrderRequest.DeviceId = this.deviceId;
+                createOrderRequest.UserLogin = "admin";
+                createOrderRequest.DefectDescription = "test";
+                createOrderRequest.Description = " ";
+
+               this.logic.Post(createOrderRequest, "/order/create");
+            }
+
+           
+        }
+
+
+        private void data1Bt_Click(object sender, RoutedEventArgs e)
+        {
+            Customer form = new Customer(this);
+            form.Show();
+     
+        }
+
+        private void data2Bt_Click(object sender, RoutedEventArgs e)
+        {
+            Device form = new Device(this);
+            form.Show();
 
         }
 
-        public Order(String client, String device)
-        {
-            InitializeComponent();
-            clientId = client;
-            deviceId = device;
-        }
+
 
         private void logOutBt_Click(object sender, RoutedEventArgs e)
         {
@@ -52,41 +81,6 @@ namespace EssGUI
         private void cancelBt_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void saveBt_Click(object sender, RoutedEventArgs e)
-        {
-            CreateOrderRequestDTO createOrderRequest = new CreateOrderRequestDTO();
-            createOrderRequest.ClientId = clientId;
-            createOrderRequest.DeviceId = deviceId;
-            createOrderRequest.UserLogin = "admin";
-            createOrderRequest.DefectDescription = "test";
-            createOrderRequest.Description = " ";
-
-            string json = JsonConvert.SerializeObject(createOrderRequest);
-
-            var client = new RestClient("http://localhost:8080");
-            var request = new RestRequest("/order/create", Method.POST);
-            request.RequestFormat = RestSharp.DataFormat.Json;
-            request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("accept", "application/json");
-            request.AddJsonBody(json);
-            client.Execute(request);
-        }
-
-        private void data1Bt_Click(object sender, RoutedEventArgs e)
-        {
-            Customer form = new Customer();
-            form.Show();
-            this.Close();
-        }
-
-        private void data2Bt_Click(object sender, RoutedEventArgs e)
-        {
-            Device form = new Device(clientId, clientLabel1.Content.ToString(), clientLabel2.Content.ToString(), clientLabel3.Content.ToString());
-            String str = clientId;
-            form.Show();
-            this.Close();
         }
     }
 }

@@ -60,7 +60,7 @@
                             <Button Margin="10" Height="45" Content="Wybierz" Click="Button_Click_1" FontSize="20"/>
                         </Grid>
                         <Grid Grid.Column="2">
-                            <Button Margin="10" Height="45" Content="Wyloguj" FontSize="20" Click="Button_Click_2"/>
+                            <Button Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click"/>
                         </Grid>
                     </Grid>
 

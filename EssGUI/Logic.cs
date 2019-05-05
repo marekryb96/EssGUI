@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -15,7 +16,8 @@ namespace EssGUI
 {
     class Logic
     {
-        private static readonly HttpClient client = new HttpClient();
+
+        RestClient restClient = new RestClient("http://localhost:8080");
 
         public ClientResponseDTO[] GetAllClients()
         {
@@ -78,5 +80,21 @@ namespace EssGUI
                 return reader.ReadToEnd();
             }
         }
+
+
+ 
+
+        public IRestResponse Post(object requestObject, String url)
+        {
+            string json = JsonConvert.SerializeObject(requestObject);
+            RestRequest request = new RestRequest(url, Method.POST);
+            request.RequestFormat = RestSharp.DataFormat.Json;
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("accept", "application/json");
+            request.AddJsonBody(json);
+            IRestResponse response = this.restClient.Execute(request);
+            return response;
+        }
+
     }
 }
