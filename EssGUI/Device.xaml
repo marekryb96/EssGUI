@@ -1,0 +1,114 @@
+﻿<Window x:Class="EssGUI.Device"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EssGUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        WindowState="Maximized" ResizeMode="CanMinimize">
+    <Grid Margin="0,0,4,0">
+        <TabControl SelectionChanged="TabControl_SelectionChanged">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Wcześniej serwisowane" Foreground="Black" />
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="70"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <TextBox x:Name="filter" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" TextWrapping="Wrap" Text="numer seryjny" VerticalAlignment="Top" Width="764" TextChanged="filter_TextChanged"/>
+
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <DataGrid x:Name="deviceinfo" SelectionChanged="DataGrid_SelectionChanged"/>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Button x:Name="editBt" Margin="10" Height="45" Click="noBt_Click" Content="Edytuj" FontSize="20"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Button Margin="10" Height="45" Content="Wybierz" Click="Button_Click_1" FontSize="20"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Button Margin="10" Height="45" Content="Wyloguj" FontSize="20"/>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Foreground="Black" Text="Nowe urządzenie" />
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <StackPanel>
+                            <Label Content="nazwa" Margin="5" Height="25"/>
+                            <Label Content="model" Margin="5" Height="25"/>                            
+                            <Label Content="nr seryjny" Margin="5" Height="25"/>
+                            <Label Content="opis problemu" Margin="5" Height="25"/>
+                            <Label Content="producent" Margin="5" Height="25"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="28*"/>
+                            <RowDefinition Height="258*"/>
+                            <RowDefinition Height="107*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.RowSpan="3" Margin="10,0,0,0">
+                            <TextBox Name="TextBox1" Margin="5" Height="25"/>
+                            <TextBox Name="TextBox2" Margin="5" Height="25"/>
+                            <TextBox Name="TextBox3" Margin="5" Height="25"/>
+                            <TextBox Name="TextBox4" Margin="5" Height="25"/>
+                            <TextBox Name="TextBox5" Margin="5" Height="25"/>
+                            <Button Content="Zapisz" Margin="5" Height="45" Click="Button_Click"/>
+
+                        </StackPanel>
+                    </Grid>
+
+                </Grid>
+
+
+
+            </TabItem>
+
+        </TabControl>
+        <Grid HorizontalAlignment="Left" Height="100" Margin="-75,354,0,-33" VerticalAlignment="Top" Width="100"/>
+
+    </Grid>
+
+
+
+</Window>
+

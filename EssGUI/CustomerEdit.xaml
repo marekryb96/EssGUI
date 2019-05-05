@@ -1,0 +1,61 @@
+﻿<Window x:Class="EssGUI.CustomerEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EssGUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        WindowState="Maximized" ResizeMode="CanMinimize">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <StackPanel>
+                <Label Name="nameTb" Content="imię" Margin="5" Height="25"/>
+                <Label Name="surnameTb" Content="nazwisko" Margin="5" Height="25"/>
+                <Label Name="phoneTb" Content="telefon" Margin="5" Height="25"/>
+                <Label Name="emailTb" Content="e-mail" Margin="5" Height="25"/>
+                <Label Name="countryTb" Content="kraj, miasto" Margin="5" Height="25"/>
+                <Label Name="phonseTb" Content="telefon" Margin="5" Height="25"/>
+                <Label Name="streetTb" Content="ulica, nr, kod pocztowy" Margin="5" Height="25"/>
+                <Label Name="zipCodeTb" Content="telefon" Margin="5" Height="25"/>
+                <Label Name="typeTb" Content="typ klienta, NIP" Margin="5" Height="25"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="28*"/>
+                <RowDefinition Height="258*"/>
+                <RowDefinition Height="107*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.RowSpan="3" Margin="10,0,0,0">
+                <TextBox Name="TextBox1" Margin="5" Height="25"/>
+                <TextBox Name="TextBox2" Margin="5" Height="25"/>
+                <TextBox Name="TextBox3" Margin="5" Height="25"/>
+                <TextBox Name="TextBox4" Margin="5" Height="25"/>
+                <TextBox Name="TextBox5" Margin="5" Height="25"/>
+                <TextBox Name="TextBox6" Margin="5" Height="25"/>
+                <TextBox Name="TextBox7" Margin="5" Height="25"/>
+                <TextBox Name="TextBox8" Margin="5" Height="25"/>
+                <TextBox Name="TextBox9" Margin="5" Height="25"/>
+                <Button Content="Zapisz" Margin="5" Height="45"/>
+
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+
+
+
+</Window>
+
