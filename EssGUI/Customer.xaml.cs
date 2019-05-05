@@ -103,7 +103,7 @@ namespace EssGUI
 
         private void clientinfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //CreateClientRequestDTO createClientRequestDTO = (CreateClientRequestDTO)clientinfo.SelectedItem;
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -117,6 +117,11 @@ namespace EssGUI
             order.data1Bt.Content = "Edytuj";
             order.data1Bt.IsEnabled = false;
             order.Show();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

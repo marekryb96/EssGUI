@@ -25,28 +25,6 @@ namespace EssGUI
             InitializeComponent();
             Logic logic = new Logic();
 
-
-            //Get with id
-            ClientResponseDTO client = logic.GetClientWithId("5cbf58dec7084246184a6889");
-
-            String clientId = client.Id;
-            Console.WriteLine("Client Id: " + clientId);
-            //---------------------------------------
-
-
-            //Get All clients
-            ClientResponseDTO[] clients = logic.GetAllClients();
-            int arraySize = clients.Length;
-            Console.WriteLine("Array size: " + arraySize);
-
-            String firstClientId = clients[0].Id;
-            String secondClientId = clients[1].Id;
-
-            Console.WriteLine("First Client Id: " + firstClientId);
-            Console.WriteLine("Second Client Id: " + secondClientId);
-
-            //-----------------------------------
-
             OrderResponseDTO[] orders = logic.GetAllOrders();
 
             orderinfo.ItemsSource = orders;
@@ -87,6 +65,11 @@ namespace EssGUI
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
         }
