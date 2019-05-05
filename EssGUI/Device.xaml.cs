@@ -26,20 +26,20 @@ namespace EssGUI
         String info3;
 
         String clientId;
-
+        Logic logic = new Logic();
         public Device()
         {
             InitializeComponent();
-            Logic logic = new Logic();
-            DeviceResponseDTO[] devices = logic.GetAllDevices();
+       
+            DeviceResponseDTO[] devices = this.logic.GetAllDevices();
             deviceinfo.ItemsSource = devices;
         }
 
         public Device(String client, String label1, String label2, String label3)
         {
             InitializeComponent();
-            Logic logic = new Logic();
-            DeviceResponseDTO[] devices = logic.GetAllDevices();
+
+            DeviceResponseDTO[] devices = this.logic.GetAllDevices();
             deviceinfo.ItemsSource = devices;
             clientId = client;
             info1 = label1;
@@ -129,6 +129,12 @@ namespace EssGUI
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void Refersh_Click(object sender, RoutedEventArgs e)
+        {
+            DeviceResponseDTO[] devices = this.logic.GetAllDevices();
+            deviceinfo.ItemsSource = devices;
         }
     }
 }

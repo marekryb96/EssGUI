@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        WindowState="Maximized" ResizeMode="CanMinimize">
+        WindowState="Normal" ResizeMode="CanMinimize">
     <Grid Margin="0,0,4,0">
         <TabControl SelectionChanged="TabControl_SelectionChanged">
             <TabItem>
@@ -38,6 +38,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
                             <Button x:Name="editBt" Margin="10" Height="45" Click="noBt_Click" Content="Edytuj" FontSize="20"/>
@@ -47,6 +48,9 @@
                         </Grid>
                         <Grid Grid.Column="2">
                             <Button Margin="10" Height="45" Content="Wyloguj" FontSize="20" Click="Button_Click_2"/>
+                        </Grid>
+                        <Grid Grid.Column="3">
+                            <Button Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refersh_Click"/>
                         </Grid>
                     </Grid>
 

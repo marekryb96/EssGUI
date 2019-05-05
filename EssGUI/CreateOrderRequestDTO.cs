@@ -26,4 +26,5 @@ namespace EssGUI
         [JsonProperty("userLogin")]
         public string UserLogin { get => userLogin; set => userLogin = value; }
     }
+
 }

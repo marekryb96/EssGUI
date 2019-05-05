@@ -60,7 +60,7 @@ namespace EssGUI
             createOrderRequest.ClientId = clientId;
             createOrderRequest.DeviceId = deviceId;
             createOrderRequest.UserLogin = "admin";
-            createOrderRequest.DefectDescription = " ";
+            createOrderRequest.DefectDescription = "test";
             createOrderRequest.Description = " ";
 
             string json = JsonConvert.SerializeObject(createOrderRequest);

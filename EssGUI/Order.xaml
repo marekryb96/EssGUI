@@ -22,7 +22,7 @@
         <Label Name ="clientLabel1" Content="Nie wprowadzono" HorizontalAlignment="Left" Margin="76,52,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.277,0.7" FontSize="16" Background="White"/>
 
         <Grid Margin="-10,0,10,0">
-            <Button x:Name="data1Bt" Margin="548,117,0,22" Click="data1Bt_Click" Content="Wprowadz" FontSize="20"/>
+            <Button x:Name="data1Bt" Margin="548,103,0,22" Click="data1Bt_Click" Content="Wprowadz" FontSize="20"/>
         </Grid>
         <Grid Grid.Row="1"/>
         <Grid Visibility="Hidden" Background="#FFA66969"/>
@@ -65,7 +65,7 @@
                 <Button Name="saveBt" Margin="10,12" Height="45" Content="Zapisz" FontSize="20" Grid.ColumnSpan="2" Click="saveBt_Click"/>
             </Grid>
         </Grid>
-        <Button x:Name="data2Bt" Margin="538,121,10,19" Click="data2Bt_Click" Content="Wprowadz" FontSize="20" Grid.Row="1"/>
+        <Button x:Name="data2Bt" Margin="538,89,10,36" Click="data2Bt_Click" Content="Wprowadz" FontSize="20" Grid.Row="1"/>
 
     </Grid>
 </Window>

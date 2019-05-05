@@ -20,22 +20,17 @@ namespace EssGUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        Logic logic;
         public MainWindow()
         {
             InitializeComponent();
-            Logic logic = new Logic();
+            this.logic = new Logic();
 
             OrderResponseDTO[] orders = logic.GetAllOrders();
-
             orderinfo.ItemsSource = orders;
-
-            Console.ReadLine();
         }
 
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-        }
 
         private void noBt_Click(object sender, RoutedEventArgs e)
         {
@@ -44,6 +39,10 @@ namespace EssGUI
             //this.Close();
         }
 
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
         private void filter_TextChanged(object sender, TextChangedEventArgs e)
         {
 
