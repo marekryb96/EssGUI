@@ -112,16 +112,12 @@ namespace EssGUI
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            /*string text = (sender as ComboBox).SelectedItem as string;
-            TextBox9.IsEnabled = true;
-            TextBox9.Text = "";*/
-            MessageBox.Show("combobox wybra");
 
         }
 
         private void clientinfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show("combobox wybra");
+            
         }
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
