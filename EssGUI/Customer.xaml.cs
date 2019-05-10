@@ -7,9 +7,8 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using RestSharp;
-
-
-
+using System.Windows.Data;
+using System.ComponentModel;
 
 namespace EssGUI
 {
@@ -25,8 +24,13 @@ namespace EssGUI
         {
             InitializeComponent();
             this.order = order;
-
             clientinfo.ItemsSource = this.logic.GetAllClients();
+
+            if (((ComboBoxItem)typeBox.SelectedItem).Content.ToString() == "indywidualny")
+            {
+                TextBox9.Text = "nie dotyczy";
+                TextBox9.IsEnabled = false;
+            }
         }
 
     
@@ -37,33 +41,28 @@ namespace EssGUI
             {
                 Address address = new Address();
                 address.City = TextBox5.Text;
-                address.Country = "PL";
+                address.Country = TextBox11.Text;
                 address.Street = TextBox7.Text;
                 address.HouseNumber = TextBox8.Text;
                 address.ZipCode = TextBox6.Text;
 
                 PhoneNumber phoneNumber = new PhoneNumber();
-                String number = TextBox4.Text;
-                phoneNumber.AreaCode = number[0].ToString() + number[1].ToString() + number[2].ToString();
-                number.Remove(0, 3);
-                phoneNumber.Number = number;
+                phoneNumber.AreaCode = TextBox4.Text;
+                phoneNumber.Number = TextBox9.Text;
 
                 CreateClientRequestDTO createCRDTO = new CreateClientRequestDTO();
                 createCRDTO.Name = TextBox1.Text;
                 createCRDTO.Surname = TextBox2.Text;
                 createCRDTO.Email = TextBox3.Text;
-                createCRDTO.ClientType = ClientType.INDIVIDIAL;
 
-                if (createCRDTO.ClientType == ClientType.INDIVIDIAL)
+                if (((ComboBoxItem)typeBox.SelectedItem).Content.ToString() == "indywidualny")
                 {
                     createCRDTO.ClientType = ClientType.INDIVIDIAL;
-                    TextBox9.Text = "nie dotyczy";
-                    TextBox9.IsEnabled = false;
                 }
                 else
                 {
                     createCRDTO.ClientType = ClientType.COMPANY;
-                    createCRDTO.Nip = TextBox9.Text;
+                    createCRDTO.Nip = TextBox10.Text;
                 }
 
                 createCRDTO.Address = address;
@@ -76,6 +75,9 @@ namespace EssGUI
                 {
                     MessageBox.Show("Błędna zawartość formularza");
                 }
+
+                //update grid
+                clientinfo.ItemsSource = this.logic.GetAllClients();
             }
             catch (Exception ex)
             {
@@ -92,28 +94,34 @@ namespace EssGUI
             this.order.clientLabel1.Content = Convert.ToString((clientinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text);
             this.order.clientLabel2.Content = Convert.ToString((clientinfo.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text);
             this.order.clientLabel3.Content = Convert.ToString((clientinfo.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[8].Column.GetCellContent(item) as TextBlock).Text);
-            this.order.data1Bt.Content = "Edytuj";
             this.order.data1Bt.IsEnabled = false;
             this.order.clientId = clietnId;
             this.order.Focus();
+            this.Close();
         }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
-            clientinfo.ItemsSource = this.logic.GetAllClients();
-
+            refresh();
         }
 
-
+        public void refresh()
+        {
+            clientinfo.ItemsSource = this.logic.GetAllClients();
+        }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            /*string text = (sender as ComboBox).SelectedItem as string;
+            TextBox9.IsEnabled = true;
+            TextBox9.Text = "";*/
+            MessageBox.Show("combobox wybra");
 
         }
 
         private void clientinfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            MessageBox.Show("combobox wybra");
         }
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -122,10 +130,56 @@ namespace EssGUI
 
         private void editBt_Click(object sender, RoutedEventArgs e)
         {
-
+            object item = clientinfo.SelectedItem;
+            CustomerEdit form = new CustomerEdit(Convert.ToString((clientinfo.SelectedCells[10].Column.GetCellContent(item) as TextBlock).Text), this);
+            form.Show();
         }
 
         private void filter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(clientinfo!=null)
+            {
+                clientinfo.ItemsSource = this.logic.GetAllClients();
+                TextBox t = (TextBox)sender;
+                string filterGrid = filter.Text;
+                ICollectionView cv = CollectionViewSource.GetDefaultView(clientinfo.ItemsSource);
+                if (filterGrid == "")
+                    cv.Filter = null;
+                else
+                {
+                    cv.Filter = o =>
+                    {
+                        ClientResponseDTO p = o as ClientResponseDTO;
+
+                        switch (((ComboBoxItem)filterBox.SelectedItem).Content.ToString())
+                        {
+                            case "imię":
+                                return (p.Name == filterGrid);
+                            case "nazwisko":
+                                return (p.Surname == filterGrid);
+                            case "ulica":
+                                return (p.Address.Street == filterGrid);
+                            case "telefon":
+                                return (p.PhoneNumber.Number == filterGrid);
+                            case "e-mail":
+                                return (p.Email == filterGrid);
+                            case "miejscowość":
+                                return (p.Address.City == filterGrid);
+                            case "id":
+                                return (p.Id == filterGrid);
+                        }
+                        return (true);
+                    };
+                }
+            }
+        }
+
+        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox9_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }

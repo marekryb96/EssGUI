@@ -18,7 +18,8 @@
                 <Grid>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="70"/>
                     </Grid.RowDefinitions>
@@ -27,13 +28,35 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Row="0">
-                        <TextBox x:Name="filter" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" TextWrapping="Wrap" Text="numer seryjny" VerticalAlignment="Top" Width="764" TextChanged="filter_TextChanged"/>
+                        <TextBox x:Name="filter" Height="21" Margin="0,10,0,-0.2" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter_TextChanged" FontSize="14"/>
+                    </Grid>
 
-                    </Grid>
                     <Grid Grid.Row="1">
-                        <DataGrid x:Name="deviceinfo" SelectionChanged="DataGrid_SelectionChanged"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="529*"/>
+                            <ColumnDefinition Width="255*"/>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox x:Name="filterBox" SelectionChanged="ComboBox_SelectionChanged" Margin="0,10,0,0" FontSize="14" Grid.ColumnSpan="2" >
+                            <ComboBoxItem>nazwa</ComboBoxItem>
+                            <ComboBoxItem IsSelected="True">numer seryjny</ComboBoxItem>
+                            <ComboBoxItem>model</ComboBoxItem>
+                            <ComboBoxItem>id</ComboBoxItem>
+                            <ComboBoxItem>producent</ComboBoxItem>
+                        </ComboBox>
                     </Grid>
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="2" Margin="0,16,0,0">
+                        <DataGrid x:Name="deviceinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionChanged="deviceinfo_SelectionChanged" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="id" IsReadOnly="True" Width="Auto"/>                                
+                                <DataGridTextColumn Binding="{Binding Name}" Header="nazwa" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Brand}" Header="producent" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Model}" Header="model" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding SerialNumber}" Header="numer seryjny" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Description}" Header="opis problemu" IsReadOnly="True" Width="Auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                    <Grid Grid.Row="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition />
@@ -41,10 +64,10 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <Button x:Name="editBt" Margin="10" Height="45" Click="noBt_Click" Content="Edytuj" FontSize="20"/>
+                            <Button x:Name="editBt" Margin="10" Height="45" Click="editBt_Click" Content="Edytuj" FontSize="20"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <Button Margin="10" Height="45" Content="Wybierz" Click="Button_Click_1" FontSize="20"/>
+                            <Button Margin="10" Height="45" Content="Wybierz" Click="selectBt_Click" FontSize="20"/>
                         </Grid>
                         <Grid Grid.Column="2">
                             <Button Margin="10" Height="45" Content="Wyloguj" FontSize="20" Click="Button_Click_2"/>
@@ -96,7 +119,7 @@
                             <TextBox Name="TextBox3" Margin="5" Height="25"/>
                             <TextBox Name="TextBox4" Margin="5" Height="25"/>
                             <TextBox Name="TextBox5" Margin="5" Height="25"/>
-                            <Button Content="Zapisz" Margin="5" Height="45" Click="Button_Click"/>
+                            <Button Content="Zapisz" Margin="5" Height="45" Click="Button_Click" FontSize="20"/>
 
                         </StackPanel>
                     </Grid>

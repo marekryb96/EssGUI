@@ -23,19 +23,17 @@ namespace EssGUI
     {
         public String clientId;
         public String deviceId;
+        MainWindow mainWindow;
         Logic logic = new Logic();
-        public Order()
+        public Order(MainWindow mainWindow)
         {
             InitializeComponent();
-
+            this.mainWindow = mainWindow;
         }
        
 
         private void saveBt_Click(object sender, RoutedEventArgs e)
-        {
-        
-         
-   
+        {      
             if (this.clientId == null || this.deviceId == null)
             {
                 MessageBox.Show("Error - clientId or deviceId is null");
@@ -50,10 +48,20 @@ namespace EssGUI
                 createOrderRequest.DefectDescription = "test";
                 createOrderRequest.Description = " ";
 
-               this.logic.Post(createOrderRequest, "/order/create");
+                RestResponse response = (RestResponse)this.logic.Post(createOrderRequest, "/order/create");
+
+                bool isSuccesfull = response.IsSuccessful;
+                if (!isSuccesfull)
+                {
+                    MessageBox.Show("Błędna zawartość formularza" + response);
+                }
+                else
+                {
+                    mainWindow.refresh();
+                    this.Close();
+                }
             }
 
-           
         }
 
 

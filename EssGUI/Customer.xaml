@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="522" Width="800"
         WindowState="Maximized" ResizeMode="CanMinimize">
     <Grid Margin="0,0,4,0">
         <TabControl SelectionChanged="TabControl_SelectionChanged">
@@ -18,7 +18,8 @@
                 <Grid>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="70"/>
                     </Grid.RowDefinitions>
@@ -27,15 +28,34 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Row="0">
-                        <TextBox x:Name="filter" Height="30" Margin="0,10,0,0" TextWrapping="Wrap" Text="Wyszukiwanie" VerticalAlignment="Top" TextChanged="filter_TextChanged" FontSize="14"/>
+
+                        <TextBox Name="filter" Height="21" Margin="0,10,0,-0.2" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter_TextChanged" FontSize="14"/>
+
 
                     </Grid>
+
                     <Grid Grid.Row="1">
-                        <DataGrid Name="clientinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionChanged="clientinfo_SelectionChanged">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="529*"/>
+                            <ColumnDefinition Width="255*"/>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox x:Name="filterBox" SelectionChanged="ComboBox_SelectionChanged_1" IsReadOnly="True" Margin="0,10,0,0" FontSize="14" Grid.ColumnSpan="2" >
+                            <ComboBoxItem>imię</ComboBoxItem>
+                            <ComboBoxItem IsSelected="True">nazwisko</ComboBoxItem>
+                            <ComboBoxItem>telefon</ComboBoxItem>
+                            <ComboBoxItem>e-mail</ComboBoxItem>
+                            <ComboBoxItem>ulica</ComboBoxItem>
+                            <ComboBoxItem>miejscowość</ComboBoxItem>
+                            <ComboBoxItem>id</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Margin="0,16,0,0">
+                        <DataGrid Name="clientinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionChanged="clientinfo_SelectionChanged" IsReadOnly="True">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Name}" Header="imię" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Surname}" Header="nazwisko" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding PhoneNumber.AreaCode}" Header="#" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding PhoneNumber.AreaCode}" Header="" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding PhoneNumber.Number}" Header="telefon" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Email}" Header="e-mail" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Address.Street}" Header="ulica" IsReadOnly="True" Width="Auto"/>
@@ -43,18 +63,22 @@
                                 <DataGridTextColumn Binding="{Binding Address.City}" Header="miejscowość" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Address.ZipCode}" Header="kod pocztowy" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding ClientType}" Header="typ" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Id}" Header="typ" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="id" IsReadOnly="True" Width="Auto"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <Button x:Name="editBt" Margin="10" Height="45" Click="editBt_Click" Content="Edytuj" FontSize="20"/>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="179*"/>
+                                <ColumnDefinition Width="82*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="editBt" Margin="10,12" Height="45" Click="editBt_Click" Content="Edytuj" FontSize="20" Grid.ColumnSpan="2"/>
                         </Grid>
                         <Grid Grid.Column="1">
                             <Button Margin="10" Height="45" Content="Wybierz" Click="Button_Click_1" FontSize="20"/>
@@ -94,6 +118,8 @@
                             <Label Content="nazwisko" Margin="5" Height="25"/>
                             <Label Content="e-mail" Margin="5" Height="25"/>
                             <Label Content="telefon" Margin="5" Height="25"/>
+                            <Label Content=" " Margin="5" Height="25"/>
+                            <Label Content="kraj" Margin="5" Height="25"/>
                             <Label Content="miasto" Margin="5" Height="25"/>
                             <Label Content="kod pocztowy" Margin="5" Height="25"/>
                             <Label Content="ulica" Margin="5" Height="25"/>
@@ -115,16 +141,21 @@
                             <TextBox Name="TextBox2" Margin="5" Height="25"/>
                             <TextBox Name="TextBox3" Margin="5" Height="25"/>
                             <TextBox Name="TextBox4" Margin="5" Height="25"/>
-                            <TextBox Name="TextBox5" Margin="5" Height="25"/>
+                            <TextBox Name="TextBox9" Margin="5" Height="25" TextChanged="TextBox9_TextChanged"/>
+                            <TextBox Name="TextBox11" Text="Polska" Margin="5" Height="25"/>
+                            <TextBox Name="TextBox5" Margin="5" Height="25"/>                            
                             <TextBox Name="TextBox6" Margin="5" Height="25"/>
                             <TextBox Name="TextBox7" Margin="5" Height="25"/>
-                            <TextBox Name="TextBox8" Margin="5" Height="25"/>                            
-                            <ComboBox Margin="5" Height="25" SelectionChanged="ComboBox_SelectionChanged">
-                                <ComboBoxItem>indywidualny</ComboBoxItem>
+                            <TextBox Name="TextBox8" Margin="5" Height="25"/>
+                            
+                            <ComboBox x:Name="typeBox" Margin="5" Height="25" SelectionChanged="ComboBox_SelectionChanged">
+                                <ComboBoxItem IsSelected="True">indywidualny</ComboBoxItem>
                                 <ComboBoxItem>firma</ComboBoxItem>
                             </ComboBox>
-                            <TextBox Name="TextBox9" Margin="5" Height="25"/>
-                            <Button Content="Zapisz" Margin="5,5,5,106" Height="32" Click="Button_Click"/>
+
+                            <TextBox Name="TextBox10" Margin="5" Height="25"/>
+
+                            <Button Content="Zapisz" Margin="5,5,5,106" Height="32" Click="Button_Click" FontSize="20"/>
 
                         </StackPanel>
 

@@ -31,6 +31,6 @@ namespace EssGUI
         public bool Removed { get => removed; set => removed = value; }
         public string SerialNumber { get => serialNumber; set => serialNumber = value; }
         public string Brand { get => brand; set => brand = value; }
-        //internal Brand Brand { get => brand; set => brand = value; }
+
     }
 }

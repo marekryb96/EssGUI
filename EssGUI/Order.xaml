@@ -62,7 +62,7 @@
                     <ColumnDefinition Width="29*"/>
                     <ColumnDefinition Width="15*"/>
                 </Grid.ColumnDefinitions>
-                <Button Name="saveBt" Margin="10,12" Height="45" Content="Zapisz" FontSize="20" Grid.ColumnSpan="2" Click="saveBt_Click"/>
+                <Button Name="saveBt" Margin="10,12" Height="45" Content="Zapisz zlecenie" FontSize="20" Grid.ColumnSpan="2" Click="saveBt_Click"/>
             </Grid>
         </Grid>
         <Button x:Name="data2Bt" Margin="538,89,10,36" Click="data2Bt_Click" Content="Wprowadz" FontSize="20" Grid.Row="1"/>

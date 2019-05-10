@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RestSharp;
+using System.ComponentModel;
 
 namespace EssGUI
 {
@@ -33,9 +34,7 @@ namespace EssGUI
         {
             InitializeComponent();
             this.order = order;
-
-            DeviceResponseDTO[] devices = this.logic.GetAllDevices();
-            deviceinfo.ItemsSource = devices;
+            deviceinfo.ItemsSource = this.logic.GetAllDevices();
         }
 
      
@@ -55,37 +54,30 @@ namespace EssGUI
             createDeviceRequestDTO.Description = TextBox4.Text;
             createDeviceRequestDTO.Brand = TextBox5.Text;
 
-            string json = JsonConvert.SerializeObject(createDeviceRequestDTO);
+            RestResponse response = (RestResponse)this.logic.Post(createDeviceRequestDTO, "/device/create");
 
-            var client = new RestClient("http://localhost:8080");
-            var request = new RestRequest("/device/create", Method.POST);
-            request.RequestFormat = RestSharp.DataFormat.Json;
-            request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("accept", "application/json");
-            request.AddJsonBody(json);
-            client.Execute(request);
+            bool isSuccesfull = response.IsSuccessful;
+            if (!isSuccesfull)
+            {
+                MessageBox.Show("Błędna zawartość formularza" + response);
+            }
+
+            //update grid
+            deviceinfo.ItemsSource = this.logic.GetAllDevices();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)//Wybierz Device
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            object item = deviceinfo.SelectedItem;
-            String deviceId = Convert.ToString((deviceinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
-
-            this.order.deviceId = deviceId;
-
-            this.order.deviceLabel1.Content = Convert.ToString((deviceinfo.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((deviceinfo.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text);
-            this.order.deviceLabel2.Content = Convert.ToString((deviceinfo.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text);
-            this.order.deviceLabel3.Content = Convert.ToString((deviceinfo.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text);
-            this.order.data1Bt.Content = "Edytuj";
-            this.order.data1Bt.IsEnabled = false;
-            this.order.data2Bt.Content = "Edytuj";
-            this.order.data2Bt.IsEnabled = false;
-            this.order.Focus();
-            this.Close();
+            
         }
 
     
         private void Refersh_Click(object sender, RoutedEventArgs e)
+        {
+            refresh();
+        }
+
+        public void refresh()
         {
             DeviceResponseDTO[] devices = this.logic.GetAllDevices();
             deviceinfo.ItemsSource = devices;
@@ -114,8 +106,69 @@ namespace EssGUI
 
         private void filter_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (deviceinfo != null)
+            {
+                deviceinfo.ItemsSource = this.logic.GetAllDevices();
+                TextBox t = (TextBox)sender;
+                string filterGrid = filter.Text;
+                ICollectionView cv = CollectionViewSource.GetDefaultView(deviceinfo.ItemsSource);
+                if (filterGrid == "")
+                    cv.Filter = null;
+                else
+                {
+                    cv.Filter = o =>
+                    {
+                        DeviceResponseDTO p = o as DeviceResponseDTO;
+
+                        switch (((ComboBoxItem)filterBox.SelectedItem).Content.ToString())
+                        {
+                            case "nazwa":
+                                return (p.Name == filterGrid);
+                            case "numer seryjny":
+                                return (p.SerialNumber == filterGrid);
+                            case "producent":
+                                return (p.Brand == filterGrid);
+                            case "model":
+                                return (p.Model == filterGrid);
+                            case "id":
+                                return (p.Id == filterGrid);
+                        }
+                        return (true);
+                    };
+                }
+            }
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
         }
 
+        private void deviceinfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void selectBt_Click(object sender, RoutedEventArgs e)
+        {
+            object item = deviceinfo.SelectedItem;
+            String deviceId = Convert.ToString((deviceinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
+
+            this.order.deviceId = deviceId;
+
+            this.order.deviceLabel1.Content = Convert.ToString((deviceinfo.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((deviceinfo.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text);
+            this.order.deviceLabel2.Content = Convert.ToString((deviceinfo.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text);
+            this.order.deviceLabel3.Content = Convert.ToString((deviceinfo.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text);
+            this.order.data1Bt.IsEnabled = false;
+            this.order.Focus();
+            this.Close();
+        }
+
+        private void editBt_Click(object sender, RoutedEventArgs e)
+        {
+            object item = deviceinfo.SelectedItem;
+            DeviceEdit form = new DeviceEdit(Convert.ToString((deviceinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text), this);
+            form.Show();
+        }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="516.393" Width="800"
         WindowState="Maximized" ResizeMode="CanMinimize">
     <Grid>
 
@@ -21,13 +21,16 @@
             <StackPanel>
                 <Label Name="nameTb" Content="imię" Margin="5" Height="25"/>
                 <Label Name="surnameTb" Content="nazwisko" Margin="5" Height="25"/>
-                <Label Name="phoneTb" Content="telefon" Margin="5" Height="25"/>
                 <Label Name="emailTb" Content="e-mail" Margin="5" Height="25"/>
-                <Label Name="countryTb" Content="kraj, miasto" Margin="5" Height="25"/>
-                <Label Name="phonseTb" Content="telefon" Margin="5" Height="25"/>
-                <Label Name="streetTb" Content="ulica, nr, kod pocztowy" Margin="5" Height="25"/>
-                <Label Name="zipCodeTb" Content="telefon" Margin="5" Height="25"/>
-                <Label Name="typeTb" Content="typ klienta, NIP" Margin="5" Height="25"/>
+                <Label Name="countryTb" Content="kraj" Margin="5" Height="25"/>
+                <Label Name="cityTb" Content="miejscowość" Margin="5" Height="25"/>
+                <Label Name="phoneAreaTb" Content="telefon" Margin="5" Height="25"/>
+                <Label Name="phoneTb" Content=" " Margin="5" Height="25"/>
+                <Label Name="streetTb" Content="ulica" Margin="5" Height="25"/>
+                <Label Name="numberTb" Content="nr" Margin="5" Height="25"/>
+                <Label Name="codeTb" Content="kod pocztowy" Margin="5" Height="25"/>
+                <Label Name="typeTb" Content="typ klienta" Margin="5" Height="25"/>
+                <Label Name="nipTb" Content="NIP" Margin="5" Height="25"/>
             </StackPanel>
         </Grid>
 
@@ -48,7 +51,14 @@
                 <TextBox Name="TextBox7" Margin="5" Height="25"/>
                 <TextBox Name="TextBox8" Margin="5" Height="25"/>
                 <TextBox Name="TextBox9" Margin="5" Height="25"/>
-                <Button Content="Zapisz" Margin="5" Height="45"/>
+                <TextBox Name="TextBox10" Margin="5" Height="25"/>
+                <ComboBox x:Name="typeBox" Margin="5" Height="25">
+                    <ComboBoxItem>indywidualny</ComboBoxItem>
+                    <ComboBoxItem>firma</ComboBoxItem>
+                </ComboBox>
+                <TextBox Name="TextBox11" Margin="5" Height="25"/>
+                
+                <Button Content="Zapisz" Margin="5" Height="45" Click="Button_Click" FontSize="20"/>
 
             </StackPanel>
         </Grid>

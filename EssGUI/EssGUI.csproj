@@ -84,6 +84,7 @@
       <DependentUpon>ExpertPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Logic.cs" />
+    <Compile Include="OrderStatus.cs" />
     <Compile Include="UserResponseDTO.cs" />
     <Compile Include="UserType.cs" />
     <Page Include="Customer.xaml">

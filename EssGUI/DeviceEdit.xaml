@@ -39,7 +39,7 @@
                 <TextBox Name="TextBox3" Margin="5" Height="25"/>
                 <TextBox Name="TextBox4" Margin="5" Height="25"/>
                 <TextBox Name="TextBox5" Margin="5" Height="25"/>
-                <Button Content="Zapisz" Margin="5" Height="45"/>
+                <Button x:Name="updateBt" Content="Zapisz" Margin="5" Height="45" FontSize="20" Click="updateBt_Click"/>
 
             </StackPanel>
         </Grid>

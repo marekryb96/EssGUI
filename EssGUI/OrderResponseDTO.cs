@@ -14,12 +14,14 @@ namespace EssGUI
         DeviceResponseDTO device;
         String id;
         UserResponseDTO user;
+        //OrderStatus orderStatus;
 
         public bool Calculated { get => calculated; set => calculated = value; }
         public string Description { get => description; set => description = value; }
         public string Id { get => id; set => id = value; }
-        internal ClientResponseDTO Client { get => client; set => client = value; }
-        internal DeviceResponseDTO Device { get => device; set => device = value; }
-        internal UserResponseDTO User { get => user; set => user = value; }
+        public ClientResponseDTO Client { get => client; set => client = value; }
+        public DeviceResponseDTO Device { get => device; set => device = value; }
+        public UserResponseDTO User { get => user; set => user = value; }
+        //public OrderStatus OrderStatus { get => orderStatus; set => orderStatus = value; }
     }
 }

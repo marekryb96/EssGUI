@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,87 @@ namespace EssGUI
     /// </summary>
     public partial class CustomerEdit : Window
     {
-        public CustomerEdit()
+        String id;
+        Customer customer;
+        Logic logic = new Logic();
+        ClientResponseDTO clientResponseDTO;
+
+        public CustomerEdit(String id, Customer customer)
         {
             InitializeComponent();
+            this.id = id ;
+            this.customer = customer;
+
+            clientResponseDTO = logic.GetClientWithId(id);
+
+            TextBox1.Text = clientResponseDTO.Name;
+            TextBox2.Text = clientResponseDTO.Surname;
+            TextBox3.Text = clientResponseDTO.Email;
+            TextBox4.Text = clientResponseDTO.Address.Country;
+            TextBox5.Text = clientResponseDTO.Address.City;
+            TextBox6.Text = clientResponseDTO.PhoneNumber.AreaCode;
+            TextBox7.Text = clientResponseDTO.PhoneNumber.Number;
+            TextBox8.Text = clientResponseDTO.Address.Street;
+            TextBox9.Text = clientResponseDTO.Address.HouseNumber;
+            TextBox10.Text = clientResponseDTO.Address.ZipCode;
+            TextBox11.Text = clientResponseDTO.Nip;
+
+            if (clientResponseDTO.ClientType == ClientType.INDIVIDIAL)
+            {
+                typeBox.SelectedIndex = 0;
+            }
+            else
+            {
+                typeBox.SelectedIndex = 1;
+            }           
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CreateClientRequestDTO createCRDTO = new CreateClientRequestDTO();
+
+            Address address = new Address();
+            address.City = TextBox5.Text;
+            address.Country = TextBox4.Text;
+            address.Street = TextBox8.Text;
+            address.HouseNumber = TextBox9.Text;
+            address.ZipCode = TextBox10.Text;
+
+            PhoneNumber phoneNumber = new PhoneNumber();
+            phoneNumber.AreaCode = TextBox6.Text;
+            phoneNumber.Number = TextBox7.Text;
+
+            createCRDTO.Name = TextBox1.Text;
+            createCRDTO.Surname = TextBox2.Text;
+            createCRDTO.Email = TextBox3.Text;
+
+            if (((ComboBoxItem)typeBox.SelectedItem).Content.ToString() == "indywidualny")
+            {
+                createCRDTO.ClientType = ClientType.INDIVIDIAL;
+            }
+            else
+            {
+                createCRDTO.ClientType = ClientType.COMPANY;
+                createCRDTO.Nip = TextBox9.Text;
+            }
+
+            createCRDTO.Address = address;
+            createCRDTO.PhoneNumber = phoneNumber;
+
+            this.logic.Post(createCRDTO, "/client/update/" + id);
+
+            RestResponse response = (RestResponse)this.logic.Post(createCRDTO, "/client/update/" + id);
+
+            bool isSuccesfull = response.IsSuccessful;
+            if (!isSuccesfull)
+            {
+                MessageBox.Show("Błędna zawartość formularza" + response);
+            }
+            else
+            {
+                customer.refresh();
+                this.Close();
+            }            
         }
     }
 }
