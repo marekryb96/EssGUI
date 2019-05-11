@@ -264,3 +264,9 @@ C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\EssGUI.csproj.CoreCompil
 C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\EssGUI.csproj.CopyComplete
 C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\EssGUI.exe
 C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\EssGUI.pdb
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\Repair.g.cs
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\Repair.baml
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\RepairPanel.g.cs
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\RepairPanel.baml
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\test.g.cs
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\test.baml

@@ -14,7 +14,7 @@ namespace EssGUI
         DeviceResponseDTO device;
         String id;
         UserResponseDTO user;
-        //OrderStatus orderStatus;
+        OrderStatus orderStatus;
 
         public bool Calculated { get => calculated; set => calculated = value; }
         public string Description { get => description; set => description = value; }
@@ -22,6 +22,6 @@ namespace EssGUI
         public ClientResponseDTO Client { get => client; set => client = value; }
         public DeviceResponseDTO Device { get => device; set => device = value; }
         public UserResponseDTO User { get => user; set => user = value; }
-        //public OrderStatus OrderStatus { get => orderStatus; set => orderStatus = value; }
+        public OrderStatus OrderStatus { get => orderStatus; set => orderStatus = value; }
     }
 }

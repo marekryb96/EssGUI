@@ -5,8 +5,161 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="ExpertPanel" Height="450" Width="800">
-    <Grid>
-        
+        Title="ExpertPanel" Height="450" Width="800"
+        WindowState="Maximized" ResizeMode="CanMinimize">
+    <Grid Margin="0,0,4,0">
+        <TabControl>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Foreground="Black" ><Run Text="Nowe zlecenia"/></TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="70"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="0">
+
+                        <TextBox x:Name="filter" Height="21" Margin="0,10,0,-0.2" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter_TextChanged" FontSize="14"/>
+
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="127*"/>
+                            <ColumnDefinition Width="54*"/>
+                            <ColumnDefinition Width="347*"/>
+                            <ColumnDefinition Width="254*"/>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox x:Name="filterBox" SelectionChanged="ComboBox_SelectionChanged" Margin="0,10,0,0" FontSize="14" Grid.ColumnSpan="4" HorizontalAlignment="Left" Width="784" >
+                            <ComboBoxItem>model</ComboBoxItem>
+                            <ComboBoxItem IsSelected="True">numer seryjny</ComboBoxItem>
+                            <ComboBoxItem>id</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+
+                    <Grid Grid.Row="2"  Margin="0,16,0,0">
+                        <DataGrid x:Name="orderinfo1" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionChanged="orderinfo1_SelectionChanged" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="id" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Description}" Header="opis" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Device.Model}" Header="model" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Device.SerialNumber}" Header="numer seryjny" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Client.PhoneNumber.Number}" Header="telefon" IsReadOnly="True" Width="Auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Button x:Name="noBt" Margin="10" Height="45" Click="noBt_Click" Content="Wyloguj" FontSize="20"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Button Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Button_Click_1"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Button Margin="10" Height="45" Content="Realizuj" Click="Button_Click" FontSize="20"/>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="W trakcie realizacji" Foreground="Black" />
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="70"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="0"/>
+                    <Grid Grid.Row="1"/>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Button Margin="10" Height="45" Click="noBt_Click" Content="Nowe zlecenie" FontSize="20"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Button Margin="10" Height="45" Content="Rozlicz" FontSize="20"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Button Margin="10" Height="45" Content="Wyloguj" FontSize="20"/>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+
+
+
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Gwarancja" Foreground="Black" />
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="70"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="0"/>
+                    <Grid Grid.Row="1"/>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Button Margin="10" Height="45" Click="noBt_Click" Content="Nowe zlecenie" FontSize="20"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Button Margin="10" Height="45" Content="Rozlicz" FontSize="20"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Button Margin="10" Height="45" Content="Wyloguj" FontSize="20"/>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+
+
+
+        </TabControl>
+
+
     </Grid>
 </Window>
