@@ -88,7 +88,7 @@ namespace EssGUI
 
         private void cancelBt_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

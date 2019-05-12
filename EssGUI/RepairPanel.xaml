@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="RepairPanel" Height="597.541" Width="800"
-        WindowState="Maximized" ResizeMode="CanMinimize">
+        Title="MainWindow"
+        WindowState="Normal" ResizeMode="CanMinimize" Height="588">
     <Grid Margin="0,0,4,0">
         <TabControl>
             

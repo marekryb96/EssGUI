@@ -94,7 +94,7 @@ namespace EssGUI
             this.order.clientLabel1.Content = Convert.ToString((clientinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text);
             this.order.clientLabel2.Content = Convert.ToString((clientinfo.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text);
             this.order.clientLabel3.Content = Convert.ToString((clientinfo.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[8].Column.GetCellContent(item) as TextBlock).Text);
-            this.order.data1Bt.IsEnabled = false;
+            this.order.data1Bt.Content = "Zmień";
             this.order.clientId = clietnId;
             this.order.Focus();
             this.Close();

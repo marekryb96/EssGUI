@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        WindowState="Maximized" ResizeMode="CanMinimize">
+        Title="MainWindow"
+        WindowState="Normal" ResizeMode="CanMinimize">
     <Grid Margin="0,0,4,0">
         <TabControl SelectionChanged="TabControl_SelectionChanged">
             <TabItem>
@@ -38,7 +38,10 @@
                             <ColumnDefinition Width="402*"/>
                             <ColumnDefinition Width="255*"/>
                         </Grid.ColumnDefinitions>
-                        <ComboBox x:Name="filterBox" SelectionChanged="ComboBox_SelectionChanged" Margin="0,10,0,0" FontSize="14" Grid.ColumnSpan="3" >
+
+                        <Label Content="Szukaj po" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
+
+                        <ComboBox x:Name="filterBox" SelectionChanged="ComboBox_SelectionChanged" Margin="66,10,0,0" FontSize="14" Grid.ColumnSpan="3" >
                             <ComboBoxItem>id</ComboBoxItem>
                             <ComboBoxItem IsSelected="True">telefon</ComboBoxItem>
                             <ComboBoxItem>nazwisko</ComboBoxItem>
@@ -71,9 +74,7 @@
                         <Grid Grid.Column="1">
                             <Button Margin="10" Height="45" Content="Rozlicz" FontSize="20" Click="Button_Click_1"/>
                         </Grid>
-                        <Grid Grid.Column="2">
-                            <Button Margin="10" Height="45" Content="Wyloguj" Click="Button_Click" FontSize="20"/>
-                        </Grid>
+                        <Grid Grid.Column="2"/>
                     </Grid>
 
                 </Grid>
@@ -128,7 +129,7 @@
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="???" Foreground="Black" />
+                        <TextBlock Text="Zlecenia anulowane" Foreground="Black" />
                     </StackPanel>
                 </TabItem.Header>
                 <Grid>

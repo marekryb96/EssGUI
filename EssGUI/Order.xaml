@@ -51,9 +51,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Button x:Name="logOutBt" Margin="10" Height="45" Click="logOutBt_Click" Content="Wyloguj" FontSize="20"/>
-            </Grid>
+            <Grid Grid.Column="0"/>
             <Grid Grid.Column="1">
                 <Button Name="cancelBt" Margin="10" Height="45" Content="Anuluj" FontSize="20" Click="cancelBt_Click"/>
             </Grid>

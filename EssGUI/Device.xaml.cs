@@ -159,7 +159,7 @@ namespace EssGUI
             this.order.deviceLabel1.Content = Convert.ToString((deviceinfo.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((deviceinfo.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text);
             this.order.deviceLabel2.Content = Convert.ToString((deviceinfo.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text);
             this.order.deviceLabel3.Content = Convert.ToString((deviceinfo.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text);
-            this.order.data1Bt.IsEnabled = false;
+            this.order.data2Bt.Content = "Zmień";
             this.order.Focus();
             this.Close();
         }
