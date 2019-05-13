@@ -33,7 +33,7 @@ namespace EssGUI
             phoneLabel.Content = orderResponseDTO.Client.PhoneNumber.Number;
             if (orderResponseDTO.OrderStatus == OrderStatus.NEW) statusLabel.Content = "nowe";
             if (orderResponseDTO.OrderStatus == OrderStatus.WAITING_FOR_DEVICE) statusLabel.Content = "oczekiwanie na część zamienną";
-            if (orderResponseDTO.OrderStatus == OrderStatus.WAITING_FOR_WARRANTY) statusLabel.Content = "oczekiwanie na rozpatrzenie gwarancji";
+            if (orderResponseDTO.OrderStatus == OrderStatus.WARRANTY) statusLabel.Content = "oczekiwanie na rozpatrzenie gwarancji";
             if (orderResponseDTO.OrderStatus == OrderStatus.CANCELED) statusLabel.Content = "anulowane";
             if (orderResponseDTO.OrderStatus == OrderStatus.IN_PROGRESS) statusLabel.Content = "w trakcie realizacji";
         }

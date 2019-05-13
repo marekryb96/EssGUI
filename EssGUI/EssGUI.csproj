@@ -85,6 +85,9 @@
       <DependentUpon>ExpertPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Logic.cs" />
+    <Compile Include="OrderEdit.xaml.cs">
+      <DependentUpon>OrderEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OrderStatus.cs" />
     <Compile Include="Repair.xaml.cs">
       <DependentUpon>Repair.xaml</DependentUpon>
@@ -142,6 +145,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Order.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrderEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

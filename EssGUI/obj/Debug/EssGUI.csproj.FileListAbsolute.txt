@@ -409,3 +409,5 @@ C:\Users\x\Documents\EssGUI\EssGUI\obj\Debug\EssGUI.csproj.CoreCompileInputs.cac
 C:\Users\x\Documents\EssGUI\EssGUI\obj\Debug\EssGUI.csproj.CopyComplete
 C:\Users\x\Documents\EssGUI\EssGUI\obj\Debug\EssGUI.exe
 C:\Users\x\Documents\EssGUI\EssGUI\obj\Debug\EssGUI.pdb
+C:\Users\x\Documents\EssGUI\EssGUI\obj\Debug\OrderEdit.g.cs
+C:\Users\x\Documents\EssGUI\EssGUI\obj\Debug\OrderEdit.baml
