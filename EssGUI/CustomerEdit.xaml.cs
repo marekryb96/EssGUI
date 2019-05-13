@@ -74,7 +74,7 @@ namespace EssGUI
             createCRDTO.Surname = TextBox2.Text;
             createCRDTO.Email = TextBox3.Text;
 
-            if (((ComboBoxItem)typeBox.SelectedItem).Content.ToString() == "indywidualny")
+            if (((ComboBoxItem)typeBox.SelectedItem).Content.ToString() == "Indywidualny")
             {
                 createCRDTO.ClientType = ClientType.INDIVIDIAL;
             }
@@ -98,7 +98,7 @@ namespace EssGUI
             }
             else
             {
-                customer.refresh();
+                customer.Refresh();
                 this.Close();
             }            
         }

@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="ESService"
         WindowState="Normal" ResizeMode="CanMinimize">
     <Grid Margin="0,0,4,0">
         <TabControl SelectionChanged="TabControl_SelectionChanged">
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Foreground="Black" ><Run Text="Klien"/><Run Text="t"/><Run Text=" zarejestrowan"/><Run Text="y"/></TextBlock>
+                        <TextBlock Foreground="Black" ><Run Text="Istniejący Klient"/></TextBlock>
                     </StackPanel>
                 </TabItem.Header>
                 <Grid>
@@ -28,10 +28,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Row="0">
-
-                        <TextBox Name="filter" Height="21" Margin="0,10,0,-0.2" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter_TextChanged" FontSize="14"/>
-
-
+                        <TextBox Name="filter" Height="30" Margin="0,10,0,-0.2" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter_TextChanged" FontSize="14"/>
                     </Grid>
 
                     <Grid Grid.Row="1">
@@ -55,17 +52,17 @@
                     <Grid Grid.Row="2" Margin="0,16,0,0">
                         <DataGrid Name="clientinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionChanged="clientinfo_SelectionChanged" IsReadOnly="True">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Name}" Header="imię" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Surname}" Header="nazwisko" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding PhoneNumber.AreaCode}" Header="" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding PhoneNumber.Number}" Header="telefon" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Email}" Header="e-mail" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Address.Street}" Header="ulica" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Address.HouseNumber}" Header="nr" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Address.City}" Header="miejscowość" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Address.ZipCode}" Header="kod pocztowy" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding ClientType}" Header="typ" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Id}" Header="id" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Imię" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Surname}" Header="Nazwisko" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding PhoneNumber.AreaCode}" Header="Kierunkowy" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding PhoneNumber.Number}" Header="Numer telefonu" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Email}" Header="E-mail" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Address.Street}" Header="Ulica" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Address.HouseNumber}" Header="Nr domu" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Address.City}" Header="Miejscowość" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Address.ZipCode}" Header="Kod pocztowy" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding ClientType}" Header="Typ" IsReadOnly="True" Width="Auto"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>

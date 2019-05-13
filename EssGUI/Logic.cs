@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace EssGUI
 {
@@ -63,6 +64,7 @@ namespace EssGUI
 
         public static T Deserialize<T>(string json)
         {
+
             Newtonsoft.Json.JsonSerializer s = new JsonSerializer();
             return s.Deserialize<T>(new JsonTextReader(new StringReader(json)));
         }
@@ -70,14 +72,22 @@ namespace EssGUI
         
         public string Get(string uri)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
+            try
             {
-                return reader.ReadToEnd();
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+                request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                using (Stream stream = response.GetResponseStream())
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
+            catch (System.Net.WebException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return "";
             }
         }
 

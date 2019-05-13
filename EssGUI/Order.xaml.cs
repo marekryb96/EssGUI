@@ -31,15 +31,27 @@ namespace EssGUI
             this.mainWindow = mainWindow;
         }
        
+        private Boolean areClientAndDeviceAssigned(String clientId,String deviceId)
+        {
+            if (clientId == null)
+            {
+                MessageBox.Show("Nie przypisano klienta");
+                return false;
 
+            }
+
+            if (deviceId == null)
+            {
+                MessageBox.Show("Nie przypisano urządzenia");
+                return false;
+            }
+
+
+            return true;
+        }
         private void saveBt_Click(object sender, RoutedEventArgs e)
         {      
-            if (this.clientId == null || this.deviceId == null)
-            {
-                MessageBox.Show("Error - clientId or deviceId is null");
-            }
-            else
-
+            if (areClientAndDeviceAssigned(this.clientId,this.deviceId))
             {
                 CreateOrderRequestDTO createOrderRequest = new CreateOrderRequestDTO();
                 createOrderRequest.ClientId = this.clientId;
@@ -53,11 +65,11 @@ namespace EssGUI
                 bool isSuccesfull = response.IsSuccessful;
                 if (!isSuccesfull)
                 {
-                    MessageBox.Show("Błędna zawartość formularza" + response);
+                    MessageBox.Show("Błędna zawartość formularza");
                 }
                 else
                 {
-                    mainWindow.refresh();
+                    mainWindow.Refresh();
                     this.Close();
                 }
             }

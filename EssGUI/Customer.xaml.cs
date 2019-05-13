@@ -89,23 +89,33 @@ namespace EssGUI
         private void Button_Click_1(object sender, RoutedEventArgs e)//Wybierz klienta z listy
         {
             object item = clientinfo.SelectedItem;
-            String clietnId = Convert.ToString((clientinfo.SelectedCells[10].Column.GetCellContent(item) as TextBlock).Text);
+            try { 
+
+            String clietnId = Convert.ToString((clientinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
                  
-            this.order.clientLabel1.Content = Convert.ToString((clientinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text);
+            this.order.clientLabel1.Content = Convert.ToString((clientinfo.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text);
             this.order.clientLabel2.Content = Convert.ToString((clientinfo.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text);
             this.order.clientLabel3.Content = Convert.ToString((clientinfo.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((clientinfo.SelectedCells[8].Column.GetCellContent(item) as TextBlock).Text);
             this.order.data1Bt.Content = "Zmień";
             this.order.clientId = clietnId;
             this.order.Focus();
             this.Close();
+            }
+            catch (System.ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show("Nalezy wybrać konkretna pozycję");
+            }
+
+    
+
         }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
-            refresh();
+            Refresh();
         }
 
-        public void refresh()
+        public void Refresh()
         {
             clientinfo.ItemsSource = this.logic.GetAllClients();
         }
@@ -126,9 +136,16 @@ namespace EssGUI
 
         private void editBt_Click(object sender, RoutedEventArgs e)
         {
-            object item = clientinfo.SelectedItem;
-            CustomerEdit form = new CustomerEdit(Convert.ToString((clientinfo.SelectedCells[10].Column.GetCellContent(item) as TextBlock).Text), this);
-            form.Show();
+            try
+            {
+                object item = clientinfo.SelectedItem;
+                CustomerEdit form = new CustomerEdit(Convert.ToString((clientinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text), this);
+                form.Show();
+            }
+            catch (System.ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show("Nalezy wybrać konkretna pozycję");
+            }
         }
 
         private void filter_TextChanged(object sender, TextChangedEventArgs e)

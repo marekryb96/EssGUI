@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="ESService"
         WindowState="Normal" ResizeMode="CanMinimize">
     <Grid Margin="0,0,4,0">
         <TabControl SelectionChanged="TabControl_SelectionChanged">
@@ -52,13 +52,13 @@
                     <Grid Grid.Row="2"  Margin="0,16,0,0">
                         <DataGrid x:Name="orderinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionChanged="orderinfo_SelectionChanged" IsReadOnly="True">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Id}" Header="id" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Description}" Header="opis" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Client.Surname}" Header="nazwisko" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Client.PhoneNumber.Number}" Header="telefon" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Device.SerialNumber}" Header="numer seryjny" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Calculated}" Header="czy rozliczono" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding OrderStatus}" Header="status" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Description}" Header="Opis" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Client.Surname}" Header="Nazwisko" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Client.PhoneNumber.Number}" Header="Telefon" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Device.SerialNumber}" Header="Numer seryjny" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Calculated}" Header="Rozliczono" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding OrderStatus}" Header="Status" IsReadOnly="True" Width="Auto"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -74,7 +74,9 @@
                         <Grid Grid.Column="1">
                             <Button Margin="10" Height="45" Content="Rozlicz" FontSize="20" Click="Button_Click_1"/>
                         </Grid>
-                        <Grid Grid.Column="2"/>
+                        <Grid Grid.Column="2">
+                            <Button Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click" />
+                        </Grid>
                     </Grid>
 
                 </Grid>
@@ -97,7 +99,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Row="0">
-                        <TextBox x:Name="filter2" Height="30" Margin="0,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" TextChanged="filter_TextChanged"/>
+                        <TextBox x:Name="filter2" Height="30" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter_TextChanged"/>
 
                     </Grid>
                     <Grid Grid.Row="1">
@@ -105,20 +107,7 @@
                         <DataGrid Height="Auto" Margin="0,10,0,0" VerticalAlignment="Top"/>
                     </Grid>
                     <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
-                            <Button Margin="10" Height="45" Click="noBt_Click" Content="Nowe zlecenie"/>
-                        </Grid>
-                        <Grid Grid.Column="1">
-                            <Button Margin="10" Height="45" Content="Rozlicz"/>
-                        </Grid>
-                        <Grid Grid.Column="2">
-                            <Button Margin="10" Height="45" Content="Wyloguj"/>
-                        </Grid>
+                   
                     </Grid>
 
                 </Grid>
@@ -143,7 +132,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Row="0">
-                        <TextBox x:Name="filter3" Height="30" Margin="0,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" TextChanged="filter_TextChanged"/>
+                        <TextBox x:Name="filter3" Height="30" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter_TextChanged"/>
 
                     </Grid>
                     <Grid Grid.Row="1">
@@ -151,20 +140,7 @@
                         <DataGrid Height="Auto" Margin="0,10,0,0" VerticalAlignment="Top"/>
                     </Grid>
                     <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
-                            <Button Margin="10" Height="45" Click="noBt_Click" Content="Nowe zlecenie" FontSize="20"/>
-                        </Grid>
-                        <Grid Grid.Column="1">
-                            <Button Margin="10" Height="45" Content="Rozlicz" FontSize="20"/>
-                        </Grid>
-                        <Grid Grid.Column="2">
-                            <Button Margin="10" Height="45" Content="Wyloguj" FontSize="20"/>
-                        </Grid>
+                      
                     </Grid>
 
                 </Grid>

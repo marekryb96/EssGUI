@@ -30,7 +30,7 @@ namespace EssGUI
             orderinfo.ItemsSource = orders;
         }
 
-        public void refresh()
+        public void Refresh()
         {
             OrderResponseDTO[] orders = logic.GetAllOrders();
             orderinfo.ItemsSource = orders;
@@ -113,6 +113,11 @@ namespace EssGUI
         private void deviceinfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            Refresh();
         }
     }
 }

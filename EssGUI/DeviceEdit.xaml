@@ -5,24 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="DeviceEdit" Height="450" Width="800">
+        Title="ESService" Height="281.398" Width="800">
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="150" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
             <StackPanel>
-                <Label Name="nameTb" Content="nazwa" Margin="5" Height="25"/>
-                <Label Name="surnameTb" Content="model" Margin="5" Height="25"/>
-                <Label Name="phoneTb" Content="producent" Margin="5" Height="25"/>
-                <Label Name="emailTb" Content="nr seryjny" Margin="5" Height="25"/>
-                <Label Name="countryTb" Content="opis problemu" Margin="5" Height="25"/>
+                <Label Name="nameTb" Content="Nazwa" Margin="5" Height="25"/>
+                <Label Name="surnameTb" Content="Model" Margin="5" Height="25"/>
+                <Label Name="phoneTb" Content="Producent" Margin="5" Height="25"/>
+                <Label Name="emailTb" Content="Nr seryjny" Margin="5" Height="25"/>
+                <Label Name="countryTb" Content="Opis problemu" Margin="5" Height="25"/>
             </StackPanel>
         </Grid>
 

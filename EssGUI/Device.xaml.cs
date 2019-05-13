@@ -144,31 +144,42 @@ namespace EssGUI
 
         }
 
-        private void deviceinfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
+  
         private void selectBt_Click(object sender, RoutedEventArgs e)
         {
-            object item = deviceinfo.SelectedItem;
-            String deviceId = Convert.ToString((deviceinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
+            try
+            {
+                object item = deviceinfo.SelectedItem;
+                String deviceId = Convert.ToString((deviceinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
 
-            this.order.deviceId = deviceId;
+                this.order.deviceId = deviceId;
 
-            this.order.deviceLabel1.Content = Convert.ToString((deviceinfo.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((deviceinfo.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text);
-            this.order.deviceLabel2.Content = Convert.ToString((deviceinfo.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text);
-            this.order.deviceLabel3.Content = Convert.ToString((deviceinfo.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text);
-            this.order.data2Bt.Content = "Zmień";
-            this.order.Focus();
-            this.Close();
+                this.order.deviceLabel1.Content = Convert.ToString((deviceinfo.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text) + " " + Convert.ToString((deviceinfo.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text);
+                this.order.deviceLabel2.Content = Convert.ToString((deviceinfo.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text);
+                this.order.deviceLabel3.Content = Convert.ToString((deviceinfo.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text);
+                this.order.data2Bt.Content = "Zmień";
+                this.order.Focus();
+                this.Close();
+            }
+            catch (System.ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show("Nalezy wybrać konkretna pozycję");
+            }
         }
 
         private void editBt_Click(object sender, RoutedEventArgs e)
         {
-            object item = deviceinfo.SelectedItem;
-            DeviceEdit form = new DeviceEdit(Convert.ToString((deviceinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text), this);
-            form.Show();
+            try
+            {
+                object item = deviceinfo.SelectedItem;
+                DeviceEdit form = new DeviceEdit(Convert.ToString((deviceinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text), this);
+                form.Show();
+            }
+            catch (System.ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show("Nalezy wybrać konkretna pozycję");
+            }
+         
         }
     }
 }
