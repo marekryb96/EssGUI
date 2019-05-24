@@ -72,13 +72,13 @@ namespace EssGUI
 
         }
 
-        private void filter_TextChanged(object sender, TextChangedEventArgs e)
+        private void filter1_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (orderinfo1 != null)
             {
                 orderinfo1.ItemsSource = this.logic.GetAllOrders();
                 TextBox t = (TextBox)sender;
-                string filterGrid = filter.Text;
+                string filterGrid = filter1.Text;
                 ICollectionView cv = CollectionViewSource.GetDefaultView(orderinfo1.ItemsSource);
                 if (filterGrid == "")
                     cv.Filter = null;

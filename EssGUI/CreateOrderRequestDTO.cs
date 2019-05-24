@@ -15,6 +15,7 @@ namespace EssGUI
         String deviceId;
         String userLogin;
         Costs costs;
+        OrderStatus orderStatus;
 
         [JsonProperty("clientId")]
         public string ClientId { get => clientId; set => clientId = value; }
@@ -26,7 +27,10 @@ namespace EssGUI
         public string DeviceId { get => deviceId; set => deviceId = value; }
         [JsonProperty("userLogin")]
         public string UserLogin { get => userLogin; set => userLogin = value; }
+        [JsonProperty("costs")]
         public Costs Costs { get => costs; set => costs = value; }
+        [JsonProperty("orderStatus")]
+        public OrderStatus OrderStatus { get => orderStatus; set => orderStatus = value; }
     }
 
 }

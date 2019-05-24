@@ -64,8 +64,8 @@
                             <Label Name ="phoneLabel" Content="id" Margin="5" Height="25"/>
                             <TextBox Name="TextBox1" Margin="5" Height="100"/>
                             <Label Content="" Margin="5" Height="25"/>
-                            <TextBox Name="TextBox2" Margin="5" Height="25"/>
-                            <TextBox Name="TextBox3" Margin="5" Height="25"/>
+                            <TextBox Name="TextBox2" Text="0" Margin="5" Height="25"/>
+                            <TextBox Name="TextBox3" Text="0" Margin="5" Height="25"/>
 
                             <ComboBox x:Name="statusBox" Margin="5" Height="25">
                                 <ComboBoxItem IsSelected="True">w trakcie realizacji</ComboBoxItem>
