@@ -28,8 +28,8 @@ namespace EssGUI
 
             if (((ComboBoxItem)typeBox.SelectedItem).Content.ToString() == "indywidualny")
             {
-                TextBox9.Text = "nie dotyczy";
-                TextBox9.IsEnabled = false;
+                TextBox10.Text = "nie dotyczy";
+                TextBox10.IsEnabled = false;
             }
         }
 
@@ -86,7 +86,7 @@ namespace EssGUI
         }
 
       
-        private void Button_Click_1(object sender, RoutedEventArgs e)//Wybierz klienta z listy
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             object item = clientinfo.SelectedItem;
             try { 
@@ -193,6 +193,11 @@ namespace EssGUI
         }
 
         private void TextBox9_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox1_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }

@@ -21,6 +21,8 @@ namespace EssGUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        
+        private List<String> ordersToSet = new List<String>();
         private Logic logic = new Logic();
         public MainWindow()
         {
@@ -28,6 +30,8 @@ namespace EssGUI
 
             OrderResponseDTO[] orders = logic.GetAllOrders();
             orderinfo.ItemsSource = orders;
+
+            setBt.IsEnabled = false;
         }
 
         public void Refresh()
@@ -102,7 +106,8 @@ namespace EssGUI
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            Settlement form = new Settlement(ordersToSet);
+            form.Show();
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -118,6 +123,14 @@ namespace EssGUI
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
             Refresh();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            object item = orderinfo.SelectedItem;
+            String orderId = Convert.ToString((orderinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
+            ordersToSet.Add(orderId);
+            setBt.IsEnabled = true;
         }
     }
 }

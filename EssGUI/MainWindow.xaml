@@ -53,12 +53,14 @@
                         <DataGrid x:Name="orderinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionChanged="orderinfo_SelectionChanged" IsReadOnly="True">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Description}" Header="Opis" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Device.Description}" Header="Problem" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Client.Surname}" Header="Nazwisko" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Client.PhoneNumber.Number}" Header="Telefon" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Device.SerialNumber}" Header="Numer seryjny" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Calculated}" Header="Rozliczono" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding OrderStatus}" Header="Status" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Description}" Header="Opis naprawy" IsReadOnly="True" Width="Auto"/>
+                                
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -67,15 +69,19 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
                             <Button x:Name="noBt" Margin="10" Height="45" Click="noBt_Click" Content="Nowe zlecenie" FontSize="20"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <Button Margin="10" Height="45" Content="Rozlicz" FontSize="20" Click="Button_Click_1"/>
+                            <Button Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click" />
                         </Grid>
                         <Grid Grid.Column="2">
-                            <Button Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click" />
+                            <Button Margin="10" Name="addSett" Height="45" Content="Dodaj do rozliczenia" FontSize="18" Click="Button_Click_2"/>
+                        </Grid>
+                        <Grid Grid.Column="3">
+                            <Button Name ="setBt" Margin="10" Height="45" Content="Rozlicz" FontSize="20" Click="Button_Click_1"/>
                         </Grid>
                     </Grid>
 

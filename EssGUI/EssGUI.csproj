@@ -79,6 +79,7 @@
     <Compile Include="CreateClientRequestDTO.cs" />
     <Compile Include="CreateDeviceRequestDTO.cs" />
     <Compile Include="CreateOrderRequestDTO.cs" />
+    <Compile Include="CreateSettlementRequestDTO.cs" />
     <Compile Include="CreateUserRequestDTO.cs" />
     <Compile Include="DeviceResponseDTO.cs" />
     <Compile Include="ExpertPanel.xaml.cs">
@@ -92,6 +93,10 @@
     <Compile Include="RepairPanel.xaml.cs">
       <DependentUpon>RepairPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settlement.xaml.cs">
+      <DependentUpon>Settlement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettlementResponseDTO.cs" />
     <Compile Include="test.xaml.cs">
       <DependentUpon>test.xaml</DependentUpon>
     </Compile>
@@ -150,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RepairPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settlement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

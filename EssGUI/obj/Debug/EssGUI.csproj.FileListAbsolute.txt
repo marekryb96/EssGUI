@@ -411,3 +411,5 @@ C:\Users\x\Documents\EssGUI\EssGUI\obj\Debug\EssGUI.exe
 C:\Users\x\Documents\EssGUI\EssGUI\obj\Debug\EssGUI.pdb
 C:\Users\x\Documents\EssGUI\EssGUI\obj\Debug\OrderEdit.g.cs
 C:\Users\x\Documents\EssGUI\EssGUI\obj\Debug\OrderEdit.baml
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\Settlement.g.cs
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\Settlement.baml
