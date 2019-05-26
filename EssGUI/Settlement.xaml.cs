@@ -64,25 +64,17 @@ namespace EssGUI
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {          
+        {
 
-            String labels = String.Empty;
+            List<string> ids = new List<string>();
 
-            for(int i=0; i<count; i++)
+            for (int i=0; i<count; i++)
             {
-                if(i != count - 1)
-                {
-                    labels += orders[i] + ",";
-                }
-                else
-                {
-                    labels += orders[i];
-                }
-
+                ids.Add(orders[i]);
             }
 
             CreateSettlementRequestDTO createSettlementRequestDTO = new CreateSettlementRequestDTO();
-            createSettlementRequestDTO.OrdersIds = labels;
+            createSettlementRequestDTO.OrdersIds = ids;
 
             RestResponse response = (RestResponse)this.logic.Post(createSettlementRequestDTO, "/settlement/create");
 

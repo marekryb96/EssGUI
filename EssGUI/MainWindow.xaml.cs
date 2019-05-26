@@ -21,7 +21,7 @@ namespace EssGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+
         private List<String> ordersToSet = new List<String>();
         private Logic logic = new Logic();
         public MainWindow()
@@ -128,9 +128,50 @@ namespace EssGUI
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             object item = orderinfo.SelectedItem;
-            String orderId = Convert.ToString((orderinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
-            ordersToSet.Add(orderId);
-            setBt.IsEnabled = true;
+            if (item != null)
+            {
+                String orderId = Convert.ToString((orderinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
+                var status = (orderinfo.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text;
+
+
+                try
+                {
+                    OrderStatus statusEnum = (OrderStatus)Enum.Parse(typeof(OrderStatus), status);
+                    if (statusEnum.Equals(OrderStatus.FINISHED) || statusEnum.Equals(OrderStatus.CANCELED))
+                    {
+
+                        if (ordersToSet.Contains(orderId))
+                        {
+                            MessageBox.Show("Zlecenie zostało już dodane");
+                        }
+                        else
+                        {
+                            ordersToSet.Add(orderId);
+                            setBt.IsEnabled = true;
+                        }
+
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nie mozna rozliczyć niezakończonego zlecenia");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Błąd statusu zlecenia");
+                }
+              
+
+
+
+            }
+            else
+            {
+                MessageBox.Show("Nie wybrano zadnego zlecenia");
+            }
+
+
         }
     }
 }

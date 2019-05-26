@@ -10,7 +10,7 @@ namespace EssGUI
     class CreateSettlementRequestDTO
     {
         [JsonProperty("ordersIds")]
-        String ordersIds;
-        public string OrdersIds { get => ordersIds; set => ordersIds = value; }
+        List<string> ordersIds;
+        public List<string> OrdersIds { get => ordersIds; set => ordersIds = value; }
     }
 }
