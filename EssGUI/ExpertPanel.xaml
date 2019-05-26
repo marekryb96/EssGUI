@@ -12,7 +12,7 @@
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Foreground="Black" ><Run Text="Nowe zlecenia"/></TextBlock>
+                        <TextBlock Foreground="Black" ><Run Text="Zlecenia"/></TextBlock>
                     </StackPanel>
                 </TabItem.Header>
                 <Grid>
@@ -83,7 +83,7 @@
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="W trakcie realizacji" Foreground="Black" />
+                        <TextBlock Text="Sprzęt" Foreground="Black" />
                     </StackPanel>
                 </TabItem.Header>
 
@@ -121,43 +121,7 @@
 
 
             </TabItem>
-            <TabItem>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Gwarancja" Foreground="Black" />
-                    </StackPanel>
-                </TabItem.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="70"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-
-                    <Grid Grid.Row="0"/>
-                    <Grid Grid.Row="1"/>
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
-                            <Button Margin="10" Height="45" Click="noBt_Click" Content="Nowe zlecenie" FontSize="20"/>
-                        </Grid>
-                        <Grid Grid.Column="1">
-                            <Button Margin="10" Height="45" Content="Rozlicz" FontSize="20"/>
-                        </Grid>
-                        <Grid Grid.Column="2">
-                            <Button Margin="10" Height="45" Content="Wyloguj" FontSize="20"/>
-                        </Grid>
-                    </Grid>
-
-                </Grid>
-            </TabItem>
+            
 
 
 
