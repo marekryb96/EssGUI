@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\App.xaml
-111355618909
+16956254737
 
-371398426135
+42239252767
 126-488277643
-Customer.xaml;CustomerEdit.xaml;Device.xaml;DeviceEdit.xaml;ExpertPanel.xaml;MainWindow.xaml;Order.xaml;Repair.xaml;RepairPanel.xaml;Settlement.xaml;test.xaml;
+Customer.xaml;CustomerEdit.xaml;Deffect.xaml;Device.xaml;DeviceEdit.xaml;ExpertPanel.xaml;Login.xaml;MainWindow.xaml;NewCustomer.xaml;NewDevice.xaml;Order.xaml;OrderEdit.xaml;Repair.xaml;RepairPanel.xaml;Settlement.xaml;test.xaml;
 
 True
 

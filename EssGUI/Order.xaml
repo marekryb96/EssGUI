@@ -21,8 +21,8 @@
         <Label Content="KLIENT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
         <Label Name ="clientLabel1" Content="Nie wprowadzono" HorizontalAlignment="Left" Margin="76,52,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.277,0.7" FontSize="16" Background="White"/>
 
-        <Grid Margin="-10,0,10,0">
-            <Button x:Name="data1Bt" Margin="548,103,0,22" Click="data1Bt_Click" Content="Wprowadź" FontSize="20"/>
+        <Grid Margin="-0,0,0,0">
+            <Button x:Name="data1Bt" Margin="538,93,10,40" Click="data1Bt_Click" Content="Wprowadź" FontSize="20" RenderTransformOrigin="0.469,-0.194"/>
         </Grid>
         <Grid Grid.Row="1"/>
         <Grid Visibility="Hidden" Background="#FFA66969"/>
@@ -38,12 +38,10 @@
             <Grid Grid.Column="1"/>
             <Grid Grid.Column="2"/>
         </Grid>
-        <Label Content="SPRZĘT" HorizontalAlignment="Left" Margin="10,10,0,122" FontSize="20" Grid.Row="1" RenderTransformOrigin="0.455,1.207" FontWeight="Bold"/>
-        <Label Name ="deviceLabel1" Content="Nie wprowadzono" HorizontalAlignment="Left" Margin="76,53,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.277,0.7" FontSize="16" Grid.Row="1" Background="{x:Null}"/>
-        <Label Name ="clientLabel2" Content="" HorizontalAlignment="Left" Margin="76,88,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.277,0.7" FontSize="16" Background="White"/>
-        <Label Name ="clientLabel3" Content="" HorizontalAlignment="Left" Margin="76,124,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.277,0.7" FontSize="16" Background="White"/>
-        <Label Name ="deviceLabel2" Content="" HorizontalAlignment="Left" Margin="76,89,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.277,0.7" FontSize="16" Grid.Row="1" Background="{x:Null}"/>
-        <Label Name ="deviceLabel3" Content="" HorizontalAlignment="Left" Margin="76,125,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.277,0.7" FontSize="16" Grid.Row="1" Background="{x:Null}"/>
+        <Label Content="SPRZĘT" HorizontalAlignment="Left" Margin="10,131,0,0" FontSize="20" RenderTransformOrigin="0.455,1.207" FontWeight="Bold"/>
+        <Label Name ="deviceLabel1" Content="Nie wprowadzono" HorizontalAlignment="Left" Margin="76,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.277,0.7" FontSize="16" Grid.Row="1" Background="{x:Null}"/>
+        <Label Name ="clientLabel2" Content="" HorizontalAlignment="Left" Margin="81,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.277,0.7" FontSize="16" Background="White"/>
+        <Label Name ="deviceLabel2" Content="" HorizontalAlignment="Left" Margin="81,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.277,0.7" FontSize="16" Grid.Row="1" Background="{x:Null}"/>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -63,7 +61,10 @@
                 <Button Name="saveBt" Margin="10,12" Height="45" Content="Zapisz zlecenie" FontSize="20" Grid.ColumnSpan="2" Click="saveBt_Click"/>
             </Grid>
         </Grid>
-        <Button x:Name="data2Bt" Margin="538,89,10,36" Click="data2Bt_Click" Content="Wprowadź" FontSize="20" Grid.Row="1"/>
+        <Button x:Name="data2Bt" Margin="538,33,10,103" Click="data2Bt_Click" Content="Wprowadź" FontSize="20" Grid.Row="1"/>
+        <Label Content="USTERKA" HorizontalAlignment="Left" Margin="10,77,0,55" FontSize="20" Grid.Row="1" RenderTransformOrigin="0.455,1.207" FontWeight="Bold"/>
+        <Button x:Name="deffectBt" Margin="538,126,10,10" Click="data3Bt_Click" Content="Wprowadź" FontSize="20" Grid.Row="1"/>
+        <Label x:Name ="defectLabel1" Content="Nie wprowadzono" HorizontalAlignment="Left" Margin="76,120,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.277,0.7" FontSize="16" Grid.Row="1" Background="{x:Null}" Height="55" Width="457"/>
 
     </Grid>
 </Window>

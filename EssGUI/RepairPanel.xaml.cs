@@ -90,5 +90,10 @@ namespace EssGUI
         {
 
         }
+
+        private void TextBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

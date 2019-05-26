@@ -62,7 +62,7 @@
                             <Label Name ="modelLabel" Content="id" Margin="5" Height="25"/>
                             <Label Name ="serialLabel" Content="id" Margin="5" Height="25"/>
                             <Label Name ="phoneLabel" Content="id" Margin="5" Height="25"/>
-                            <TextBox Name="TextBox1" Margin="5" Height="100"/>
+                            <TextBox Name="TextBox1" Margin="5" Height="100" TextChanged="TextBox1_TextChanged"/>
                             <Label Content="" Margin="5" Height="25"/>
                             <TextBox Name="TextBox2" Text="0" Margin="5" Height="25"/>
                             <TextBox Name="TextBox3" Text="0" Margin="5" Height="25"/>

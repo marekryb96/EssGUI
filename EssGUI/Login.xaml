@@ -1,0 +1,18 @@
+﻿<Window x:Class="EssGUI.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EssGUI"
+        mc:Ignorable="d"
+        Title="Login" Height="506.655" Width="385.612">
+    <Grid Margin="0,0,2,0">
+        <TextBox x:Name="log" HorizontalAlignment="Left" Height="39" Margin="22,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328" FontSize="20"/>
+        <Button Name="logOn" Content="ZALOGUJ" HorizontalAlignment="Left" Margin="22,400,0,0" VerticalAlignment="Top" Width="328" Height="41" FontSize="22" FontWeight="Bold" Click="Button_Click"/>
+        <PasswordBox x:Name="pass" HorizontalAlignment="Left" Margin="22,326,0,0" VerticalAlignment="Top" Height="39" Width="328" FontSize="20"/>
+        <Label Content="LOGIN" HorizontalAlignment="Left" Margin="22,193,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <Label Content="HASŁO" HorizontalAlignment="Left" Margin="22,287,0,0" VerticalAlignment="Top" FontSize="22" RenderTransformOrigin="0.506,1.834"/>
+        <Label Content="ESS" HorizontalAlignment="Left" Margin="134,55,0,0" VerticalAlignment="Top" Height="82" Width="108" FontSize="60"/>
+
+    </Grid>
+</Window>

@@ -23,6 +23,7 @@ namespace EssGUI
     {
         public String clientId;
         public String deviceId;
+        public String deffect;
         MainWindow mainWindow;
         Logic logic = new Logic();
         public Order(MainWindow mainWindow)
@@ -46,7 +47,6 @@ namespace EssGUI
                 return false;
             }
 
-
             return true;
         }
         private void saveBt_Click(object sender, RoutedEventArgs e)
@@ -57,8 +57,8 @@ namespace EssGUI
                 createOrderRequest.ClientId = this.clientId;
                 createOrderRequest.DeviceId = this.deviceId;
                 createOrderRequest.UserLogin = "admin";
-                createOrderRequest.DefectDescription = "test";
-                createOrderRequest.Description = " ";
+                createOrderRequest.DefectDescription = deffect;
+                createOrderRequest.Description = "";
 
                 RestResponse response = (RestResponse)this.logic.Post(createOrderRequest, "/order/create");
 
@@ -88,7 +88,6 @@ namespace EssGUI
         {
             Device form = new Device(this);
             form.Show();
-
         }
 
 
@@ -101,6 +100,12 @@ namespace EssGUI
         private void cancelBt_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void data3Bt_Click(object sender, RoutedEventArgs e)
+        {
+            Deffect form = new Deffect(this);
+            form.Show();
         }
     }
 }
