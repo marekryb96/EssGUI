@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EssGUI
 {
-    class UserResponseDTO
+    public class UserResponseDTO
     {
         String displayName;
         String id;

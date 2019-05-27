@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,9 @@ namespace EssGUI
     /// </summary>
     public partial class Login : Window
     {
+
+        private Logic logic = new Logic();
+
         public Login()
         {
             InitializeComponent();
@@ -28,6 +32,19 @@ namespace EssGUI
         {
             String login = log.Text;
             String password = pass.Password;
+
+            string response = this.logic.Get("http://localhost:8080/user/" + login +"/"+password);
+            UserResponseDTO mappedObject = this.logic.Deserialize<UserResponseDTO>(response);
+
+
+            if (mappedObject == null)
+            {
+                MessageBox.Show("Niepoprawne dane");
+            }
+
+            MainWindow form = new MainWindow(mappedObject);
+            form.Show();
+            this.Close();
         }
     }
 }

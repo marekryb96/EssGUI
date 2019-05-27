@@ -62,14 +62,23 @@ namespace EssGUI
             return mappedObject;
         }
 
-        public static T Deserialize<T>(string json)
+        public T Deserialize<T>(string json)
         {
-
-            Newtonsoft.Json.JsonSerializer s = new JsonSerializer();
+            JsonSerializer s = new JsonSerializer
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+     
             return s.Deserialize<T>(new JsonTextReader(new StringReader(json)));
         }
 
-        
+        public UserResponseDTO GetLoginUser(String url)
+        {
+            String response = Get(url);
+            UserResponseDTO mappedObject = Deserialize<UserResponseDTO>(response);
+            return mappedObject;
+
+        }
         public string Get(string uri)
         {
             try

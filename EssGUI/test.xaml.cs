@@ -32,8 +32,7 @@ namespace EssGUI
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MainWindow form = new MainWindow();
-            form.Show();
+           
         }
 
         private void Button_Click2(object sender, RoutedEventArgs e)

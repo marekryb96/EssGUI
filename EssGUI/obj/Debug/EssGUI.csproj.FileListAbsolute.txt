@@ -564,3 +564,13 @@ C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\NewCustomer.g.cs
 C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\NewDevice.g.cs
 C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\NewCustomer.baml
 C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\NewDevice.baml
+C:\Users\x\gui\EssGUI\EssGUI\obj\Debug\Deffect.g.cs
+C:\Users\x\gui\EssGUI\EssGUI\obj\Debug\Login.g.cs
+C:\Users\x\gui\EssGUI\EssGUI\obj\Debug\NewCustomer.g.cs
+C:\Users\x\gui\EssGUI\EssGUI\obj\Debug\NewDevice.g.cs
+C:\Users\x\gui\EssGUI\EssGUI\obj\Debug\OrderEdit.g.cs
+C:\Users\x\gui\EssGUI\EssGUI\obj\Debug\Deffect.baml
+C:\Users\x\gui\EssGUI\EssGUI\obj\Debug\Login.baml
+C:\Users\x\gui\EssGUI\EssGUI\obj\Debug\NewCustomer.baml
+C:\Users\x\gui\EssGUI\EssGUI\obj\Debug\NewDevice.baml
+C:\Users\x\gui\EssGUI\EssGUI\obj\Debug\OrderEdit.baml

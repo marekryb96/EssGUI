@@ -24,7 +24,8 @@ namespace EssGUI
 
         private List<String> ordersToSet = new List<String>();
         private Logic logic = new Logic();
-        public MainWindow()
+
+        public MainWindow(UserResponseDTO user)
         {
             InitializeComponent();
 
