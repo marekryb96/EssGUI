@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace EssGUI
 {
-    enum UserType { CLIENT_SERVICE, WORKER, MANAGER, ADMINISTRATOR };
+   public enum UserType { CLIENT_SERVICE, WORKER, MANAGER, ADMINISTRATOR };
 }

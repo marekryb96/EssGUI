@@ -87,6 +87,7 @@ namespace EssGUI
             else
             {
                 mw.Refresh();
+                this.Close();
             }
         }
     }

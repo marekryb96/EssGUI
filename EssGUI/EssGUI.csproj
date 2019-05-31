@@ -114,6 +114,9 @@
     <Compile Include="Settlement.xaml.cs">
       <DependentUpon>Settlement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettlementEdit.xaml.cs">
+      <DependentUpon>SettlementEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SettlementResponseDTO.cs" />
     <Compile Include="test.xaml.cs">
       <DependentUpon>test.xaml</DependentUpon>
@@ -204,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Settlement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettlementEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

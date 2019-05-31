@@ -163,7 +163,7 @@ namespace EssGUI
                 this.order.Focus();
                 this.Close();
             }
-            catch (System.ArgumentOutOfRangeException ex)
+            catch (System.ArgumentOutOfRangeException)
             {
                 MessageBox.Show("Nalezy wybrać konkretna pozycję");
             }
@@ -177,7 +177,7 @@ namespace EssGUI
                 DeviceEdit form = new DeviceEdit(Convert.ToString((deviceinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text), this);
                 form.Show();
             }
-            catch (System.ArgumentOutOfRangeException ex)
+            catch (System.ArgumentOutOfRangeException)
             {
                 MessageBox.Show("Nalezy wybrać konkretna pozycję");
             }

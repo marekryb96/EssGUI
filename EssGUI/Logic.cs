@@ -82,7 +82,7 @@ namespace EssGUI
             {
                 NullValueHandling = NullValueHandling.Ignore
             };
-     
+
             return s.Deserialize<T>(new JsonTextReader(new StringReader(json)));
         }
 
@@ -94,6 +94,10 @@ namespace EssGUI
 
         }
 
+        public Boolean DeleteUserWithId(String userId)
+        {
+            return Delete("http://localhost:8080/user/" + userId);
+        }
         public UserResponseDTO GetUserWithId(String userId)
         {
             String response = Get("http://localhost:8080/user/" + userId);
@@ -103,7 +107,7 @@ namespace EssGUI
 
         public UserResponseDTO[] GetAllUsers()
         {
-            String response = Get("http://localhost:8080/user/");
+            String response = Get("http://localhost:8080/user?removed=false");
             UserResponseDTO[] mappedObject = Deserialize<UserResponseDTO[]>(response);
             return mappedObject;
         }
@@ -130,7 +134,7 @@ namespace EssGUI
         }
 
 
- 
+
 
         public IRestResponse Post(object requestObject, String url)
         {
@@ -144,5 +148,18 @@ namespace EssGUI
             return response;
         }
 
+        public Boolean Delete(String url)
+        {
+
+            RestRequest request = new RestRequest(url, Method.DELETE);
+            request.RequestFormat = RestSharp.DataFormat.Json;
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("accept", "application/json");
+
+            RestResponse response = (RestResponse)this.restClient.Execute(request);
+
+            return response.IsSuccessful;
+
+        }
     }
 }

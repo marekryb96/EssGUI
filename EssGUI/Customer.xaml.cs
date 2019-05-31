@@ -96,7 +96,7 @@ namespace EssGUI
             this.order.Focus();
             this.Close();
             }
-            catch (System.ArgumentOutOfRangeException ex)
+            catch (System.ArgumentOutOfRangeException)
             {
                 MessageBox.Show("Nalezy wybrać konkretna pozycję");
             }
@@ -137,7 +137,7 @@ namespace EssGUI
                 CustomerEdit form = new CustomerEdit(Convert.ToString((clientinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text), this);
                 form.Show();
             }
-            catch (System.ArgumentOutOfRangeException ex)
+            catch (System.ArgumentOutOfRangeException)
             {
                 MessageBox.Show("Nalezy wybrać konkretna pozycję");
             }

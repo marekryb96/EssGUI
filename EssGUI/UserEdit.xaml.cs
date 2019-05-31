@@ -20,21 +20,21 @@ namespace EssGUI
     /// </summary>
     public partial class UserEdit : Window
     {
-        String id;
+        String userId;
         MainWindow mw;
         UserResponseDTO userResponseDTO;
         Logic logic = new Logic();
 
-        public UserEdit(String id, MainWindow mw)
+        public UserEdit(String userId, MainWindow mw)
         {
             InitializeComponent();
             this.mw = mw;
-            userResponseDTO = logic.GetUserWithId(id);
+            this.userId = userId;
+            userResponseDTO = logic.GetUserWithId(userId);
 
             TextBox1.Text = userResponseDTO.Name;
             TextBox2.Text = userResponseDTO.Surname;
             TextBox3.Text = userResponseDTO.Login;
-            TextBox4.Text = userResponseDTO.Username;
 
             if (userResponseDTO.UserType == UserType.CLIENT_SERVICE)
             {
@@ -61,12 +61,26 @@ namespace EssGUI
             createUserRequestDTO.Name = TextBox1.Text;
             createUserRequestDTO.Surname = TextBox2.Text;
             createUserRequestDTO.Login = TextBox3.Text;
-            createUserRequestDTO.DisplayName = TextBox4.Text;
-            createUserRequestDTO.Username = TextBox4.Text;
 
-            this.logic.Post(createUserRequestDTO, "/user/update/" + id);
-
-            RestResponse response = (RestResponse)this.logic.Post(createUserRequestDTO, "/user/update/" + id);
+            String choice = ((ComboBoxItem)typeBox.SelectedItem).Content.ToString();
+            switch (choice)
+            {
+                case "ADMINISTRATOR": {
+                        createUserRequestDTO.UserType = UserType.ADMINISTRATOR;
+                        break; }
+                case "KIEROWNIK": {
+                        createUserRequestDTO.UserType = UserType.MANAGER;
+                        break; }
+                case "SERWISANT": {
+                        createUserRequestDTO.UserType = UserType.WORKER;
+                        break; }
+                case "OBSŁUGA KLIENTA": {
+                        createUserRequestDTO.UserType = UserType.CLIENT_SERVICE;
+                        break; }
+            }
+       
+   
+            RestResponse response = (RestResponse)this.logic.Post(createUserRequestDTO, "/user/update/" + userId);
 
             bool isSuccesfull = response.IsSuccessful;
             if (!isSuccesfull)

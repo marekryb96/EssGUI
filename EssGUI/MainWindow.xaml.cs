@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,12 +23,12 @@ namespace EssGUI
     public partial class MainWindow : Window
     {
         private List<String> ordersToSet = new List<String>();
-        private Logic logic = new Logic();        
-        public UserResponseDTO user { get; set; } 
+        private Logic logic = new Logic();
+        public UserResponseDTO user { get; set; }
         int count = 0;
         public MainWindow(UserResponseDTO user)
         {
-            InitializeComponent();            
+            InitializeComponent();
 
             String label = user.Name + " " + user.Surname + " ";
 
@@ -37,13 +38,13 @@ namespace EssGUI
 
             if (userResponseDTO.UserType.Equals(UserType.CLIENT_SERVICE))
             {
-                label += "[ obsługa klienta ]";
+                label += "[ Obsługa Klienta ]";
                 followBt.Visibility = Visibility.Collapsed;
                 users.Visibility = Visibility.Collapsed;
             }
             if (userResponseDTO.UserType.Equals(UserType.WORKER))
             {
-                label += "[ serwisant ]";
+                label += "[ Serwisant ]";
                 customers.Visibility = Visibility.Collapsed;
                 users.Visibility = Visibility.Collapsed;
                 settlements.Visibility = Visibility.Collapsed;
@@ -54,7 +55,7 @@ namespace EssGUI
             }
             else if (userResponseDTO.UserType.Equals(UserType.MANAGER))
             {
-                label += "[ kierownik ]";
+                label += "[ Kierownik ]";
                 users.Visibility = Visibility.Collapsed;
                 editBt.Visibility = Visibility.Collapsed;
                 editBt2.Visibility = Visibility.Collapsed;
@@ -71,7 +72,7 @@ namespace EssGUI
             else if (userResponseDTO.UserType.Equals(UserType.ADMINISTRATOR))
             {
                 followBt.Visibility = Visibility.Collapsed;
-                label += "[ administrator ]";
+                label += "[ Administrator ]";
             }
 
             this.user = user;
@@ -99,8 +100,11 @@ namespace EssGUI
 
             UserResponseDTO[] users = logic.GetAllUsers();
             userinfo.ItemsSource = users;
-        }
 
+            SettlementResponseDTO[] sett = logic.GetAllSettlements();
+            settlementinfo.ItemsSource = sett;
+
+        }
         private void noBt_Click(object sender, RoutedEventArgs e)
         {
             Order form = new Order(this);
@@ -130,14 +134,18 @@ namespace EssGUI
 
                         switch (((ComboBoxItem)filterBox.SelectedItem).Content.ToString())
                         {
-                            case "nazwisko":
+                            case "Nazwisko Klienta":
                                 return (p.Client.Surname == filterGrid);
-                            case "numer seryjny":
+                            case "Numer seryjny urządzania":
                                 return (p.Device.SerialNumber == filterGrid);
-                            case "id":
-                                return (p.Id == filterGrid);
-                            case "telefon":
+                            case "Telefon Kontaktowy":
                                 return (p.Client.PhoneNumber.Number == filterGrid);
+                            case "Model Urządznia":
+                                return (p.Device.Model == filterGrid);
+                            case "Producent":
+                                return (p.Device.Brand == filterGrid);
+                            case "Status Zlecenia":
+                                return (p.OrderStatus.ToString() == filterGrid);
                         }
                         return (true);
                     };
@@ -211,22 +219,22 @@ namespace EssGUI
                         }
                         else
                         {
-                            ordersToSet.Add(orderId);                          
+                            ordersToSet.Add(orderId);
                             setBt.IsEnabled = true;
                             count++;
                             String c = setBt.Content.ToString();
                             setBt.Content = "Rozlicz " + "(" + count.ToString() + ")";
-                        }                        
+                        }
                     }
                     else
                     {
                         MessageBox.Show("Nie mozna rozliczyć niezakończonego zlecenia");
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     MessageBox.Show("Błąd statusu zlecenia");
-                }            
+                }
             }
             else
             {
@@ -238,10 +246,17 @@ namespace EssGUI
 
         private void editBt_Click(object sender, RoutedEventArgs e)
         {
+
             object item = orderinfo.SelectedItem;
-            String orderId = Convert.ToString((orderinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
-            OrderEdit form = new OrderEdit(orderId, this);
-            form.Show();
+            if (item != null)
+            {
+                String orderId = Convert.ToString((orderinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
+                OrderEdit form = new OrderEdit(orderId, this);
+                form.Show();
+            }
+            else {
+                MessageBox.Show("Nie wybrano żadnego zlecenia");
+            }
         }
 
         private void Refresh_Click2(object sender, RoutedEventArgs e)
@@ -270,7 +285,7 @@ namespace EssGUI
                             case "id":
                                 return (p.Id.ToString() == filterGrid);
                             //case "data wystawienia":
-                                //return (p.DateTime.ToString() == filterGrid);
+                            //return (p.DateTime.ToString() == filterGrid);
                             case "koszt usług":
                                 return (p.FinalLabourCost == filterGrid);
                             case "koszt części":
@@ -402,7 +417,7 @@ namespace EssGUI
                 CustomerEdit form = new CustomerEdit(Convert.ToString((clientinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text), this);
                 form.Show();
             }
-            catch (System.ArgumentOutOfRangeException ex)
+            catch (System.ArgumentOutOfRangeException)
             {
                 MessageBox.Show("Nalezy wybrać konkretna pozycję");
             }
@@ -416,7 +431,7 @@ namespace EssGUI
                 DeviceEdit form = new DeviceEdit(Convert.ToString((deviceinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text), this);
                 form.Show();
             }
-            catch (System.ArgumentOutOfRangeException ex)
+            catch (System.ArgumentOutOfRangeException)
             {
                 MessageBox.Show("Nalezy wybrać konkretna pozycję");
             }
@@ -447,7 +462,7 @@ namespace EssGUI
                 UserEdit form = new UserEdit(Convert.ToString((userinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text), this);
                 form.Show();
             }
-            catch (System.ArgumentOutOfRangeException ex)
+            catch (System.ArgumentOutOfRangeException)
             {
                 MessageBox.Show("Nalezy wybrać konkretna pozycję");
             }
@@ -471,14 +486,15 @@ namespace EssGUI
 
                         switch (((ComboBoxItem)filterBox4.SelectedItem).Content.ToString())
                         {
+
                             case "login":
+                                return (p.Login == filterGrid);
+                            case "name":
                                 return (p.Name == filterGrid);
-                            case "nazwa użytkownika":
-                                return (p.Username == filterGrid);
+                            case "surname":
+                                return (p.Surname == filterGrid);
                             case "typ użytkownika":
                                 return (p.UserType.ToString() == filterGrid);
-                            case "nazwa wyświetlana":
-                                return (p.DisplayName == filterGrid);
                             case "id":
                                 return (p.Id == filterGrid);
                         }
@@ -496,8 +512,48 @@ namespace EssGUI
             form.Show();
         }
 
-        private void Refresh(object sender, RoutedEventArgs e)
+
+        private void Goto_Click(object sender, RoutedEventArgs e)
         {
+            object item = settlementinfo.SelectedItem;
+            String settlementId = Convert.ToString((settlementinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
+
+            SettlementResponseDTO settDTO =  this.logic.GetSettlementWithId(settlementId);
+
+            String[] ordersList = settDTO.OrdersList;
+
+            List<string> ids = new List<string>();
+            foreach (var elem in ordersList)
+            {
+                ids.Add(elem);
+            }
+
+            OrderResponseDTO[] allOrders = this.logic.GetAllOrders();
+            orderinfo.ItemsSource = filterOrdersByIds(allOrders, ids);
+            orders.IsSelected = true;
+        }
+
+
+        private OrderResponseDTO[] filterOrdersByIds(OrderResponseDTO[] allOrders, List<String> ids)
+        {
+            List<OrderResponseDTO> filteredOrders = new List<OrderResponseDTO>();
+
+
+            foreach (String id in ids)
+            {
+                foreach (OrderResponseDTO order in allOrders)
+                {
+                    if (order.Id.Equals(id))
+                    {
+                        filteredOrders.Add(order);
+                    }
+                }
+            }
+
+
+
+            return filteredOrders.ToArray();
+
 
         }
     }

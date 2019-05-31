@@ -35,24 +35,26 @@ namespace EssGUI
             createUserRequestDTO.Name = TextBox1.Text;
             createUserRequestDTO.Surname = TextBox2.Text;
             createUserRequestDTO.Login = TextBox3.Text;
-            createUserRequestDTO.DisplayName = TextBox4.Text;
-            createUserRequestDTO.Username = TextBox4.Text;
+            createUserRequestDTO.Password = TextBox4.Text;
 
-            if (((ComboBoxItem)typeBox.SelectedItem).Content.ToString() == "obsługa klienta")
+            try
+            {
+                String choice = ((ComboBoxItem)typeBox.SelectedItem).Content.ToString();
+                switch (choice)
+                {
+                    case "ADMINISTRATOR":
+                        { createUserRequestDTO.UserType = UserType.ADMINISTRATOR; break; }
+                    case "KIEROWNIK":
+                        { createUserRequestDTO.UserType = UserType.MANAGER; break; }
+                    case "SERWISANT":
+                        { createUserRequestDTO.UserType = UserType.WORKER; break; }
+                    case "OBSŁUGA KLIENTA":
+                        { createUserRequestDTO.UserType = UserType.CLIENT_SERVICE; break; }
+                }
+            }
+            catch (NullReferenceException)
             {
                 createUserRequestDTO.UserType = UserType.CLIENT_SERVICE;
-            }
-            else if (((ComboBoxItem)typeBox.SelectedItem).Content.ToString() == "kierownik")
-            {
-                createUserRequestDTO.UserType = UserType.MANAGER;
-            }
-            else if (((ComboBoxItem)typeBox.SelectedItem).Content.ToString() == "serwisant")
-            {
-                createUserRequestDTO.UserType = UserType.WORKER;
-            }
-            else if (((ComboBoxItem)typeBox.SelectedItem).Content.ToString() == "administrator")
-            {
-                createUserRequestDTO.UserType = UserType.ADMINISTRATOR;
             }
 
             RestResponse response = (RestResponse)this.logic.Post(createUserRequestDTO, "/user/create");
@@ -64,6 +66,7 @@ namespace EssGUI
             }
 
             mw.Refresh();
+            this.Close();
         }
     }
 }

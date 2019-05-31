@@ -29,13 +29,13 @@ namespace EssGUI
 
             this.mw = mw;
             this.id = id;
-            this.id = id;
+
 
             OrderResponseDTO orderResponseDTO = this.logic.GetOrderWithId(id);
-            idLabel.Content = orderResponseDTO.Id;
+            nameLabel.Text = orderResponseDTO.Client.Surname;
             problemTb.Text = orderResponseDTO.DefectDescription;
-            serialLabel.Content = orderResponseDTO.Device.SerialNumber;
-            modelLabel.Content = orderResponseDTO.Device.Model;
+            serialLabel.Text = orderResponseDTO.Device.SerialNumber;
+            modelLabel.Text = orderResponseDTO.Device.Model;
             repairLabel.Text = orderResponseDTO.Description;
             phoneTb.Text = orderResponseDTO.Client.PhoneNumber.Number;
 

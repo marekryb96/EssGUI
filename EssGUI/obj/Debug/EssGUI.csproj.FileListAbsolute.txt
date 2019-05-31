@@ -578,3 +578,5 @@ C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\NewUser.g.cs
 C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\UserEdit.g.cs
 C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\NewUser.baml
 C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\UserEdit.baml
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\SettlementEdit.g.cs
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\SettlementEdit.baml

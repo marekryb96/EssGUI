@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="OrderEdit" Height="560.976" Width="829.268">
+        Title="OrderEdit" Height="595.976" Width="829.268">
     <Grid>
 
         <Grid>
@@ -21,22 +21,21 @@
 
             <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="31*"/>
+                    <ColumnDefinition Width="60*"/>
                     <ColumnDefinition Width="44*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.ColumnSpan="2">
-                    <Label Content="id" Margin="5" Height="25"/>
-                    <Label Content="nazwisko" Margin="5" Height="25"/>
-                    <Label Content="telefon" Margin="5" Height="25"/>
-                    <Label Content="status" Margin="5" Height="25"/>
-                    <Label Content="problem" Margin="5" Height="25"/>
-                    <Label Content="model" Margin="5" Height="25"/>
-                    <Label Content="numer seryjny" Margin="5" Height="25"/>                    
-                    <Label Content="opis naprawy" Margin="5" Height="100"/>
-                    <Label Content="koszty" Margin="5" Height="25"/>
-                    <Label Content="wymienione części" Margin="5" Height="25"/>
-                    <Label Content="usługi" Margin="5" Height="25"/>
-                    
+                    <Label Content="Nazwisko" Margin="5" Height="33" FontSize="16"/>
+                    <Label Content="Telefon" Margin="5" Height="35" FontSize="16"/>
+                    <Label Content="Status" Margin="5" Height="29" FontSize="16"/>
+                    <Label Content="Problem" Margin="5" Height="32" FontSize="16"/>
+                    <Label Content="Model" Margin="5" Height="37" FontSize="16"/>
+                    <Label Content="Numer seryjny" Margin="5" Height="35" FontSize="16"/>
+                    <Label Content="Opis naprawy" Margin="5" Height="100" FontSize="16"/>
+                    <Label Content="Koszty" Margin="5" Height="33" FontSize="16"/>
+                    <Label Content="- Części" Margin="5" Height="33" FontSize="16"/>
+                    <Label Content="- Usługi" Margin="5" Height="34" FontSize="16"/>
+
                 </StackPanel>
             </Grid>
 
@@ -48,26 +47,25 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.RowSpan="2" Margin="10,0,0,0">
-                    <Label Name ="idLabel" Content="id" Margin="5" Height="25"/>
-                    <Label Name ="nameLabel" Content="id" Margin="5" Height="25"/>
-                    <TextBox Name="phoneTb" Text="" Margin="5" Height="25"/>
-                    <ComboBox x:Name="statusBox" Margin="5" Height="25">
+                    <TextBox Name ="nameLabel" Text="" Margin="5" Height="34" FontSize="16"/>
+                    <TextBox Name="phoneTb" Text="" Margin="5" Height="34" FontSize="16"/>
+                    <ComboBox x:Name="statusBox" Margin="5" Height="34" FontSize="16">
                         <ComboBoxItem>w trakcie realizacji</ComboBoxItem>
                         <ComboBoxItem>oczekiwanie na część</ComboBoxItem>
                         <ComboBoxItem>oczekiwanie na gwarancję</ComboBoxItem>
                         <ComboBoxItem>nowe</ComboBoxItem>
                         <ComboBoxItem>anulowane</ComboBoxItem>
                         <ComboBoxItem>zakończone</ComboBoxItem>
-                        
+
                     </ComboBox>
 
-                    <TextBox Name="problemTb" Text="" Margin="5" Height="25"/>
-                    <Label Name ="modelLabel" Content="id" Margin="5" Height="25"/>
-                    <Label Name ="serialLabel" Content="id" Margin="5" Height="25"/>
-                    <TextBox Name="repairLabel" Margin="5" Height="100" TextChanged="repairLabel_TextChanged"/>
+                    <TextBox Name="problemTb" Text="" Margin="5" Height="34" FontSize="16"/>
+                    <TextBox Name ="modelLabel" Text="" Margin="5" Height="34" FontSize="16"/>
+                    <TextBox Name ="serialLabel" Text="" Margin="5" Height="34" FontSize="16"/>
+                    <TextBox Name="repairLabel" Margin="5" Height="100" TextChanged="repairLabel_TextChanged" FontSize="15"/>
                     <Label Content="" Margin="5" Height="25"/>
-                    <TextBox Name="cost1Tb" Text="0.0" Margin="5" Height="25"/>
-                    <TextBox Name="cost2Tb" Text="0.0" Margin="5" Height="25"/>
+                    <TextBox Name="cost1Tb" Text="0.0" Margin="5" Height="34" FontSize="16"/>
+                    <TextBox Name="cost2Tb" Text="0.0" Margin="5" Height="34" FontSize="16"/>
 
                     <Button Content="Zapisz" Margin="5,5,5,106" Height="50" Click="Button_Click" FontSize="20"/>
 
