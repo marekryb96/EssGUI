@@ -25,17 +25,10 @@ namespace EssGUI
             InitializeComponent();
             this.order = order;
             clientinfo.ItemsSource = this.logic.GetAllClients();
-
-            if (((ComboBoxItem)typeBox.SelectedItem).Content.ToString() == "indywidualny")
-            {
-                TextBox10.Text = "nie dotyczy";
-                TextBox10.IsEnabled = false;
-            }
         }
-
     
 
-        private void Button_Click(object sender, RoutedEventArgs e)//Zapisz Klienta
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -75,9 +68,12 @@ namespace EssGUI
                 {
                     MessageBox.Show("Błędna zawartość formularza");
                 }
+                else
+                {
+                    clientinfo.ItemsSource = this.logic.GetAllClients();
+                    client.IsSelected = true;
+                }
 
-                //update grid
-                clientinfo.ItemsSource = this.logic.GetAllClients();
             }
             catch (Exception ex)
             {

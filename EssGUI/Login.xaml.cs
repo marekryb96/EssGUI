@@ -33,7 +33,7 @@ namespace EssGUI
             String login = log.Text;
             String password = pass.Password;
 
-            string response = this.logic.Get("http://localhost:8080/user/" + login +"/"+password);
+            string response = this.logic.Get("http://localhost:8080/user/" + login + "/" + password);
             UserResponseDTO mappedObject = this.logic.Deserialize<UserResponseDTO>(response);
 
 
@@ -41,8 +41,18 @@ namespace EssGUI
             {
                 MessageBox.Show("Niepoprawne dane");
             }
+            else
+            {
 
-            MainWindow form = new MainWindow(mappedObject);
+                MainWindow form = new MainWindow(mappedObject);
+                form.Show();
+                this.Close();
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            test form = new test();
             form.Show();
             this.Close();
         }

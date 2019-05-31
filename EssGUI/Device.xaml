@@ -9,10 +9,10 @@
         WindowState="Normal" ResizeMode="CanMinimize">
     <Grid Margin="0,0,4,0">
         <TabControl SelectionChanged="TabControl_SelectionChanged">
-            <TabItem>
+            <TabItem Name="device">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Istniejące" Foreground="Black" />
+                        <TextBlock Text="Sprzęt" Foreground="Black" />
                     </StackPanel>
                 </TabItem.Header>
                 <Grid>
@@ -55,7 +55,6 @@
                                 <DataGridTextColumn Binding="{Binding Brand}" Header="Producent" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Model}" Header="Model" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding SerialNumber}" Header="Numer seryjny" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Description}" Header="Opis problemu" IsReadOnly="True" Width="Auto"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -81,7 +80,7 @@
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Foreground="Black" Text="Nowe urządzenie" />
+                        <TextBlock Foreground="Black" Text="Nowy sprzęt" />
                     </StackPanel>
                 </TabItem.Header>
 
@@ -100,7 +99,6 @@
                             <Label Content="nazwa" Margin="5" Height="25"/>
                             <Label Content="model" Margin="5" Height="25"/>                            
                             <Label Content="nr seryjny" Margin="5" Height="25"/>
-                            <Label Content="opis problemu" Margin="5" Height="25"/>
                             <Label Content="producent" Margin="5" Height="25"/>
                         </StackPanel>
                     </Grid>
@@ -116,7 +114,6 @@
                             <TextBox Name="TextBox1" Margin="5" Height="25"/>
                             <TextBox Name="TextBox2" Margin="5" Height="25"/>
                             <TextBox Name="TextBox3" Margin="5" Height="25"/>
-                            <TextBox Name="TextBox4" Margin="5" Height="25"/>
                             <TextBox Name="TextBox5" Margin="5" Height="25"/>
                             <Button Content="Zapisz" Margin="5" Height="45" Click="Button_Click" FontSize="20"/>
 

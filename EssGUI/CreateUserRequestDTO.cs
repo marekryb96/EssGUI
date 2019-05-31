@@ -14,6 +14,7 @@ namespace EssGUI
         String name;
         String password;
         String surname;
+        String username;
         UserType userType;
 
         [JsonProperty("displayName")]
@@ -26,6 +27,7 @@ namespace EssGUI
         public string Password { get => password; set => password = value; }
         [JsonProperty("surname")]
         public string Surname { get => surname; set => surname = value; }
+        public string Username { get => username; set => username = value; }
         [JsonProperty("userType")]
         internal UserType UserType { get => userType; set => userType = value; }
     }

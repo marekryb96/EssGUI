@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="ESService"
+        Title="ESS"
         WindowState="Normal" ResizeMode="CanMinimize">
     <Grid Margin="0,0,4,0">
-        <TabControl SelectionChanged="TabControl_SelectionChanged">
-            <TabItem>
+        <Label x:Name="loginLabel" Content="Login" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="16.813,0.188" Width="451" FontSize="20"/>
+        <TabControl SelectionChanged="TabControl_SelectionChanged" Margin="0,29,-0.4,-0.4">
+            <TabItem Name="orders">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Foreground="Black" ><Run Text="Zlecenia "/></TextBlock>
@@ -58,8 +59,8 @@
                             <DataGrid.RowStyle>
                                 <Style TargetType="DataGridRow">
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Path=time}" Value="true">
-                                            <Setter Property="Background" Value="Red" />
+                                        <DataTrigger Binding="{Binding Path = Days}" Value="true">
+                                            <Setter Property="Background" Value="Orange" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -68,13 +69,16 @@
                                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding DefectDescription}" Header="Problem" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Client.Surname}" Header="Nazwisko" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Client.Name}" Header="Imię" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Client.PhoneNumber.Number}" Header="Telefon" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding BeginDate}" Header="Przyjęto" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Device.SerialNumber}" Header="Numer seryjny" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Calculated}" Header="Rozliczono" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Device.Model}" Header="Model" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Device.Brand}" Header="Producent" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding OrderStatus}" Header="Status" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Description}" Header="Opis naprawy" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding time}" Header="" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Calculated}" Header="Rozliczono" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Days}" Header="aaaaa" IsReadOnly="True" Width="Auto"/>
                             </DataGrid.Columns>
 
                         </DataGrid>
@@ -97,16 +101,17 @@
                             <Button Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click" />
                         </Grid>
                         <Grid Grid.Column="3">
-                            <Button Margin="10" Name="addSett" Height="45" Content="Dodaj do rozliczenia" FontSize="14" Click="Button_Click_2"/>
+                            <Button Margin="10" Name="addSett" Height="45" Content="Dodaj do rozliczenia" FontSize="20" Click="Button_Click_2"/>
                         </Grid>
                         <Grid Grid.Column="4">
+                            <Button Name ="followBt" Margin="10" Height="45" Content="Realizuj" FontSize="20" Click="folllowBt_Click"/>
                             <Button Name ="setBt" Margin="10" Height="45" Content="Rozlicz" FontSize="20" Click="Button_Click_1"/>
                         </Grid>
                     </Grid>
 
                 </Grid>
             </TabItem>
-            <TabItem>
+            <TabItem Name="settlements">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Foreground="Black" ><Run Text="Rozliczenia"/></TextBlock>
@@ -146,25 +151,21 @@
                         <Label Content="Szukaj po" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
 
                         <ComboBox x:Name="filterBox2" SelectionChanged="ComboBox_SelectionChanged" Margin="66,10,0,0" FontSize="14" Grid.ColumnSpan="3" >
-                            <ComboBoxItem>id</ComboBoxItem>
-                            <ComboBoxItem IsSelected="True">telefon</ComboBoxItem>
-                            <ComboBoxItem>nazwisko</ComboBoxItem>
-                            <ComboBoxItem>numer seryjny</ComboBoxItem>
+                            <ComboBoxItem>koszt usług</ComboBoxItem>
+                            <ComboBoxItem IsSelected="True">Id</ComboBoxItem>
+                            <ComboBoxItem>koszt części</ComboBoxItem>
+                            <ComboBoxItem>suma</ComboBoxItem>
                         </ComboBox>
                     </Grid>
 
                     <Grid Grid.Row="2"  Margin="0,16,0,0" Grid.ColumnSpan="2">
-                        <DataGrid x:Name="orderinfo2" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionChanged="orderinfo_SelectionChanged" IsReadOnly="True">
+                        <DataGrid x:Name="settlementinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionChanged="deviceinfo_SelectionChanged_1">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding DefectDescription}" Header="Problem" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Client.Surname}" Header="Nazwisko" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Client.PhoneNumber.Number}" Header="Telefon" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Device.SerialNumber}" Header="Numer seryjny" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Calculated}" Header="Rozliczono" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding OrderStatus}" Header="Status" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Description}" Header="Opis naprawy" IsReadOnly="True" Width="Auto"/>
-
+                                <DataGridTextColumn Binding="{Binding DateTime}" Header="Data wystawienia" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding FinalDeviceCost}" Header="Części" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding FinalLabourCost}" Header="Usługi" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding FinalCost}" Header="Suma" IsReadOnly="True" Width="Auto"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -181,13 +182,13 @@
                         <Grid Grid.Column="2"/>
                         <Grid Grid.Column="3"/>
                         <Grid Grid.Column="4">
-                            <Button Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click2" />
+                            <Button Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click" />
                         </Grid>
                     </Grid>
 
                 </Grid>
             </TabItem>
-            <TabItem>
+            <TabItem Name="customers">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Foreground="Black" ><Run Text="Klienci"/></TextBlock>
@@ -233,7 +234,6 @@
                                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Name}" Header="Imię" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Surname}" Header="Nazwisko" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding PhoneNumber.AreaCode}" Header="Kierunkowy" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding PhoneNumber.Number}" Header="Numer telefonu" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Email}" Header="E-mail" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Address.Street}" Header="Ulica" IsReadOnly="True" Width="Auto"/>
@@ -257,16 +257,18 @@
                             </Grid.ColumnDefinitions>
                             <Button x:Name="editBt2" Margin="10,12" Height="45" Click="editCustomerBt" Content="Edytuj" FontSize="20" Grid.ColumnSpan="2"/>
                         </Grid>
-                        <Grid Grid.Column="1"/>
+                        <Grid Grid.Column="1">
+                            <Button Name="refresh"  Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click"/>
+                        </Grid>
                         <Grid Grid.Column="2">
-                            <Button Margin="10" Height="45" Content="Dodaj" FontSize="20" Click="addCustomerBt_Click"/>
+                            <Button Name="addCustomer"  Margin="10" Height="45" Content="Dodaj" FontSize="20" Click="addCustomerBt_Click"/>
                         </Grid>
                     </Grid>
 
                 </Grid>
             </TabItem>
 
-            <TabItem>
+            <TabItem Name="devices">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Sprzęt" Foreground="Black" />
@@ -312,7 +314,6 @@
                                 <DataGridTextColumn Binding="{Binding Brand}" Header="Producent" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Model}" Header="Model" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding SerialNumber}" Header="Numer seryjny" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Description}" Header="Opis problemu" IsReadOnly="True" Width="Auto"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -325,15 +326,85 @@
                         <Grid Grid.Column="0">
                             <Button x:Name="editBt4" Margin="10" Height="45" Click="editDevice_Click" Content="Edytuj" FontSize="20"/>
                         </Grid>
-                        <Grid Grid.Column="1"/>
+                        <Grid Grid.Column="1">
+                            <Button Name="refreshDevice"  Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click"/>
+                        </Grid>   
                         <Grid Grid.Column="2">
-                            <Button Margin="10" Height="45" Content="Dodaj" FontSize="20" Click="addDeviceBt_Click"/>
+                            <Button Name="addDevice"  Margin="10" Height="45" Content="Dodaj" FontSize="20" Click="addDeviceBt_Click"/>
                         </Grid>
                     </Grid>
 
                 </Grid>
             </TabItem>
+            <TabItem Name="users">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Użytkownicy" Foreground="Black" />
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="70"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <TextBox x:Name="filter5" Height="30" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter5_TextChanged" FontSize="14"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="529*"/>
+                            <ColumnDefinition Width="255*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Content="Szukaj po" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
+
+                        <ComboBox x:Name="filterBox5"  Margin="66,10,0,0" FontSize="14" Grid.ColumnSpan="2" SelectionChanged="filterBox4_SelectionChanged" >
+                            <ComboBoxItem IsSelected="True">nazwa użytkownika</ComboBoxItem>
+                            <ComboBoxItem>id</ComboBoxItem>
+                            <ComboBoxItem>login</ComboBoxItem>
+                            <ComboBoxItem>typ użytkownika</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                    <Grid Grid.Row="2" Margin="0,16,0,0">
+                        <DataGrid x:Name="userinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionChanged="deviceinfo_SelectionChanged_1">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Username}" Header="Nazwa użytkownika" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding DisplayName}" Header="Nazwa wyświetlana" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Login}" Header="Login" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Imię" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Surname}" Header="Nazwisko" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding UserType}" Header="Typ" IsReadOnly="True" Width="Auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Button x:Name="editBt5" Margin="10" Height="45" Click="editUser_Click" Content="Edytuj" FontSize="20"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Button Name="refreshUser"  Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Button Name="addUser"  Margin="10" Height="45" Content="Dodaj" FontSize="20" Click="addUserBt_Click"/>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
 
 
         </TabControl>

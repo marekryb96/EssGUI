@@ -22,11 +22,13 @@ namespace EssGUI
     {
         private List<String> orders;
         private int count;
+        MainWindow mw;
         Logic logic = new Logic();
-        public Settlement(List<String> orders)
+        public Settlement(List<String> orders, MainWindow mw)
         {
             InitializeComponent();
             this.orders = orders;
+            this.mw = mw;
             count = orders.Count;
 
             OrderResponseDTO orderResponseDTO2 = logic.GetOrderWithId(orders[0]);
@@ -43,7 +45,7 @@ namespace EssGUI
                 {
                     device.Content = orderResponseDTO.Device.Name + " " + orderResponseDTO.Device.Brand + " " + orderResponseDTO.Device.Model;
                     sn.Content = orderResponseDTO.Device.SerialNumber;
-                    deffect.Content = orderResponseDTO.Device.Description;
+                    deffect.Content = orderResponseDTO.DefectDescription;
                     order.Content = orderResponseDTO.Id;
                     repair.Content = orderResponseDTO.Description;
                     cost1.Content = orderResponseDTO.Costs.LabourCosts;
@@ -54,7 +56,7 @@ namespace EssGUI
                 {
                     device.Content += ", " + orderResponseDTO.Device.Name + " " + orderResponseDTO.Device.Brand + " " + orderResponseDTO.Device.Model;
                     sn.Content += ", " + orderResponseDTO.Device.SerialNumber;
-                    deffect.Content += ", " + orderResponseDTO.Device.Description;
+                    deffect.Content += ", " + orderResponseDTO.DefectDescription;
                     order.Content += ", " + orderResponseDTO.Id;
                     repair.Content += ", " + orderResponseDTO.Description;
                     cost1.Content += ", " + orderResponseDTO.Costs.LabourCosts;
@@ -65,7 +67,6 @@ namespace EssGUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             List<string> ids = new List<string>();
 
             for (int i=0; i<count; i++)
@@ -82,6 +83,10 @@ namespace EssGUI
             if (!isSuccesfull)
             {
                 MessageBox.Show("Błędna zawartość formularza");
+            }
+            else
+            {
+                mw.Refresh();
             }
         }
     }

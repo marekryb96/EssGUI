@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="516.393" Width="800"
+        Title="Edycja klienta" Height="516.393" Width="800"
         WindowState="Maximized" ResizeMode="CanMinimize">
     <Grid>
 

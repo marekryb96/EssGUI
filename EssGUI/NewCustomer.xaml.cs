@@ -25,7 +25,7 @@ namespace EssGUI
         public NewCustomer(MainWindow mw)
         {
             InitializeComponent();
-            mw = this.mw;
+            this.mw = mw;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -68,9 +68,13 @@ namespace EssGUI
                 {
                     MessageBox.Show("Błędna zawartość formularza");
                 }
+                else
+                {
+                    mw.Refresh();
+                    this.Close();
+                }
 
-                //update grid
-                mw.clientinfo.ItemsSource = this.logic.GetAllClients();
+
             }
             catch (Exception ex)
             {

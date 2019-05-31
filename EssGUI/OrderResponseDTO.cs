@@ -21,15 +21,6 @@ namespace EssGUI
         DateTime endDate;
         Boolean days;
 
-        public OrderResponseDTO()
-        {
-            var time = DateTime.Now - BeginDate;
-            double d = time.Days;
-            if (d > 6) days = true;
-            else days = true;
-            int a = 1;
-        }
-
         public bool Calculated { get => calculated; set => calculated = value; }
         public string Description { get => description; set => description = value; }
         public string Id { get => id; set => id = value; }
@@ -41,5 +32,6 @@ namespace EssGUI
         public string DefectDescription { get => defectDescription; set => defectDescription = value; }
         public DateTime BeginDate { get => beginDate; set => beginDate = value; }
         public DateTime EndDate { get => endDate; set => endDate = value; }
+        public bool Days { get => (DateTime.Now - BeginDate).Days > 7; set => days = value; }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Naprawa"
         WindowState="Normal" ResizeMode="CanMinimize" Height="588">
     <Grid Margin="0,0,4,0">
         <TabControl>
@@ -109,11 +109,7 @@
                             <ColumnDefinition Width="31*"/>
                             <ColumnDefinition Width="44*"/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Grid.ColumnSpan="2">
-                            <Label Content="imię" Margin="5" Height="25"/>
-                            <Label Content="nazwisko" Margin="5" Height="25"/>
-
-                        </StackPanel>
+                        <StackPanel Grid.ColumnSpan="2"/>
                     </Grid>
 
                     <Grid Grid.Column="1">
@@ -123,13 +119,7 @@
                             <RowDefinition Height="0*"/>
                         </Grid.RowDefinitions>
 
-                        <StackPanel Grid.RowSpan="2" Margin="10,0,0,0">
-                            <TextBox Name="TextBox111" Margin="5" Height="25"/>
-
-
-                            <Button Content="Zapisz" Margin="5,5,5,106" Height="32" Click="Button_Click" FontSize="20"/>
-
-                        </StackPanel>
+                        <StackPanel Grid.RowSpan="2" Margin="10,0,0,0"/>
 
                     </Grid>
 

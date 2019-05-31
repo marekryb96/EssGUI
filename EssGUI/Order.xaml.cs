@@ -25,11 +25,13 @@ namespace EssGUI
         public String deviceId;
         public String deffect;
         MainWindow mainWindow;
+
         Logic logic = new Logic();
         public Order(MainWindow mainWindow)
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
+
         }
        
         private Boolean areClientAndDeviceAssigned(String clientId,String deviceId)
@@ -53,12 +55,17 @@ namespace EssGUI
         {      
             if (areClientAndDeviceAssigned(this.clientId,this.deviceId))
             {
+                Costs costs = new Costs();
+                costs.LabourCosts = "1";
+                costs.DeviceCosts = "1";
+
                 CreateOrderRequestDTO createOrderRequest = new CreateOrderRequestDTO();
                 createOrderRequest.ClientId = this.clientId;
                 createOrderRequest.DeviceId = this.deviceId;
-                createOrderRequest.UserLogin = "admin";
+                createOrderRequest.UserLogin = mainWindow.user.Login;
                 createOrderRequest.DefectDescription = deffect;
                 createOrderRequest.Description = "";
+                createOrderRequest.Costs = costs;
 
                 RestResponse response = (RestResponse)this.logic.Post(createOrderRequest, "/order/create");
 

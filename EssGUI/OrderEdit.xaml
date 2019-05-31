@@ -64,10 +64,10 @@
                     <TextBox Name="problemTb" Text="" Margin="5" Height="25"/>
                     <Label Name ="modelLabel" Content="id" Margin="5" Height="25"/>
                     <Label Name ="serialLabel" Content="id" Margin="5" Height="25"/>
-                    <TextBox Name="repairLabel" Margin="5" Height="100"/>
+                    <TextBox Name="repairLabel" Margin="5" Height="100" TextChanged="repairLabel_TextChanged"/>
                     <Label Content="" Margin="5" Height="25"/>
-                    <TextBox Name="cost1Tb" Text="0" Margin="5" Height="25"/>
-                    <TextBox Name="cost2Tb" Text="0" Margin="5" Height="25"/>
+                    <TextBox Name="cost1Tb" Text="0.0" Margin="5" Height="25"/>
+                    <TextBox Name="cost2Tb" Text="0.0" Margin="5" Height="25"/>
 
                     <Button Content="Zapisz" Margin="5,5,5,106" Height="50" Click="Button_Click" FontSize="20"/>
 

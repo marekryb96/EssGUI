@@ -21,56 +21,97 @@ namespace EssGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-
         private List<String> ordersToSet = new List<String>();
-        private Logic logic = new Logic();
-
+        private Logic logic = new Logic();        
+        public UserResponseDTO user { get; set; } 
+        int count = 0;
         public MainWindow(UserResponseDTO user)
         {
-            InitializeComponent();
+            InitializeComponent();            
+
+            String label = user.Name + " " + user.Surname + " ";
+
+            String id = user.Id;
+
+            UserResponseDTO userResponseDTO = logic.GetUserWithId(id);
+
+            if (userResponseDTO.UserType.Equals(UserType.CLIENT_SERVICE))
+            {
+                label += "[ obsługa klienta ]";
+                followBt.Visibility = Visibility.Collapsed;
+                users.Visibility = Visibility.Collapsed;
+            }
+            if (userResponseDTO.UserType.Equals(UserType.WORKER))
+            {
+                label += "[ serwisant ]";
+                customers.Visibility = Visibility.Collapsed;
+                users.Visibility = Visibility.Collapsed;
+                settlements.Visibility = Visibility.Collapsed;
+                noBt.Visibility = Visibility.Collapsed;
+                editBt.Visibility = Visibility.Collapsed;
+                addSett.Visibility = Visibility.Collapsed;
+                setBt.Visibility = Visibility.Collapsed;
+            }
+            else if (userResponseDTO.UserType.Equals(UserType.MANAGER))
+            {
+                label += "[ kierownik ]";
+                users.Visibility = Visibility.Collapsed;
+                editBt.Visibility = Visibility.Collapsed;
+                editBt2.Visibility = Visibility.Collapsed;
+                editBt4.Visibility = Visibility.Collapsed;
+                editBt5.Visibility = Visibility.Collapsed;
+                noBt.Visibility = Visibility.Collapsed;
+                setBt.Visibility = Visibility.Collapsed;
+                addSett.Visibility = Visibility.Collapsed;
+                followBt.Visibility = Visibility.Collapsed;
+                addUser.Visibility = Visibility.Collapsed;
+                addDevice.Visibility = Visibility.Collapsed;
+                addCustomer.Visibility = Visibility.Collapsed;
+            }
+            else if (userResponseDTO.UserType.Equals(UserType.ADMINISTRATOR))
+            {
+                followBt.Visibility = Visibility.Collapsed;
+                label += "[ administrator ]";
+            }
+
+            this.user = user;
+            this.loginLabel.Content = label;
 
             OrderResponseDTO[] orders = logic.GetAllOrders();
             orderinfo.ItemsSource = orders;
-            orderinfo2.ItemsSource = orders;
-            setBt.IsEnabled = false;
-
-            if (orderinfo2 != null)
-            {
-                orderinfo2.ItemsSource = this.logic.GetAllOrders();
-
-                ICollectionView cv = CollectionViewSource.GetDefaultView(orderinfo2.ItemsSource);
-
-                cv.Filter = o =>
-                {
-                    OrderResponseDTO p = o as OrderResponseDTO;
-
-                    return (p.OrderStatus != OrderStatus.NEW && p.OrderStatus != OrderStatus.READY_FOR_PICKUP);
-
-                };
-            }
 
             deviceinfo.ItemsSource = logic.GetAllDevices();
-
-            clientinfo.ItemsSource = this.logic.GetAllClients();
+            clientinfo.ItemsSource = logic.GetAllClients();
+            settlementinfo.ItemsSource = logic.GetAllSettlements();
+            userinfo.ItemsSource = logic.GetAllUsers();
         }
 
         public void Refresh()
         {
             OrderResponseDTO[] orders = logic.GetAllOrders();
             orderinfo.ItemsSource = orders;
+
+            ClientResponseDTO[] clients = logic.GetAllClients();
+            clientinfo.ItemsSource = clients;
+
+            DeviceResponseDTO[] devices = logic.GetAllDevices();
+            deviceinfo.ItemsSource = devices;
+
+            UserResponseDTO[] users = logic.GetAllUsers();
+            userinfo.ItemsSource = users;
         }
 
         private void noBt_Click(object sender, RoutedEventArgs e)
         {
             Order form = new Order(this);
             form.Show();
-            //this.Close();
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
         private void filter_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (orderinfo != null)
@@ -126,7 +167,7 @@ namespace EssGUI
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Settlement form = new Settlement(ordersToSet);
+            Settlement form = new Settlement(ordersToSet, this);
             form.Show();
         }
 
@@ -151,26 +192,31 @@ namespace EssGUI
             if (item != null)
             {
                 String orderId = Convert.ToString((orderinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
-                var status = (orderinfo.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text;
+                String status = (orderinfo.SelectedCells[9].Column.GetCellContent(item) as TextBlock).Text;
 
+                OrderResponseDTO orderResponseDTO = this.logic.GetOrderWithId(orderId);
 
                 try
                 {
                     OrderStatus statusEnum = (OrderStatus)Enum.Parse(typeof(OrderStatus), status);
                     if (statusEnum.Equals(OrderStatus.FINISHED) || statusEnum.Equals(OrderStatus.CANCELED))
                     {
-
                         if (ordersToSet.Contains(orderId))
                         {
                             MessageBox.Show("Zlecenie zostało już dodane");
                         }
+                        else if (orderResponseDTO.Calculated == true || orderResponseDTO.OrderStatus == OrderStatus.READY_FOR_PICKUP)
+                        {
+                            MessageBox.Show("Zlecenie zostało już rozliczone");
+                        }
                         else
                         {
-                            ordersToSet.Add(orderId);
+                            ordersToSet.Add(orderId);                          
                             setBt.IsEnabled = true;
-                        }
-
-                        
+                            count++;
+                            String c = setBt.Content.ToString();
+                            setBt.Content = "Rozlicz " + "(" + count.ToString() + ")";
+                        }                        
                     }
                     else
                     {
@@ -180,11 +226,7 @@ namespace EssGUI
                 catch (Exception ex)
                 {
                     MessageBox.Show("Błąd statusu zlecenia");
-                }
-              
-
-
-
+                }            
             }
             else
             {
@@ -198,7 +240,7 @@ namespace EssGUI
         {
             object item = orderinfo.SelectedItem;
             String orderId = Convert.ToString((orderinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
-            OrderEdit form = new OrderEdit(orderId);
+            OrderEdit form = new OrderEdit(orderId, this);
             form.Show();
         }
 
@@ -209,30 +251,32 @@ namespace EssGUI
 
         private void filter2_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (orderinfo2 != null)
+            if (settlementinfo != null)
             {
-                orderinfo.ItemsSource = this.logic.GetAllOrders();
+                settlementinfo.ItemsSource = logic.GetAllSettlements();
                 TextBox t = (TextBox)sender;
                 string filterGrid = filter2.Text;
-                ICollectionView cv = CollectionViewSource.GetDefaultView(orderinfo2.ItemsSource);
+                ICollectionView cv = CollectionViewSource.GetDefaultView(settlementinfo.ItemsSource);
                 if (filterGrid == "")
                     cv.Filter = null;
                 else
                 {
                     cv.Filter = o =>
                     {
-                        OrderResponseDTO p = o as OrderResponseDTO;
+                        SettlementResponseDTO p = o as SettlementResponseDTO;
 
                         switch (((ComboBoxItem)filterBox2.SelectedItem).Content.ToString())
                         {
-                            case "nazwisko":
-                                return (p.Client.Surname == filterGrid);
-                            case "numer seryjny":
-                                return (p.Device.SerialNumber == filterGrid);
                             case "id":
-                                return (p.Id == filterGrid);
-                            case "telefon":
-                                return (p.Client.PhoneNumber.Number == filterGrid);
+                                return (p.Id.ToString() == filterGrid);
+                            //case "data wystawienia":
+                                //return (p.DateTime.ToString() == filterGrid);
+                            case "koszt usług":
+                                return (p.FinalLabourCost == filterGrid);
+                            case "koszt części":
+                                return (p.FinalDeviceCost == filterGrid);
+                            case "suma":
+                                return (p.FinalCost == filterGrid);
                         }
                         return (true);
                     };
@@ -352,7 +396,7 @@ namespace EssGUI
 
         private void editCustomerBt(object sender, RoutedEventArgs e)
         {
-            /*try
+            try
             {
                 object item = clientinfo.SelectedItem;
                 CustomerEdit form = new CustomerEdit(Convert.ToString((clientinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text), this);
@@ -361,12 +405,12 @@ namespace EssGUI
             catch (System.ArgumentOutOfRangeException ex)
             {
                 MessageBox.Show("Nalezy wybrać konkretna pozycję");
-            }*/
+            }
         }
 
         private void editDevice_Click(object sender, RoutedEventArgs e)
         {
-            /*try
+            try
             {
                 object item = deviceinfo.SelectedItem;
                 DeviceEdit form = new DeviceEdit(Convert.ToString((deviceinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text), this);
@@ -375,13 +419,86 @@ namespace EssGUI
             catch (System.ArgumentOutOfRangeException ex)
             {
                 MessageBox.Show("Nalezy wybrać konkretna pozycję");
-            }*/
+            }
         }
 
         private void addDeviceBt_Click(object sender, RoutedEventArgs e)
         {
             NewDevice form = new NewDevice(this);
             form.Show();
+        }
+
+        private void settlementinfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void addUserBt_Click(object sender, RoutedEventArgs e)
+        {
+            NewUser form = new NewUser(this);
+            form.Show();
+        }
+
+        private void editUser_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                object item = userinfo.SelectedItem;
+                UserEdit form = new UserEdit(Convert.ToString((userinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text), this);
+                form.Show();
+            }
+            catch (System.ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show("Nalezy wybrać konkretna pozycję");
+            }
+        }
+
+        private void filter5_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (userinfo != null)
+            {
+                userinfo.ItemsSource = logic.GetAllUsers();
+                TextBox t = (TextBox)sender;
+                string filterGrid = filter4.Text;
+                ICollectionView cv = CollectionViewSource.GetDefaultView(deviceinfo.ItemsSource);
+                if (filterGrid == "")
+                    cv.Filter = null;
+                else
+                {
+                    cv.Filter = o =>
+                    {
+                        UserResponseDTO p = o as UserResponseDTO;
+
+                        switch (((ComboBoxItem)filterBox4.SelectedItem).Content.ToString())
+                        {
+                            case "login":
+                                return (p.Name == filterGrid);
+                            case "nazwa użytkownika":
+                                return (p.Username == filterGrid);
+                            case "typ użytkownika":
+                                return (p.UserType.ToString() == filterGrid);
+                            case "nazwa wyświetlana":
+                                return (p.DisplayName == filterGrid);
+                            case "id":
+                                return (p.Id == filterGrid);
+                        }
+                        return (true);
+                    };
+                }
+            }
+        }
+
+        private void folllowBt_Click(object sender, RoutedEventArgs e)
+        {
+            object item = orderinfo.SelectedItem;
+            String orderId = Convert.ToString((orderinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
+            RepairPanel form = new RepairPanel(orderId, this);
+            form.Show();
+        }
+
+        private void Refresh(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -1,27 +1,28 @@
-﻿<Window x:Class="EssGUI.DeviceEdit"
+﻿<Window x:Class="EssGUI.UserEdit"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="Edycja urządzenia" Height="281.398" Width="800">
+        Title="Edycja użytkownika" Height="450" Width="800">
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="250" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
             <StackPanel>
-                <Label Name="nameTb" Content="Nazwa" Margin="5" Height="25"/>
-                <Label Name="surnameTb" Content="Model" Margin="5" Height="25"/>
-                <Label Name="phoneTb" Content="Producent" Margin="5" Height="25"/>
-                <Label Name="emailTb" Content="Nr seryjny" Margin="5" Height="25"/>
+                <Label Content="imię" Margin="5" Height="25"/>
+                <Label Content="nazwisko" Margin="5" Height="25"/>
+                <Label Content="login" Margin="5" Height="25"/>
+                <Label Content="nazwa użytkownika" Margin="5" Height="25"/>
+                <Label Content="typ" Margin="5" Height="25"/>
+
             </StackPanel>
         </Grid>
 
@@ -37,10 +38,15 @@
                 <TextBox Name="TextBox2" Margin="5" Height="25"/>
                 <TextBox Name="TextBox3" Margin="5" Height="25"/>
                 <TextBox Name="TextBox4" Margin="5" Height="25"/>
-                <Button x:Name="updateBt" Content="Zapisz" Margin="5" Height="45" FontSize="20" Click="updateBt_Click"/>
+                <ComboBox x:Name="typeBox" Margin="5" Height="25">
+                    <ComboBoxItem>obsługa klienta</ComboBoxItem>
+                    <ComboBoxItem>serwisant</ComboBoxItem>
+                    <ComboBoxItem>administrator</ComboBoxItem>
+                    <ComboBoxItem>kierownik</ComboBoxItem>
+                </ComboBox>
+                <Button Content="Zapisz" Margin="5" Height="45" Click="Button_Click" FontSize="20"/>
 
             </StackPanel>
         </Grid>
-
     </Grid>
 </Window>

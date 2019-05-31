@@ -21,14 +21,15 @@ namespace EssGUI
     public partial class RepairPanel : Window
     {
         String id;
+        MainWindow mw;
         private Logic logic = new Logic();
-        public RepairPanel(String id)
+        public RepairPanel(String id, MainWindow mw)
         {            
             InitializeComponent();
             this.id = id;
             OrderResponseDTO orderResponseDTO = this.logic.GetOrderWithId(id);
             idLabel.Content = orderResponseDTO.Id;
-            problemLabel.Content = orderResponseDTO.Device.Description;
+            problemLabel.Content = orderResponseDTO.Description;
             serialLabel.Content = orderResponseDTO.Device.SerialNumber;
             modelLabel.Content = orderResponseDTO.Device.Model;
             phoneLabel.Content = orderResponseDTO.Client.PhoneNumber.Number;
@@ -82,6 +83,11 @@ namespace EssGUI
             if (!isSuccesfull)
             {
                 MessageBox.Show("Błędna zawartość formularza");
+            }
+            else
+            {
+                this.Close();
+                mw.Refresh();
             }
 
         }

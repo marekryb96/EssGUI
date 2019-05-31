@@ -12,6 +12,7 @@ namespace EssGUI
         String id;
         String login;
         String name;
+        String surname;
         Boolean removed;
         String username;
         UserType userType;
@@ -22,6 +23,7 @@ namespace EssGUI
         public string Name { get => name; set => name = value; }
         public bool Removed { get => removed; set => removed = value; }
         public string Username { get => username; set => username = value; }
+        public string Surname { get => surname; set => surname = value; }
         internal UserType UserType { get => userType; set => userType = value; }
     }
 }

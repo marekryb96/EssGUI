@@ -22,6 +22,7 @@ namespace EssGUI
     {
         String id;
         Customer customer;
+        MainWindow mw;
         Logic logic = new Logic();
         ClientResponseDTO clientResponseDTO;
 
@@ -53,6 +54,36 @@ namespace EssGUI
             {
                 typeBox.SelectedIndex = 1;
             }           
+        }
+
+        public CustomerEdit(String id, MainWindow mw)
+        {
+            InitializeComponent();
+            this.id = id;
+            this.mw = mw;
+
+            clientResponseDTO = logic.GetClientWithId(id);
+
+            TextBox1.Text = clientResponseDTO.Name;
+            TextBox2.Text = clientResponseDTO.Surname;
+            TextBox3.Text = clientResponseDTO.Email;
+            TextBox4.Text = clientResponseDTO.Address.Country;
+            TextBox5.Text = clientResponseDTO.Address.City;
+            TextBox6.Text = clientResponseDTO.PhoneNumber.AreaCode;
+            TextBox7.Text = clientResponseDTO.PhoneNumber.Number;
+            TextBox8.Text = clientResponseDTO.Address.Street;
+            TextBox9.Text = clientResponseDTO.Address.HouseNumber;
+            TextBox10.Text = clientResponseDTO.Address.ZipCode;
+            TextBox11.Text = clientResponseDTO.Nip;
+
+            if (clientResponseDTO.ClientType == ClientType.INDIVIDIAL)
+            {
+                typeBox.SelectedIndex = 0;
+            }
+            else
+            {
+                typeBox.SelectedIndex = 1;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -98,7 +129,14 @@ namespace EssGUI
             }
             else
             {
-                customer.Refresh();
+                if(customer == null)
+                {
+                    mw.Refresh();
+                }
+                else
+                {
+                    customer.Refresh();
+                }
                 this.Close();
             }            
         }

@@ -24,6 +24,7 @@ namespace EssGUI
         Logic logic = new Logic();
         DeviceResponseDTO deviceResponseDTO;
         Device device;
+        MainWindow mw;
         public DeviceEdit(String id, Device device)
         {
             InitializeComponent();
@@ -35,8 +36,19 @@ namespace EssGUI
             TextBox2.Text = deviceResponseDTO.Model;
             TextBox3.Text = deviceResponseDTO.Brand;
             TextBox4.Text = deviceResponseDTO.SerialNumber;
-            TextBox5.Text = deviceResponseDTO.Description;
+        }
 
+        public DeviceEdit(String id, MainWindow mw)
+        {
+            InitializeComponent();
+            this.mw = mw;
+            this.id = id;
+            deviceResponseDTO = logic.GetDeviceWithId(id);
+
+            TextBox1.Text = deviceResponseDTO.Name;
+            TextBox2.Text = deviceResponseDTO.Model;
+            TextBox3.Text = deviceResponseDTO.Brand;
+            TextBox4.Text = deviceResponseDTO.SerialNumber;
         }
 
         private void updateBt_Click(object sender, RoutedEventArgs e)
@@ -47,7 +59,7 @@ namespace EssGUI
             createDeviceRequestDTO.Model = TextBox2.Text;
             createDeviceRequestDTO.Brand = TextBox3.Text;
             createDeviceRequestDTO.SerialNumber = TextBox4.Text;
-            createDeviceRequestDTO.Description = TextBox5.Text;
+            createDeviceRequestDTO.Description = "";
 
             this.logic.Post(createDeviceRequestDTO, "/device/update/" + id);
 
@@ -60,7 +72,14 @@ namespace EssGUI
             }
             else
             {
-                device.refresh();
+                if(device == null)
+                {
+                    mw.Refresh();
+                }
+                else
+                {
+                    device.refresh();
+                }
                 this.Close();
             }           
         }

@@ -51,7 +51,7 @@ namespace EssGUI
             createDeviceRequestDTO.Name = TextBox1.Text;
             createDeviceRequestDTO.Model = TextBox2.Text;
             createDeviceRequestDTO.SerialNumber = TextBox3.Text;
-            createDeviceRequestDTO.Description = TextBox4.Text;
+            createDeviceRequestDTO.Description = "";
             createDeviceRequestDTO.Brand = TextBox5.Text;
 
             RestResponse response = (RestResponse)this.logic.Post(createDeviceRequestDTO, "/device/create");
@@ -61,9 +61,12 @@ namespace EssGUI
             {
                 MessageBox.Show("Błędna zawartość formularza" + response);
             }
+            else
+            {
+                deviceinfo.ItemsSource = this.logic.GetAllDevices();
+                device.IsSelected = true;
+            }
 
-            //update grid
-            deviceinfo.ItemsSource = this.logic.GetAllDevices();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

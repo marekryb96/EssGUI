@@ -51,9 +51,11 @@ namespace EssGUI
             {
                 MessageBox.Show("Błędna zawartość formularza" + response);
             }
-
-            //update grid
-            mw.deviceinfo.ItemsSource = this.logic.GetAllDevices();
+            else
+            {
+                mw.Refresh();
+                this.Close();
+            }
         }
     }
 }

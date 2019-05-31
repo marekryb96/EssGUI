@@ -9,10 +9,10 @@
         WindowState="Normal" ResizeMode="CanMinimize">
     <Grid Margin="0,0,4,0">
         <TabControl SelectionChanged="TabControl_SelectionChanged">
-            <TabItem>
+            <TabItem Name="client">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Foreground="Black" ><Run Text="Istniejący Klient"/></TextBlock>
+                        <TextBlock Foreground="Black" ><Run Text="Klienci"/></TextBlock>
                     </StackPanel>
                 </TabItem.Header>
                 <Grid>

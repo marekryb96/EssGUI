@@ -574,3 +574,7 @@ C:\Users\x\gui\EssGUI\EssGUI\obj\Debug\Login.baml
 C:\Users\x\gui\EssGUI\EssGUI\obj\Debug\NewCustomer.baml
 C:\Users\x\gui\EssGUI\EssGUI\obj\Debug\NewDevice.baml
 C:\Users\x\gui\EssGUI\EssGUI\obj\Debug\OrderEdit.baml
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\NewUser.g.cs
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\UserEdit.g.cs
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\NewUser.baml
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\UserEdit.baml

@@ -24,6 +24,8 @@
             <Label Name="cost1" Content="80 zł" HorizontalAlignment="Center" FontSize="14"/>
             <Label Content="Koszt części" HorizontalAlignment="Left" FontSize="14"/>
             <Label Name="cost2" Content="150 zł" HorizontalAlignment="Center" FontSize="14"/>
+            <Label Content=" " HorizontalAlignment="Center" FontSize="14"/>
+
             <Button Content="Zatwierdź rozliczenie" Margin="0,5,10,106" Height="32" Click="Button_Click" FontSize="20"/>
 
         </StackPanel>

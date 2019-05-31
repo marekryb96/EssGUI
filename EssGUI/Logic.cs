@@ -62,6 +62,20 @@ namespace EssGUI
             return mappedObject;
         }
 
+        public SettlementResponseDTO[] GetAllSettlements()
+        {
+            String response = Get("http://localhost:8080/settlement/");
+            SettlementResponseDTO[] mappedObject = Deserialize<SettlementResponseDTO[]>(response);
+            return mappedObject;
+        }
+
+        public SettlementResponseDTO GetSettlementWithId(String settlementId)
+        {
+            String response = Get("http://localhost:8080/settlement/" + settlementId);
+            SettlementResponseDTO mappedObject = Deserialize<SettlementResponseDTO>(response);
+            return mappedObject;
+        }
+
         public T Deserialize<T>(string json)
         {
             JsonSerializer s = new JsonSerializer
@@ -79,6 +93,21 @@ namespace EssGUI
             return mappedObject;
 
         }
+
+        public UserResponseDTO GetUserWithId(String userId)
+        {
+            String response = Get("http://localhost:8080/user/" + userId);
+            UserResponseDTO mappedObject = Deserialize<UserResponseDTO>(response);
+            return mappedObject;
+        }
+
+        public UserResponseDTO[] GetAllUsers()
+        {
+            String response = Get("http://localhost:8080/user/");
+            UserResponseDTO[] mappedObject = Deserialize<UserResponseDTO[]>(response);
+            return mappedObject;
+        }
+
         public string Get(string uri)
         {
             try
