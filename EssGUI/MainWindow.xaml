@@ -9,7 +9,7 @@
         WindowState="Normal" ResizeMode="CanMinimize">
     <Grid Margin="0,0,4,0">
         <Label x:Name="loginLabel" Content="Login" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="16.813,0.188" Width="451" FontSize="20"/>
-        <TabControl SelectionChanged="TabControl_SelectionChanged" Margin="0,29,-0.4,-0.4">
+        <TabControl SelectionChanged="TabControl_SelectionChanged" Margin="0,29,-0.4,-0.4" FontSize="16">
             <TabItem Name="orders">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -18,7 +18,6 @@
                 </TabItem.Header>
                 <Grid>
                     <Grid.RowDefinitions>
-
                         <RowDefinition Height="35"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="70"/>
@@ -60,7 +59,7 @@
                             <ColumnDefinition Width="99*"/>
                             <ColumnDefinition Width="277*"/>
                         </Grid.ColumnDefinitions>
-                        <DataGrid x:Name="orderinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionChanged="orderinfo_SelectionChanged" IsReadOnly="True" FontSize="16" Grid.ColumnSpan="2">
+                        <DataGrid x:Name="orderinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionChanged="orderinfo_SelectionChanged" IsReadOnly="True" FontSize="16" Grid.ColumnSpan="2" SelectionMode="Single">
                             <DataGrid.RowStyle>
                                 <Style TargetType="DataGridRow">
                                     <Style.Triggers>
@@ -124,46 +123,52 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
-                        <RowDefinition Height="35"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="70"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="23*" />
-                        <ColumnDefinition Width="729*"/>
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0*"/>
-                            <ColumnDefinition Width="0*"/>
-                            <ColumnDefinition Width="0*"/>
-                            <ColumnDefinition Width="0*"/>
-                            <ColumnDefinition Width="0*"/>
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition />
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBox x:Name="filter2" Height="21" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter2_TextChanged" FontSize="14" Grid.ColumnSpan="6"/>
+
+                        <Grid Grid.Column="0">
+
+                            <Label Content="Szukaj po" HorizontalAlignment="Left" Margin="15,5,0,-10" VerticalAlignment="Top" FontSize="16" Height="35"/>
+
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32*"/>
+                                <ColumnDefinition Width="289*"/>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox x:Name="filterBox2" SelectionChanged="ComboBox_SelectionChanged" Margin="0,10,0,0" FontSize="16" Grid.ColumnSpan="2" >
+                                <ComboBoxItem>koszt usług</ComboBoxItem>
+                                <ComboBoxItem IsSelected="True">Id</ComboBoxItem>
+                                <ComboBoxItem>koszt części</ComboBoxItem>
+                                <ComboBoxItem>suma</ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
+
+                        <Grid Grid.Column="2"/>
+
+                        <TextBox x:Name="filter2" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter2_TextChanged" FontSize="18" Grid.Column="2"/>
+
                     </Grid>
 
-                    <Grid Grid.Row="1" Grid.ColumnSpan="2">
+
+                    <Grid Grid.Row="1"  Margin="0,16,0,0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="127*"/>
-                            <ColumnDefinition Width="402*"/>
-                            <ColumnDefinition Width="255*"/>
+                            <ColumnDefinition Width="99*"/>
+                            <ColumnDefinition Width="277*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Content="Szukaj po" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
-
-                        <ComboBox x:Name="filterBox2" SelectionChanged="ComboBox_SelectionChanged" Margin="66,10,0,0" FontSize="14" Grid.ColumnSpan="3" >
-                            <ComboBoxItem>koszt usług</ComboBoxItem>
-                            <ComboBoxItem IsSelected="True">Id</ComboBoxItem>
-                            <ComboBoxItem>koszt części</ComboBoxItem>
-                            <ComboBoxItem>suma</ComboBoxItem>
-                        </ComboBox>
-                    </Grid>
-
-                    <Grid Grid.Row="2"  Margin="0,16,0,0" Grid.ColumnSpan="2">
-                        <DataGrid x:Name="settlementinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionChanged="deviceinfo_SelectionChanged_1">
+                        <DataGrid x:Name="settlementinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionChanged="deviceinfo_SelectionChanged_1" Grid.ColumnSpan="2" FontSize="16" SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Date}" Header="Data wystawienia" IsReadOnly="True" Width="Auto"/>
@@ -172,14 +177,15 @@
                                 <DataGridTextColumn Binding="{Binding FinalCost}" Header="Suma" IsReadOnly="True" Width="Auto"/>
                             </DataGrid.Columns>
                         </DataGrid>
+
                     </Grid>
-                    <Grid Grid.Row="3" Grid.ColumnSpan="2">
+                    <Grid Grid.Row="2" Grid.ColumnSpan="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <Button Margin="10" Height="45" Content="Przejdź do Zlecenia" FontSize="20" Click="Goto_Click" />
+                            <Button Name ="setDetBt" Margin="10" Height="45" Content="Przejdź do Zlecenia" FontSize="20" Click="Goto_Click" />
                         </Grid>
                         <Grid Grid.Column="1">
                             <Button Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click" />
@@ -198,38 +204,57 @@
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
-                        <RowDefinition Height="35"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="70"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-
                     <Grid Grid.Row="0">
-                        <TextBox Name="filter3" Height="30" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter3_TextChanged" FontSize="14"/>
-                    </Grid>
-
-                    <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="529*"/>
-                            <ColumnDefinition Width="255*"/>
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Label Content="Szukaj po" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
 
-                        <ComboBox x:Name="filterBox3" IsReadOnly="True" Margin="66,10,0,0" FontSize="14" Grid.ColumnSpan="2" >
-                            <ComboBoxItem>imię</ComboBoxItem>
-                            <ComboBoxItem IsSelected="True">nazwisko</ComboBoxItem>
-                            <ComboBoxItem>telefon</ComboBoxItem>
-                            <ComboBoxItem>e-mail</ComboBoxItem>
-                            <ComboBoxItem>ulica</ComboBoxItem>
-                            <ComboBoxItem>miejscowość</ComboBoxItem>
-                            <ComboBoxItem>id</ComboBoxItem>
-                        </ComboBox>
+                        <Grid Grid.Column="0">
+
+                            <Label Content="Szukaj po" HorizontalAlignment="Left" Margin="15,5,0,-10" VerticalAlignment="Top" FontSize="16" Height="35"/>
+
+                        </Grid>
+                        <Grid Grid.Column="1">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32*"/>
+                                <ColumnDefinition Width="289*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox x:Name="filterBox3" IsReadOnly="True" Margin="0,10,0,0" FontSize="16" Grid.ColumnSpan="2" SelectionChanged="filterBox3_SelectionChanged" >
+                                <ComboBoxItem>imię</ComboBoxItem>
+                                <ComboBoxItem IsSelected="True">nazwisko</ComboBoxItem>
+                                <ComboBoxItem>telefon</ComboBoxItem>
+                                <ComboBoxItem>e-mail</ComboBoxItem>
+                                <ComboBoxItem>ulica</ComboBoxItem>
+                                <ComboBoxItem>miejscowość</ComboBoxItem>
+                                <ComboBoxItem>id</ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
+
+                        <Grid Grid.Column="2"/>
+
+                        <TextBox x:Name="filter3" Margin="10,10,0,0" TextWrapping="Wrap" TextChanged="filter3_TextChanged" FontSize="18" Grid.Column="2" Height="25" VerticalAlignment="Top"/>
+
                     </Grid>
 
-                    <Grid Grid.Row="2" Margin="0,16,0,0">
-                        <DataGrid Name="clientinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionChanged="clientinfo_SelectionChanged" IsReadOnly="True">
+
+                    <Grid Grid.Row="1" Margin="0,16,0,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="99*"/>
+                            <ColumnDefinition Width="277*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <DataGrid Name="clientinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionChanged="clientinfo_SelectionChanged" IsReadOnly="True" Grid.ColumnSpan="2" FontSize="16"  SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Name}" Header="Imię" Width="Auto"/>
@@ -244,7 +269,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <Grid Grid.Row="3">
+                    <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition />
@@ -267,7 +292,6 @@
 
                 </Grid>
             </TabItem>
-
             <TabItem Name="devices">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -278,7 +302,6 @@
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
-                        <RowDefinition Height="35"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="70"/>
                     </Grid.RowDefinitions>
@@ -287,27 +310,46 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Row="0">
-                        <TextBox x:Name="filter4" Height="30" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter4_TextChanged" FontSize="14"/>
-                    </Grid>
-
-                    <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="529*"/>
-                            <ColumnDefinition Width="255*"/>
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Content="Szukaj po" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
+                        <Grid Grid.Column="0">
 
-                        <ComboBox x:Name="filterBox4"  Margin="66,10,0,0" FontSize="14" Grid.ColumnSpan="2" SelectionChanged="filterBox4_SelectionChanged" >
-                            <ComboBoxItem IsSelected="True">nazwa</ComboBoxItem>
-                            <ComboBoxItem>numer seryjny</ComboBoxItem>
-                            <ComboBoxItem>model</ComboBoxItem>
-                            <ComboBoxItem>id</ComboBoxItem>
-                            <ComboBoxItem>producent</ComboBoxItem>
-                        </ComboBox>
+                            <Label Content="Szukaj po" HorizontalAlignment="Left" Margin="15,5,0,-10" VerticalAlignment="Top" FontSize="16" Height="35"/>
+
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="131*"/>
+                                <ColumnDefinition Width="190*"/>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox x:Name="filterBox4"  Margin="0,10,0,0" FontSize="16" SelectionChanged="filterBox4_SelectionChanged" Grid.ColumnSpan="2" >
+                                <ComboBoxItem IsSelected="True">nazwa</ComboBoxItem>
+                                <ComboBoxItem>numer seryjny</ComboBoxItem>
+                                <ComboBoxItem>model</ComboBoxItem>
+                                <ComboBoxItem>id</ComboBoxItem>
+                                <ComboBoxItem>producent</ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
+
+                        <Grid Grid.Column="2"/>
+
+                        <TextBox x:Name="filter4" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter4_TextChanged" FontSize="18" Grid.Column="2"/>
+
                     </Grid>
-                    <Grid Grid.Row="2" Margin="0,16,0,0">
-                        <DataGrid x:Name="deviceinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionChanged="deviceinfo_SelectionChanged_1">
+
+                    <Grid Grid.Row="1" Margin="0,16,0,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="99*"/>
+                            <ColumnDefinition Width="277*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <DataGrid x:Name="deviceinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionChanged="deviceinfo_SelectionChanged_1" Grid.ColumnSpan="2" FontSize="16" SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Name}" Header="Nazwa" IsReadOnly="True" Width="Auto"/>
@@ -346,7 +388,6 @@
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
-                        <RowDefinition Height="35"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="70"/>
                     </Grid.RowDefinitions>
@@ -355,30 +396,43 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Row="0">
-                        <TextBox x:Name="filter5" Height="30" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter5_TextChanged" FontSize="14"/>
-                    </Grid>
-
-                    <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="529*"/>
-                            <ColumnDefinition Width="255*"/>
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Content="Szukaj po" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
+                        <Grid Grid.Column="0">
 
-                        <ComboBox x:Name="filterBox5"  Margin="66,10,0,0" FontSize="14" Grid.ColumnSpan="2" SelectionChanged="filterBox4_SelectionChanged" >
-                            <ComboBoxItem IsSelected="True">nazwa użytkownika</ComboBoxItem>
-                            <ComboBoxItem>id</ComboBoxItem>
-                            <ComboBoxItem>login</ComboBoxItem>
-                            <ComboBoxItem>typ użytkownika</ComboBoxItem>
-                        </ComboBox>
+                            <Label Content="Szukaj po" HorizontalAlignment="Left" Margin="15,5,0,-10" VerticalAlignment="Top" FontSize="16" Height="35"/>
+
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ComboBox x:Name="filterBox5"  Margin="0,10,0,0" FontSize="16" SelectionChanged="filterBox5_SelectionChanged" >
+                                <ComboBoxItem IsSelected="True">nazwa użytkownika</ComboBoxItem>
+                                <ComboBoxItem>id</ComboBoxItem>
+                                <ComboBoxItem>login</ComboBoxItem>
+                                <ComboBoxItem>typ użytkownika</ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
+
+                        <Grid Grid.Column="2"/>
+
+                        <TextBox x:Name="filter5" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter5_TextChanged" FontSize="18" Grid.Column="2"/>
+
                     </Grid>
-                    <Grid Grid.Row="2" Margin="0,16,0,0">
-                        <DataGrid x:Name="userinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionChanged="deviceinfo_SelectionChanged_1">
+
+                    <Grid Grid.Row="1" Margin="0,16,0,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="99*"/>
+                            <ColumnDefinition Width="277*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <DataGrid x:Name="userinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionChanged="deviceinfo_SelectionChanged_1" Grid.ColumnSpan="2" FontSize="16" SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Username}" Header="Nazwa użytkownika" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding DisplayName}" Header="Nazwa wyświetlana" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Nazwa użytkownika" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Login}" Header="Login" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Name}" Header="Imię" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Surname}" Header="Nazwisko" IsReadOnly="True" Width="Auto"/>
@@ -391,14 +445,19 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
+                            <ColumnDefinition />
+
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
                             <Button x:Name="editBt5" Margin="10" Height="45" Click="editUser_Click" Content="Edytuj" FontSize="20"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <Button Name="refreshUser"  Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click"/>
+                            <Button x:Name="deleteUserBt" Margin="10" Height="45" Click="deleteUser_Click" Content="Usuń" FontSize="20"/>
                         </Grid>
                         <Grid Grid.Column="2">
+                            <Button Name="refreshUser"  Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click"/>
+                        </Grid>
+                        <Grid Grid.Column="3">
                             <Button Name="addUser"  Margin="10" Height="45" Content="Dodaj" FontSize="20" Click="addUserBt_Click"/>
                         </Grid>
                     </Grid>

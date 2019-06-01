@@ -30,8 +30,8 @@ namespace EssGUI
             OrderResponseDTO orderResponseDTO = this.logic.GetOrderWithId(id);
             idLabel.Content = orderResponseDTO.Id;
             problemLabel.Content = orderResponseDTO.Description;
-            serialLabel.Content = orderResponseDTO.Device.SerialNumber;
-            modelLabel.Content = orderResponseDTO.Device.Model;
+            serialLabel.Text = orderResponseDTO.Device.SerialNumber;
+            modelLabel.Text = orderResponseDTO.Device.Model;
             phoneLabel.Content = orderResponseDTO.Client.PhoneNumber.Number;
             if (orderResponseDTO.OrderStatus == OrderStatus.NEW) statusLabel.Content = "nowe";
             if (orderResponseDTO.OrderStatus == OrderStatus.WAITING_FOR_DEVICE) statusLabel.Content = "oczekiwanie na część zamienną";
@@ -98,6 +98,11 @@ namespace EssGUI
         }
 
         private void TextBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void modelLabel_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }

@@ -34,17 +34,17 @@
                             <ColumnDefinition Width="44*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.ColumnSpan="2">
-                            <Label Content="id" Margin="5" Height="25"/>
-                            <Label Content="status" Margin="5" Height="25"/>
-                            <Label Content="problem" Margin="5" Height="25"/>
-                            <Label Content="model" Margin="5" Height="25"/>
-                            <Label Content="numer seryjny" Margin="5" Height="25"/>
-                            <Label Content="telefon" Margin="5" Height="25"/>
-                            <Label Content="opis naprawy" Margin="5" Height="100"/>
-                            <Label Content="koszty" Margin="5" Height="25"/>
-                            <Label Content="wymienione części" Margin="5" Height="25"/>
-                            <Label Content="usługi" Margin="5" Height="25"/>
-                            <Label Content="nowy status" Margin="5" Height="25"/>
+                            <Label Content="id" Margin="5" Height="25" FontSize="14"/>
+                            <Label Content="status" Margin="5" Height="25" FontSize="14"/>
+                            <Label Content="problem" Margin="5" Height="25" FontSize="14"/>
+                            <Label Content="model" Margin="5" Height="25" FontSize="14"/>
+                            <Label Content="numer seryjny" Margin="5" Height="31" FontSize="14"/>
+                            <Label Content="telefon" Margin="5" Height="25" FontSize="14"/>
+                            <Label Content="opis naprawy" Margin="5" Height="100" FontSize="14"/>
+                            <Label Content="koszty" Margin="5" Height="25" FontSize="14"/>
+                            <Label Content="wymienione części" Margin="5" Height="25" FontSize="14"/>
+                            <Label Content="usługi" Margin="5" Height="25" FontSize="14"/>
+                            <Label Content="nowy status" Margin="5" Height="25" FontSize="14"/>
                         </StackPanel>
                     </Grid>
 
@@ -59,8 +59,8 @@
                             <Label Name ="idLabel" Content="id" Margin="5" Height="25"/>
                             <Label Name ="statusLabel" Content="id" Margin="5" Height="25"/>
                             <Label Name ="problemLabel" Content="id" Margin="5" Height="25"/>
-                            <Label Name ="modelLabel" Content="id" Margin="5" Height="25"/>
-                            <Label Name ="serialLabel" Content="id" Margin="5" Height="25"/>
+                            <TextBox Name ="modelLabel" Margin="5" Height="25" TextChanged="modelLabel_TextChanged"/>
+                            <TextBox Name ="serialLabel" Margin="5" Height="25"/>
                             <Label Name ="phoneLabel" Content="id" Margin="5" Height="25"/>
                             <TextBox Name="TextBox1" Margin="5" Height="100" TextChanged="TextBox1_TextChanged"/>
                             <Label Content="" Margin="5" Height="25"/>

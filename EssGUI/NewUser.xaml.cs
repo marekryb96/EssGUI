@@ -64,9 +64,11 @@ namespace EssGUI
             {
                 MessageBox.Show("Błędna zawartość formularza" + response);
             }
-
-            mw.Refresh();
-            this.Close();
+            else
+            {
+                mw.Refresh();
+                this.Close();
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -41,6 +42,7 @@ namespace EssGUI
                 label += "[ Obsługa Klienta ]";
                 followBt.Visibility = Visibility.Collapsed;
                 users.Visibility = Visibility.Collapsed;
+                deleteUserBt.Visibility = Visibility.Collapsed;
             }
             if (userResponseDTO.UserType.Equals(UserType.WORKER))
             {
@@ -52,6 +54,7 @@ namespace EssGUI
                 editBt.Visibility = Visibility.Collapsed;
                 addSett.Visibility = Visibility.Collapsed;
                 setBt.Visibility = Visibility.Collapsed;
+                deleteUserBt.Visibility = Visibility.Collapsed;
             }
             else if (userResponseDTO.UserType.Equals(UserType.MANAGER))
             {
@@ -68,6 +71,7 @@ namespace EssGUI
                 addUser.Visibility = Visibility.Collapsed;
                 addDevice.Visibility = Visibility.Collapsed;
                 addCustomer.Visibility = Visibility.Collapsed;
+                deleteUserBt.Visibility = Visibility.Collapsed;
             }
             else if (userResponseDTO.UserType.Equals(UserType.ADMINISTRATOR))
             {
@@ -550,10 +554,27 @@ namespace EssGUI
                 }
             }
 
-
-
             return filteredOrders.ToArray();
+        }
 
+        private void deleteUser_Click(object sender, RoutedEventArgs e)
+        {
+            object item = userinfo.SelectedItem;
+
+            String userId = Convert.ToString((userinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
+
+            logic.DeleteUserWithId(userId);
+
+            Refresh();
+        }
+
+        private void filterBox3_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void filterBox5_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
         }
     }

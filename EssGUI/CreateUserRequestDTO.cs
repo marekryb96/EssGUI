@@ -14,6 +14,7 @@ namespace EssGUI
         String login;
         String password;
         UserType userType;
+        Boolean removed;
 
         [JsonProperty("login")]
         public string Login { get => login; set => login = value; }
@@ -23,6 +24,7 @@ namespace EssGUI
         public string Password { get => password; set => password = value; }
         [JsonProperty("surname")]
         public string Surname { get => surname; set => surname = value; }
+        public bool Removed { get => removed; set => removed = value; }
         [JsonProperty("userType")]
         internal UserType UserType { get => userType; set => userType = value; }
     }
