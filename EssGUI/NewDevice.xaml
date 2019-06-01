@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="Nowe urządzenie" Height="299.46" Width="800">
+        Title="Nowe urządzenie" Height="299.46" Width="638">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -17,12 +17,12 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
-            <StackPanel>
-                <Label Content="Nazwa" Margin="5" Height="30"/>
-                <Label Content="Model" Margin="5" Height="30"/>
-                <Label Content="Nr seryjny" Margin="5" Height="30"/>
-                <Label Content="Opis problemu" Margin="5" Height="30"/>
-                <Label Content="Producent" Margin="5" Height="30"/>
+            <StackPanel Margin="0,0,125,0" >
+                <Label Content="Nazwa" Margin="5" Height="30" FontSize="16"/>
+                <Label Content="Model" Margin="5" Height="30" FontSize="16"/>
+                <Label Content="Nr seryjny" Margin="5" Height="30" FontSize="16"/>
+                <Label Content="Opis problemu" Margin="5" Height="30" FontSize="16"/>
+                <Label Content="Producent" Margin="5" Height="30" FontSize="16"/>
             </StackPanel>
         </Grid>
 
@@ -33,7 +33,7 @@
                 <RowDefinition Height="107*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.RowSpan="3" Margin="10,0,0,0">
+            <StackPanel Grid.RowSpan="3" Margin="-124,0,0,0">
                 <TextBox Name="TextBox1" Margin="5" Height="30"/>
                 <TextBox Name="TextBox2" Margin="5" Height="30"/>
                 <TextBox Name="TextBox3" Margin="5" Height="30"/>

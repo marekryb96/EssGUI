@@ -22,19 +22,19 @@
                 <ColumnDefinition Width="31*"/>
                 <ColumnDefinition Width="44*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.ColumnSpan="2" Margin="0,0,50,0">
-                <Label Content="imię" Margin="5" Height="30"/>
-                <Label Content="nazwisko" Margin="5" Height="30"/>
-                <Label Content="e-mail" Margin="5" Height="30"/>
-                <Label Content="telefon" Margin="5" Height="30"/>
-                <Label Content=" " Margin="5" Height="30"/>
-                <Label Content="kraj" Margin="5" Height="30"/>
-                <Label Content="miasto" Margin="5" Height="30"/>
-                <Label Content="kod pocztowy" Margin="5" Height="30"/>
-                <Label Content="ulica" Margin="5" Height="30"/>
-                <Label Content="nr budynku" Margin="5" Height="30"/>
-                <Label Content="typ klienta" Margin="5" Height="30"/>
-                <Label Content="NIP" Margin="5" Height="25"/>
+            <StackPanel Grid.ColumnSpan="2" Margin="0,0,26,0">
+                <Label Content="Imię" Margin="5" Height="30" FontSize="16"/>
+                <Label Content="Nazwisko" Margin="5" Height="30" FontSize="16"/>
+                <Label Content="E-mail" Margin="5" Height="30" FontSize="16"/>
+                <Label Content="Telefon" Margin="5" Height="30" FontSize="16"/>
+                <Label Content=" " Margin="5" Height="30" FontSize="16"/>
+                <Label Content="Kraj" Margin="5" Height="30" FontSize="16"/>
+                <Label Content="Miasto" Margin="5" Height="30" FontSize="16"/>
+                <Label Content="Kod pocztowy" Margin="5" Height="30" FontSize="16"/>
+                <Label Content="Ulica" Margin="5" Height="30" FontSize="16"/>
+                <Label Content="Nr budynku" Margin="5" Height="30" FontSize="16"/>
+                <Label Content="Typ klienta" Margin="5" Height="30" FontSize="16"/>
+                <Label Content="NIP" Margin="5" Height="30" FontSize="16"/>
             </StackPanel>
         </Grid>
 
@@ -45,7 +45,7 @@
                 <RowDefinition Height="0*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.RowSpan="2" Margin="-62,0,0,0">
+            <StackPanel Grid.RowSpan="2" Margin="-33,0,0,0">
                 <TextBox Name="TextBox1" Margin="5" Height="30"/>
                 <TextBox Name="TextBox2" Margin="5" Height="30"/>
                 <TextBox Name="TextBox3" Margin="5" Height="30"/>
@@ -62,7 +62,7 @@
                     <ComboBoxItem>firma</ComboBoxItem>
                 </ComboBox>
 
-                <TextBox Name="TextBox10" Margin="5" Height="25"/>
+                <TextBox Name="TextBox10" Margin="5" Height="30"/>
 
                 <Button Content="Zapisz" Margin="5,5,5,106" Height="32" Click="Button_Click" FontSize="20"/>
 
