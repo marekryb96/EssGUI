@@ -102,7 +102,7 @@
                             <Button x:Name="editBt" Margin="10" Height="45" Click="editBt_Click" Content="Edytuj" FontSize="20"/>
                         </Grid>
                         <Grid Grid.Column="2">
-                            <Button Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click" />
+                            <Button Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click" RenderTransformOrigin="0.536,0.208" />
                         </Grid>
                         <Grid Grid.Column="3">
                             <Button Margin="10" Name="addSett" Height="45" Content="Dodaj do rozliczenia" FontSize="20" Click="Button_Click_2"/>

@@ -66,7 +66,6 @@
                     <Label Content="" Margin="5" Height="25"/>
                     <TextBox Name="cost1Tb" Text="0.0" Margin="5" Height="34" FontSize="16"/>
                     <TextBox Name="cost2Tb" Text="0.0" Margin="5" Height="34" FontSize="16"/>
-
                     <Button Content="Zapisz" Margin="5,5,5,106" Height="50" Click="Button_Click" FontSize="20"/>
 
                 </StackPanel>

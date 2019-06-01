@@ -36,7 +36,7 @@ namespace EssGUI
             problemTb.Text = orderResponseDTO.DefectDescription;
             serialLabel.Text = orderResponseDTO.Device.SerialNumber;
             modelLabel.Text = orderResponseDTO.Device.Model;
-            repairLabel.Text = orderResponseDTO.Description;
+            repairLabel.Text = orderResponseDTO.DefectDescription;
             phoneTb.Text = orderResponseDTO.Client.PhoneNumber.Number;
 
             if (orderResponseDTO.Costs != null)
@@ -73,7 +73,7 @@ namespace EssGUI
             createOrderRequestDTO.DefectDescription = problemTb.Text;
             createOrderRequestDTO.DeviceId = orderResponseDTO.Device.Id;
             createOrderRequestDTO.Description = repairLabel.Text;
-            createOrderRequestDTO.UserLogin = "admin";
+            createOrderRequestDTO.UserLogin = this.mw.user.Login;
 
             if (((ComboBoxItem)statusBox.SelectedItem).Content.ToString() == "w trakcie realizacji")
             {
