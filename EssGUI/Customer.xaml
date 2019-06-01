@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
         Title="ESService"
-        WindowState="Normal" ResizeMode="CanMinimize">
+        WindowState="Normal" ResizeMode="CanMinimize" Height="581">
     <Grid Margin="0,0,4,0">
-        <TabControl SelectionChanged="TabControl_SelectionChanged">
+        <TabControl SelectionChanged="TabControl_SelectionChanged" FontSize="16">
             <TabItem Name="client">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -19,7 +19,6 @@
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
-                        <RowDefinition Height="35"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="70"/>
                     </Grid.RowDefinitions>
@@ -28,34 +27,42 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Row="0">
-                        <TextBox Name="filter" Height="30" Margin="0,10,0,-0.2" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter_TextChanged" FontSize="14"/>
-                    </Grid>
-
-                    <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="529*"/>
-                            <ColumnDefinition Width="255*"/>
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Label Content="Szukaj po" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
 
-                        <ComboBox x:Name="filterBox" SelectionChanged="ComboBox_SelectionChanged_1" IsReadOnly="True" Margin="66,10,0,0" FontSize="14" Grid.ColumnSpan="2" >
-                            <ComboBoxItem>imię</ComboBoxItem>
-                            <ComboBoxItem IsSelected="True">nazwisko</ComboBoxItem>
-                            <ComboBoxItem>telefon</ComboBoxItem>
-                            <ComboBoxItem>e-mail</ComboBoxItem>
-                            <ComboBoxItem>ulica</ComboBoxItem>
-                            <ComboBoxItem>miejscowość</ComboBoxItem>
-                            <ComboBoxItem>id</ComboBoxItem>
-                        </ComboBox>
+                        <Grid Grid.Column="0">
+                            <Label Content="Szukaj po" HorizontalAlignment="Left" Margin="0,10,0,-14" VerticalAlignment="Top" Height="39"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ComboBox x:Name="filterBox" SelectionChanged="ComboBox_SelectionChanged_1" IsReadOnly="True" Margin="-26,10,228,0">
+                                <ComboBoxItem>imię</ComboBoxItem>
+                                <ComboBoxItem IsSelected="True">nazwisko</ComboBoxItem>
+                                <ComboBoxItem>telefon</ComboBoxItem>
+                                <ComboBoxItem>e-mail</ComboBoxItem>
+                                <ComboBoxItem>ulica</ComboBoxItem>
+                                <ComboBoxItem>miejscowość</ComboBoxItem>
+                                <ComboBoxItem>id</ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
+                        <Grid Grid.Column="2"/>
+
+                        <TextBox x:Name="filter" Height="25" Margin="101,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter_TextChanged" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2"/>
+
                     </Grid>
-
-                    <Grid Grid.Row="2" Margin="0,16,0,0">
-                        <DataGrid Name="clientinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionChanged="clientinfo_SelectionChanged" IsReadOnly="True">
+                    <Grid Grid.Row="1" Margin="0,16,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="99*"/>
+                            <ColumnDefinition Width="277*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <DataGrid Name="clientinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionChanged="clientinfo_SelectionChanged" IsReadOnly="True" Grid.ColumnSpan="2" SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Name}" Header="Imię" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Surname}" Header="Nazwisko" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding PhoneNumber.AreaCode}" Header="Kierunkowy" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding PhoneNumber.Number}" Header="Numer telefonu" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Email}" Header="E-mail" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding Address.Street}" Header="Ulica" IsReadOnly="True" Width="Auto"/>
@@ -113,18 +120,18 @@
                             <ColumnDefinition Width="44*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.ColumnSpan="2">
-                            <Label Content="imię" Margin="5" Height="25"/>
-                            <Label Content="nazwisko" Margin="5" Height="25"/>
-                            <Label Content="e-mail" Margin="5" Height="25"/>
-                            <Label Content="telefon" Margin="5" Height="25"/>
-                            <Label Content=" " Margin="5" Height="25"/>
-                            <Label Content="kraj" Margin="5" Height="25"/>
-                            <Label Content="miasto" Margin="5" Height="25"/>
-                            <Label Content="kod pocztowy" Margin="5" Height="25"/>
-                            <Label Content="ulica" Margin="5" Height="25"/>
-                            <Label Content="nr budynku" Margin="5" Height="25"/>
-                            <Label Content="typ klienta" Margin="5" Height="25"/>
-                            <Label Content="NIP" Margin="5" Height="25"/>
+                            <Label Content="Imię" Margin="5" Height="30"/>
+                            <Label Content="Nazwisko" Margin="5" Height="30"/>
+                            <Label Content="E-mail" Margin="5" Height="30"/>
+                            <Label Content="Telefon" Margin="5" Height="30"/>
+                            <Label Content=" " Margin="5" Height="30"/>
+                            <Label Content="Kraj" Margin="5" Height="30"/>
+                            <Label Content="Miasto" Margin="5" Height="30"/>
+                            <Label Content="Kod pocztowy" Margin="5" Height="30"/>
+                            <Label Content="Ulica" Margin="5" Height="30"/>
+                            <Label Content="Nr budynku" Margin="5" Height="30"/>
+                            <Label Content="Typ klienta" Margin="5" Height="30"/>
+                            <Label Content="NIP" Margin="5" Height="30"/>
                         </StackPanel>
                     </Grid>
 
@@ -136,25 +143,25 @@
                         </Grid.RowDefinitions>
 
                         <StackPanel Grid.RowSpan="2" Margin="10,0,0,0">
-                            <TextBox Name="TextBox1" Margin="5" Height="25" TextChanged="TextBox1_TextChanged"/>
-                            <TextBox Name="TextBox2" Margin="5" Height="25"/>
-                            <TextBox Name="TextBox3" Margin="5" Height="25"/>
-                            <TextBox Name="TextBox4" Margin="5" Height="25"/>
-                            <TextBox Name="TextBox9" Margin="5" Height="25" TextChanged="TextBox9_TextChanged"/>
-                            <TextBox Name="TextBox11" Text="Polska" Margin="5" Height="25"/>
-                            <TextBox Name="TextBox5" Margin="5" Height="25"/>                            
-                            <TextBox Name="TextBox6" Margin="5" Height="25"/>
-                            <TextBox Name="TextBox7" Margin="5" Height="25"/>
-                            <TextBox Name="TextBox8" Margin="5" Height="25"/>
-                            
-                            <ComboBox x:Name="typeBox" Margin="5" Height="25" SelectionChanged="ComboBox_SelectionChanged">
+                            <TextBox Name="TextBox1" Margin="5" Height="30" TextChanged="TextBox1_TextChanged"/>
+                            <TextBox Name="TextBox2" Margin="5" Height="30"/>
+                            <TextBox Name="TextBox3" Margin="5" Height="30"/>
+                            <TextBox Name="TextBox4" Margin="5" Height="30"/>
+                            <TextBox Name="TextBox9" Margin="5" Height="30" TextChanged="TextBox9_TextChanged"/>
+                            <TextBox Name="TextBox11" Text="Polska" Margin="5" Height="30"/>
+                            <TextBox Name="TextBox5" Margin="5" Height="30"/>
+                            <TextBox Name="TextBox6" Margin="5" Height="30"/>
+                            <TextBox Name="TextBox7" Margin="5" Height="30"/>
+                            <TextBox Name="TextBox8" Margin="5" Height="30"/>
+
+                            <ComboBox x:Name="typeBox" Margin="5" Height="30" SelectionChanged="ComboBox_SelectionChanged">
                                 <ComboBoxItem IsSelected="True">indywidualny</ComboBoxItem>
                                 <ComboBoxItem>firma</ComboBoxItem>
                             </ComboBox>
 
                             <TextBox Name="TextBox10" Margin="5" Height="25"/>
 
-                            <Button Content="Zapisz" Margin="5,5,5,106" Height="32" Click="Button_Click" FontSize="20"/>
+                            <Button Content="Zapisz" Margin="5,5,5,106" Height="30" Click="Button_Click" FontSize="20"/>
 
                         </StackPanel>
 

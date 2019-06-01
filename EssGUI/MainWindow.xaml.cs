@@ -27,13 +27,14 @@ namespace EssGUI
         private Logic logic = new Logic();
         public UserResponseDTO user { get; set; }
         int count = 0;
+        String id;
         public MainWindow(UserResponseDTO user)
         {
             InitializeComponent();
 
             String label = user.Name + " " + user.Surname + " ";
 
-            String id = user.Id;
+            id = user.Id;
 
             UserResponseDTO userResponseDTO = logic.GetUserWithId(id);
 
@@ -117,7 +118,7 @@ namespace EssGUI
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            
         }
 
         private void filter_TextChanged(object sender, TextChangedEventArgs e)
@@ -518,23 +519,30 @@ namespace EssGUI
 
 
         private void Goto_Click(object sender, RoutedEventArgs e)
-        {
-            object item = settlementinfo.SelectedItem;
-            String settlementId = Convert.ToString((settlementinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
-
-            SettlementResponseDTO settDTO =  this.logic.GetSettlementWithId(settlementId);
-
-            String[] ordersList = settDTO.OrdersList;
-
-            List<string> ids = new List<string>();
-            foreach (var elem in ordersList)
+        {            
+            try
             {
-                ids.Add(elem);
-            }
+                object item = settlementinfo.SelectedItem;
+                String settlementId = Convert.ToString((settlementinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
 
-            OrderResponseDTO[] allOrders = this.logic.GetAllOrders();
-            orderinfo.ItemsSource = filterOrdersByIds(allOrders, ids);
-            orders.IsSelected = true;
+                SettlementResponseDTO settDTO = this.logic.GetSettlementWithId(settlementId);
+
+                String[] ordersList = settDTO.OrdersList;
+
+                List<string> ids = new List<string>();
+                foreach (var elem in ordersList)
+                {
+                    ids.Add(elem);
+                }
+
+                OrderResponseDTO[] allOrders = this.logic.GetAllOrders();
+                orderinfo.ItemsSource = filterOrdersByIds(allOrders, ids);
+                orders.IsSelected = true;
+            }
+            catch (System.ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Należy wybrać konkretną pozycję");
+            }
         }
 
 
@@ -561,11 +569,17 @@ namespace EssGUI
         {
             object item = userinfo.SelectedItem;
 
-            String userId = Convert.ToString((userinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
+            if (Convert.ToString((userinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text) != id)
+            {
 
-            logic.DeleteUserWithId(userId);
+                logic.DeleteUserWithId(Convert.ToString((userinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text));
+                Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Nie można usunąć bieżącego użytkownika");
 
-            Refresh();
+            }
         }
 
         private void filterBox3_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -576,6 +590,13 @@ namespace EssGUI
         private void filterBox5_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void logOutBt_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            Login form = new Login();
+            form.Show();
         }
     }
 }
