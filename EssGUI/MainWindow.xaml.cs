@@ -44,6 +44,7 @@ namespace EssGUI
                 followBt.Visibility = Visibility.Collapsed;
                 users.Visibility = Visibility.Collapsed;
                 deleteUserBt.Visibility = Visibility.Collapsed;
+                history.Visibility = Visibility.Collapsed;
             }
             if (userResponseDTO.UserType.Equals(UserType.WORKER))
             {
@@ -56,6 +57,8 @@ namespace EssGUI
                 addSett.Visibility = Visibility.Collapsed;
                 setBt.Visibility = Visibility.Collapsed;
                 deleteUserBt.Visibility = Visibility.Collapsed;
+                history.Visibility = Visibility.Collapsed;
+
             }
             else if (userResponseDTO.UserType.Equals(UserType.MANAGER))
             {
@@ -90,29 +93,46 @@ namespace EssGUI
             clientinfo.ItemsSource = logic.GetAllClients();
             settlementinfo.ItemsSource = logic.GetAllSettlements();
             userinfo.ItemsSource = logic.GetAllUsers();
+            historyinfo.ItemsSource = logic.GetAllHistory();
 
-            if(user.UserType == UserType.WORKER)
+            if (user.UserType == UserType.WORKER)
             {
                 if (orderinfo != null)
                 {
-                    orderinfo.ItemsSource = this.logic.GetAllOrders();
+
+                    List<OrderStatus> statuses = new List<OrderStatus>();
+                    statuses.Add(OrderStatus.NEW);
+                    statuses.Add(OrderStatus.IN_PROGRESS);
+                    statuses.Add(OrderStatus.WAITING_FOR_DEVICE);
+                    statuses.Add(OrderStatus.WARRANTY);
+ 
+                    orderinfo.ItemsSource = this.logic.GetAllOrders(statuses);
 
                     ICollectionView cv = CollectionViewSource.GetDefaultView(orderinfo.ItemsSource);
 
-                    cv.Filter = o =>
-                    {
-                        OrderResponseDTO p = o as OrderResponseDTO;
 
-                        return (p.OrderStatus == OrderStatus.NEW);
-
-                    };
                 }
             }
         }
 
         public void Refresh()
         {
-            OrderResponseDTO[] orders = logic.GetAllOrders();
+            OrderResponseDTO[] orders = null;
+            if (this.user.UserType.Equals(UserType.WORKER))
+            {
+
+                List<OrderStatus> statuses = new List<OrderStatus>();
+                statuses.Add(OrderStatus.NEW);
+                statuses.Add(OrderStatus.IN_PROGRESS);
+                statuses.Add(OrderStatus.WAITING_FOR_DEVICE);
+                statuses.Add(OrderStatus.WARRANTY);
+
+                orders = logic.GetAllOrders(statuses);
+            }
+            else
+            {
+                orders = logic.GetAllOrders();
+            }
             orderinfo.ItemsSource = orders;
 
             ClientResponseDTO[] clients = logic.GetAllClients();
@@ -132,6 +152,7 @@ namespace EssGUI
         }
         private void noBt_Click(object sender, RoutedEventArgs e)
         {
+
             Order form = new Order(this);
             form.Show();
         }
@@ -202,6 +223,8 @@ namespace EssGUI
         {
             Settlement form = new Settlement(ordersToSet, this);
             form.Show();
+            ordersToSet = new List<string>();
+            setBt.Content = "Rozlicz";
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -590,7 +613,6 @@ namespace EssGUI
 
             if (Convert.ToString((userinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text) != id)
             {
-
                 logic.DeleteUserWithId(Convert.ToString((userinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text));
                 Refresh();
             }
@@ -613,9 +635,45 @@ namespace EssGUI
 
         private void logOutBt_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
             Login form = new Login();
             form.Show();
+            this.Close();
+        }
+
+        private void filter6_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (historyinfo != null)
+            {
+                historyinfo.ItemsSource = logic.GetAllHistory();
+                TextBox t = (TextBox)sender;
+                string filterGrid = filter6.Text;
+                ICollectionView cv = CollectionViewSource.GetDefaultView(historyinfo.ItemsSource);
+                if (filterGrid == "")
+                    cv.Filter = null;
+                else
+                {
+                    cv.Filter = o =>
+                    {
+                        HistoryResponseDTO p = o as HistoryResponseDTO;
+
+                        switch (((ComboBoxItem)filterBox6.SelectedItem).Content.ToString())
+                        {
+
+                            case "zlecenie":
+                                return (p.Order.Id == filterGrid);
+                            case "poprzedni status":
+                                return (p.PrevStatus.ToString() == filterGrid);
+                            case "aktualny status":
+                                return (p.ActualStatus.ToString() == filterGrid);
+                            case "użytkownik":
+                                return (p.User.Id == filterGrid);
+                            case "id":
+                                return (p.Id == filterGrid);
+                        }
+                        return (true);
+                    };
+                }
+            }
         }
     }
 }

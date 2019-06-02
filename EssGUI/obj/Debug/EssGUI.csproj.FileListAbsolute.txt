@@ -737,3 +737,5 @@ C:\Users\x\guiess\EssGUI\EssGUI\obj\Debug\EssGUI.csproj.CoreCompileInputs.cache
 C:\Users\x\guiess\EssGUI\EssGUI\obj\Debug\EssGUI.csproj.CopyComplete
 C:\Users\x\guiess\EssGUI\EssGUI\obj\Debug\EssGUI.exe
 C:\Users\x\guiess\EssGUI\EssGUI\obj\Debug\EssGUI.pdb
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\Login2.g.cs
+C:\Users\marek\Documents\GitHub\EssGUI\EssGUI\obj\Debug\Login2.baml

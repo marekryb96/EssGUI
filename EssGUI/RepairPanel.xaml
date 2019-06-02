@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
         Title="Naprawa"
-        WindowState="Normal" ResizeMode="CanMinimize" Height="588">
+        WindowState="Normal" ResizeMode="CanMinimize" Height="639" Width="809">
     <Grid Margin="0,0,4,0">
-        <TabControl>
+        <TabControl FontSize="16">
 
             <TabItem>
                 <TabItem.Header>
@@ -33,39 +33,40 @@
                             <ColumnDefinition Width="31*"/>
                             <ColumnDefinition Width="44*"/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Grid.ColumnSpan="2">
-                            <Label Content="id" Margin="5" Height="25" FontSize="14"/>
-                            <Label Content="status" Margin="5" Height="25" FontSize="14"/>
-                            <Label Content="problem" Margin="5" Height="25" FontSize="14"/>
-                            <Label Content="model" Margin="5" Height="25" FontSize="14"/>
-                            <Label Content="numer seryjny" Margin="5" Height="31" FontSize="14"/>
-                            <Label Content="telefon" Margin="5" Height="25" FontSize="14"/>
-                            <Label Content="opis naprawy" Margin="5" Height="100" FontSize="14"/>
-                            <Label Content="koszty" Margin="5" Height="25" FontSize="14"/>
-                            <Label Content="wymienione części" Margin="5" Height="25" FontSize="14"/>
-                            <Label Content="usługi" Margin="5" Height="25" FontSize="14"/>
-                            <Label Content="nowy status" Margin="5" Height="25" FontSize="14"/>
+                        <StackPanel Grid.ColumnSpan="2" Margin="0,0,-20,0">
+                            <Label Content="id" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="status" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="problem" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="model" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="numer seryjny" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="telefon" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="opis naprawy" Margin="5" Height="100" FontSize="16"/>
+                            <Label Content="koszty" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="wymienione części" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="usługi" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="nowy status" Margin="5" Height="30" FontSize="16"/>
                         </StackPanel>
                     </Grid>
 
-                    <Grid Grid.Column="1">
+                    <Grid Grid.Column="1" Margin="32,0,-32,0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="28*"/>
-                            <RowDefinition Height="365*"/>
+                            <RowDefinition Height="41*"/>
+                            <RowDefinition Height="322*"/>
+                            <RowDefinition Height="219*"/>
                             <RowDefinition Height="0*"/>
                         </Grid.RowDefinitions>
 
-                        <StackPanel Grid.RowSpan="2" Margin="10,0,0,0">
-                            <Label Name ="idLabel" Content="id" Margin="5" Height="25"/>
-                            <Label Name ="statusLabel" Content="id" Margin="5" Height="25"/>
-                            <Label Name ="problemLabel" Content="id" Margin="5" Height="25"/>
+                        <StackPanel Grid.RowSpan="3" Margin="10,0,0,0">
+                            <Label Name ="idLabel" Content="id" Margin="5" Height="30"/>
+                            <Label Name ="statusLabel" Content="id" Margin="5" Height="30"/>
+                            <Label Name ="problemLabel" Content="id" Margin="5" Height="30"/>
                             <TextBox Name ="modelLabel" Margin="5" Height="25" TextChanged="modelLabel_TextChanged"/>
-                            <TextBox Name ="serialLabel" Margin="5" Height="25"/>
-                            <Label Name ="phoneLabel" Content="id" Margin="5" Height="25"/>
-                            <TextBox Name="TextBox1" Margin="5" Height="100" TextChanged="TextBox1_TextChanged"/>
-                            <Label Content="" Margin="5" Height="25"/>
-                            <TextBox Name="TextBox2" Text="0" Margin="5" Height="25"/>
-                            <TextBox Name="TextBox3" Text="0" Margin="5" Height="25"/>
+                            <TextBox Name ="serialLabel" Margin="5" Height="30"/>
+                            <Label x:Name ="phoneLabel" Content="id" Margin="5" Height="30"/>
+                            <TextBox x:Name="opisBox" Margin="5" Height="100" TextChanged="TextBox1_TextChanged"/>
+                            <Label Content="" Margin="5" Height="30"/>
+                            <TextBox Name="TextBox2" Text="0" Margin="5" Height="30"/>
+                            <TextBox Name="TextBox3" Text="0" Margin="5" Height="30"/>
 
                             <ComboBox x:Name="statusBox" Margin="5" Height="25">
                                 <ComboBoxItem IsSelected="True">w trakcie realizacji</ComboBoxItem>
@@ -130,7 +131,7 @@
 
                         <Grid Grid.Column="2"/>
 
-                        <TextBox x:Name="filter4" Height="25" Margin="214,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter4_TextChanged" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2"/>
+                        <TextBox x:Name="filter4" Height="25" Margin="232,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter4_TextChanged" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2"/>
 
                     </Grid>
 

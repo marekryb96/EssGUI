@@ -55,10 +55,50 @@ namespace EssGUI
             return mappedObject;
         }
 
+
+        private OrderResponseDTO[] filterByStatus(OrderResponseDTO[] orders, List<OrderStatus> statuses)
+        {
+
+
+            List<OrderResponseDTO> results = new List<OrderResponseDTO>();
+
+
+            foreach (OrderResponseDTO order in orders)
+            {
+
+                OrderStatus orderStatus = order.OrderStatus;
+
+                foreach (OrderStatus status in statuses)
+                {
+                    if (orderStatus.Equals(status))
+                    {
+                        results.Add(order);
+
+                    }
+                }
+            }
+            return results.ToArray();
+
+        }
+        public OrderResponseDTO[] GetAllOrders(List<OrderStatus> statuses)
+        {
+
+            String response = Get("http://localhost:8080/order");
+            OrderResponseDTO[] mappedObject = Deserialize<OrderResponseDTO[]>(response);
+            return filterByStatus(mappedObject, statuses);
+        }
+
         public OrderResponseDTO GetOrderWithId(String orderId)
         {
             String response = Get("http://localhost:8080/order/" + orderId);
             OrderResponseDTO mappedObject = Deserialize<OrderResponseDTO>(response);
+            return mappedObject;
+        }
+
+        public HistoryResponseDTO[] GetAllHistory()
+        {
+            String response = Get("http://localhost:8080/history");
+            HistoryResponseDTO[] mappedObject = Deserialize<HistoryResponseDTO[]>(response);
             return mappedObject;
         }
 

@@ -34,6 +34,7 @@ namespace EssGUI
             serialLabel.Text = orderResponseDTO.Device.SerialNumber;
             modelLabel.Text = orderResponseDTO.Device.Model;
             phoneLabel.Content = orderResponseDTO.Client.PhoneNumber.Number;
+            opisBox.Text = orderResponseDTO.DefectDescription;
             if (orderResponseDTO.OrderStatus == OrderStatus.NEW) statusLabel.Content = "nowe";
             if (orderResponseDTO.OrderStatus == OrderStatus.WAITING_FOR_DEVICE) statusLabel.Content = "oczekiwanie na część zamienną";
             if (orderResponseDTO.OrderStatus == OrderStatus.WARRANTY) statusLabel.Content = "oczekiwanie na rozpatrzenie gwarancji";
@@ -56,9 +57,9 @@ namespace EssGUI
             createOrderRequestDTO.ClientId = orderResponseDTO.Client.Id;
             createOrderRequestDTO.Costs = costs;
             createOrderRequestDTO.DefectDescription = orderResponseDTO.Device.Description;
-            createOrderRequestDTO.Description = TextBox1.Text;
+            createOrderRequestDTO.Description = problemLabel.Content.ToString();
             createOrderRequestDTO.DeviceId = orderResponseDTO.Device.Id;         
-            createOrderRequestDTO.UserLogin = "admin";
+            createOrderRequestDTO.UserLogin = mw.user.Login;
 
             if (((ComboBoxItem)statusBox.SelectedItem).Content.ToString() == "w trakcie realizacji")
             {
@@ -153,11 +154,7 @@ namespace EssGUI
             {
                 String stockId = Convert.ToString((stockinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
 
-                if(Int32.Parse(quantity.Text) > Int32.Parse(Convert.ToString((stockinfo.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text)))
-                {
-                    MessageBox.Show("Wprowadzono większą ilość niż jest dostępna na magazynie");
-                }
-
+  
                 CreateStockRequestDTO createStockeRequestDTO = new CreateStockRequestDTO();
                 createStockeRequestDTO.StockId = stockId;
                 createStockeRequestDTO.Count = Int32.Parse(quantity.Text);

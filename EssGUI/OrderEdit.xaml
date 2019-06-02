@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="OrderEdit" Height="595.976" Width="829.268">
+        Title="Edycja zlecenia" Height="595.976" Width="829.268">
     <Grid>
 
         <Grid>
@@ -50,12 +50,13 @@
                     <TextBox Name ="nameLabel" Text="" Margin="5" Height="34" FontSize="16"/>
                     <TextBox Name="phoneTb" Text="" Margin="5" Height="34" FontSize="16"/>
                     <ComboBox x:Name="statusBox" Margin="5" Height="34" FontSize="16">
+                        <ComboBoxItem>nowe</ComboBoxItem>
                         <ComboBoxItem>w trakcie realizacji</ComboBoxItem>
                         <ComboBoxItem>oczekiwanie na część</ComboBoxItem>
                         <ComboBoxItem>oczekiwanie na gwarancję</ComboBoxItem>
-                        <ComboBoxItem>nowe</ComboBoxItem>
                         <ComboBoxItem>anulowane</ComboBoxItem>
                         <ComboBoxItem>zakończone</ComboBoxItem>
+                        <ComboBoxItem>do odbioru</ComboBoxItem>
 
                     </ComboBox>
 

@@ -468,6 +468,82 @@
 
                 </Grid>
             </TabItem>
+            <TabItem Name="history">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Historia" Foreground="Black" />
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="70"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+
+                            <Label Content="Szukaj po" HorizontalAlignment="Left" Margin="15,5,0,-10" VerticalAlignment="Top" FontSize="16" Height="35"/>
+
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ComboBox x:Name="filterBox6"  Margin="0,10,391,0" FontSize="16" >
+                                <ComboBoxItem IsSelected="True">użytkownik</ComboBoxItem>
+                                <ComboBoxItem>id</ComboBoxItem>
+                                <ComboBoxItem>zlecenie</ComboBoxItem>
+                                <ComboBoxItem>poprzedni status</ComboBoxItem>
+                                <ComboBoxItem>aktualny status</ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
+
+                        <Grid Grid.Column="2"/>
+
+                        <TextBox x:Name="filter6" Height="25" Margin="210,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter6_TextChanged" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="0,16,0,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="99*"/>
+                            <ColumnDefinition Width="277*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <DataGrid x:Name="historyinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionChanged="deviceinfo_SelectionChanged_1" Grid.ColumnSpan="2" FontSize="16" SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Order.Id}" Header="Zlecenie" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding User.Login}" Header="Użytkownik" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding OrderStatusChangeDate}" Header="Data" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding PrevStatus}" Header="Poprzedni status" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding ActualStatus}" Header="Aktualny Status" IsReadOnly="True" Width="Auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+
+                        </Grid.ColumnDefinitions>
+
+                    </Grid>
+
+                </Grid>
+            </TabItem>
 
 
         </TabControl>

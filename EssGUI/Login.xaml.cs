@@ -55,5 +55,12 @@ namespace EssGUI
             form.Show();
             this.Close();
         }
+
+        private void Button2_Click(object sender, RoutedEventArgs e)
+        {
+            Login2 form = new Login2();
+            form.Show();
+            this.Close();
+        }
     }
 }
