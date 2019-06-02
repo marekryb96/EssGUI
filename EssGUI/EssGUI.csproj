@@ -80,6 +80,7 @@
     <Compile Include="CreateDeviceRequestDTO.cs" />
     <Compile Include="CreateOrderRequestDTO.cs" />
     <Compile Include="CreateSettlementRequestDTO.cs" />
+    <Compile Include="CreateStockRequestDTO.cs" />
     <Compile Include="CreateUserRequestDTO.cs" />
     <Compile Include="Deffect.xaml.cs">
       <DependentUpon>Deffect.xaml</DependentUpon>
@@ -118,6 +119,7 @@
       <DependentUpon>SettlementEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettlementResponseDTO.cs" />
+    <Compile Include="StockResponseDTO.cs" />
     <Compile Include="test.xaml.cs">
       <DependentUpon>test.xaml</DependentUpon>
     </Compile>

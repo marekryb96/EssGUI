@@ -90,6 +90,24 @@ namespace EssGUI
             clientinfo.ItemsSource = logic.GetAllClients();
             settlementinfo.ItemsSource = logic.GetAllSettlements();
             userinfo.ItemsSource = logic.GetAllUsers();
+
+            if(user.UserType == UserType.WORKER)
+            {
+                if (orderinfo != null)
+                {
+                    orderinfo.ItemsSource = this.logic.GetAllOrders();
+
+                    ICollectionView cv = CollectionViewSource.GetDefaultView(orderinfo.ItemsSource);
+
+                    cv.Filter = o =>
+                    {
+                        OrderResponseDTO p = o as OrderResponseDTO;
+
+                        return (p.OrderStatus == OrderStatus.NEW);
+
+                    };
+                }
+            }
         }
 
         public void Refresh()
@@ -108,6 +126,8 @@ namespace EssGUI
 
             SettlementResponseDTO[] sett = logic.GetAllSettlements();
             settlementinfo.ItemsSource = sett;
+
+
 
         }
         private void noBt_Click(object sender, RoutedEventArgs e)
@@ -444,8 +464,7 @@ namespace EssGUI
 
         private void addDeviceBt_Click(object sender, RoutedEventArgs e)
         {
-            NewDevice form = new NewDevice(this);
-            form.Show();
+            
         }
 
         private void settlementinfo_SelectionChanged(object sender, SelectionChangedEventArgs e)

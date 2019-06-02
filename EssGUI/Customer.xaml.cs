@@ -98,7 +98,7 @@ namespace EssGUI
             }
             catch (System.ArgumentOutOfRangeException)
             {
-                MessageBox.Show("Nalezy wybrać konkretna pozycję");
+                MessageBox.Show("Nalezy wybrać konkretną pozycję");
             }
 
     

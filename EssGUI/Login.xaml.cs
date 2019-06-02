@@ -43,7 +43,6 @@ namespace EssGUI
             }
             else
             {
-
                 MainWindow form = new MainWindow(mappedObject);
                 form.Show();
                 this.Close();
