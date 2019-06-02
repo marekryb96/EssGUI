@@ -9,7 +9,7 @@
         WindowState="Normal" ResizeMode="CanMinimize" Height="588">
     <Grid Margin="0,0,4,0">
         <TabControl>
-            
+
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -70,7 +70,7 @@
                             <ComboBox x:Name="statusBox" Margin="5" Height="25">
                                 <ComboBoxItem IsSelected="True">w trakcie realizacji</ComboBoxItem>
                                 <ComboBoxItem>oczekiwanie na część</ComboBoxItem>
-                                <ComboBoxItem>oczekiwanie na gwarancję</ComboBoxItem>                                
+                                <ComboBoxItem>oczekiwanie na gwarancję</ComboBoxItem>
                                 <ComboBoxItem>zakończone</ComboBoxItem>
                                 <ComboBoxItem>anulowane</ComboBoxItem>
                             </ComboBox>
@@ -86,47 +86,93 @@
 
 
             </TabItem>
-            <TabItem>
+            <TabItem Name="devices">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Foreground="Black" Text="Magazyn" />
+                        <TextBlock Text="Magazyn" Foreground="Black" />
                     </StackPanel>
                 </TabItem.Header>
-
                 <Grid>
 
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
                         <RowDefinition Height="*"/>
-
+                        <RowDefinition Height="70"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <Grid Grid.Column="0">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="31*"/>
-                            <ColumnDefinition Width="44*"/>
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Grid.ColumnSpan="2"/>
+
+                        <Grid Grid.Column="0">
+
+                            <Label Content="Szukaj po" HorizontalAlignment="Left" Margin="15,5,0,-10" VerticalAlignment="Top" FontSize="16" Height="35"/>
+
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="131*"/>
+                                <ColumnDefinition Width="190*"/>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox x:Name="filterBox"  Margin="-15,10,119,0" FontSize="16" Grid.ColumnSpan="2" >
+                                <ComboBoxItem IsSelected="True">id</ComboBoxItem>
+                                <ComboBoxItem>nazwa</ComboBoxItem>
+                                <ComboBoxItem>producent</ComboBoxItem>
+                                <ComboBoxItem>model</ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
+
+                        <Grid Grid.Column="2"/>
+
+                        <TextBox x:Name="filter4" Height="25" Margin="214,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="filter4_TextChanged" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2"/>
+
                     </Grid>
 
-                    <Grid Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="28*"/>
-                            <RowDefinition Height="365*"/>
-                            <RowDefinition Height="0*"/>
-                        </Grid.RowDefinitions>
+                    <Grid Grid.Row="1" Margin="0,16,0,0">
 
-                        <StackPanel Grid.RowSpan="2" Margin="10,0,0,0"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="99*"/>
+                            <ColumnDefinition Width="277*"/>
+                        </Grid.ColumnDefinitions>
 
+
+                        <DataGrid x:Name="stockinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionChanged="deviceinfo_SelectionChanged_1" Grid.ColumnSpan="2" FontSize="16" SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Nazwa" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Brand}" Header="Producent" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Model}" Header="Model" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Description}" Header="Opis" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding Quantity}" Header="Ilość" IsReadOnly="True" Width="Auto"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Button Name="refreshDevice"  Margin="10" Height="45" Content="Odśwież" FontSize="20" Click="Refresh_Click"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <TextBox Margin="0,10" Name="quantity" Text="1" FontSize="30" TextChanged="quantity_TextChanged"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Button Name="addDevice"  Margin="10" Height="45" Content="Pobierz" FontSize="20" Click="addDeviceBt_Click"/>
+                        </Grid>
                     </Grid>
 
                 </Grid>
-
-
-
             </TabItem>
 
         </TabControl>

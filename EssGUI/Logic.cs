@@ -76,6 +76,13 @@ namespace EssGUI
             return mappedObject;
         }
 
+        public StockResponseDTO[] GetAllStock()
+        {
+            String response = Get("http://localhost:8080/stock/");
+            StockResponseDTO[] mappedObject = Deserialize<StockResponseDTO[]>(response);
+            return mappedObject;
+        }
+
         public T Deserialize<T>(string json)
         {
             JsonSerializer s = new JsonSerializer
