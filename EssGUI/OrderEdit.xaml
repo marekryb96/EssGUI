@@ -50,13 +50,12 @@
                     <TextBox Name ="nameLabel" Text="" Margin="5" Height="34" FontSize="16"/>
                     <TextBox Name="phoneTb" Text="" Margin="5" Height="34" FontSize="16"/>
                     <ComboBox x:Name="statusBox" Margin="5" Height="34" FontSize="16">
-                        <ComboBoxItem>nowe</ComboBoxItem>
                         <ComboBoxItem>w trakcie realizacji</ComboBoxItem>
                         <ComboBoxItem>oczekiwanie na część</ComboBoxItem>
                         <ComboBoxItem>oczekiwanie na gwarancję</ComboBoxItem>
+                        <ComboBoxItem>nowe</ComboBoxItem>
                         <ComboBoxItem>anulowane</ComboBoxItem>
                         <ComboBoxItem>zakończone</ComboBoxItem>
-                        <ComboBoxItem>do odbioru</ComboBoxItem>
 
                     </ComboBox>
 

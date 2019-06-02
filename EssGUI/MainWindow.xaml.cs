@@ -181,8 +181,6 @@ namespace EssGUI
         {
             Settlement form = new Settlement(ordersToSet, this);
             form.Show();
-            ordersToSet = new List<string>();
-            setBt.Content = "Rozlicz";
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

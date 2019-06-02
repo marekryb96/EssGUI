@@ -45,13 +45,13 @@ namespace EssGUI
                 cost2Tb.Text = orderResponseDTO.Costs.LabourCosts;
             }
 
-            if (orderResponseDTO.OrderStatus == OrderStatus.NEW) statusBox.SelectedIndex = 0;
-            if (orderResponseDTO.OrderStatus == OrderStatus.IN_PROGRESS) statusBox.SelectedIndex = 1;
-            if (orderResponseDTO.OrderStatus == OrderStatus.WAITING_FOR_DEVICE) statusBox.SelectedIndex = 2;
-            if (orderResponseDTO.OrderStatus == OrderStatus.WARRANTY) statusBox.SelectedIndex = 3;
+            if (orderResponseDTO.OrderStatus == OrderStatus.IN_PROGRESS) statusBox.SelectedIndex = 0;
+            if (orderResponseDTO.OrderStatus == OrderStatus.WAITING_FOR_DEVICE) statusBox.SelectedIndex = 1;
+            if (orderResponseDTO.OrderStatus == OrderStatus.WARRANTY) statusBox.SelectedIndex = 2;
+            if (orderResponseDTO.OrderStatus == OrderStatus.NEW) statusBox.SelectedIndex = 3;
             if (orderResponseDTO.OrderStatus == OrderStatus.CANCELED) statusBox.SelectedIndex = 4;
             if (orderResponseDTO.OrderStatus == OrderStatus.FINISHED) statusBox.SelectedIndex = 5;
-            if (orderResponseDTO.OrderStatus == OrderStatus.READY_FOR_PICKUP) statusBox.SelectedIndex = 6;
+
         }
 
         private void typeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -98,10 +98,6 @@ namespace EssGUI
             else if (((ComboBoxItem)statusBox.SelectedItem).Content.ToString() == "nowe")
             {
                 createOrderRequestDTO.OrderStatus = OrderStatus.NEW;
-            }
-            else if (((ComboBoxItem)statusBox.SelectedItem).Content.ToString() == "do odbioru")
-            {
-                createOrderRequestDTO.OrderStatus = OrderStatus.READY_FOR_PICKUP;
             }
 
             RestResponse response = (RestResponse)this.logic.Post(createOrderRequestDTO, "/order/update/" + orderResponseDTO.Id);
