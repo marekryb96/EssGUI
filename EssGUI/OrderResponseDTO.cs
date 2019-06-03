@@ -16,6 +16,7 @@ namespace EssGUI
         String id;
         UserResponseDTO user;
         OrderStatus orderStatus;
+        String[] upgradedDevices;
         Costs costs;
         DateTime beginDate;
         DateTime endDate;
@@ -33,5 +34,6 @@ namespace EssGUI
         public DateTime BeginDate { get => beginDate; set => beginDate = value; }
         public DateTime EndDate { get => endDate; set => endDate = value; }
         public bool Days { get => (DateTime.Now - BeginDate).Days > 7; set => days = value; }
+        public String[] UpgradedDevices { get => upgradedDevices; set => upgradedDevices = value; }
     }
 }

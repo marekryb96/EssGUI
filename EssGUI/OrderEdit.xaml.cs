@@ -39,6 +39,17 @@ namespace EssGUI
             repairLabel.Text = orderResponseDTO.DefectDescription;
             phoneTb.Text = orderResponseDTO.Client.PhoneNumber.Number;
 
+            var uDevices = orderResponseDTO.UpgradedDevices;
+            string devsToLabel = "";
+            if (uDevices != null)
+            {
+                foreach (String upDev in uDevices)
+                {
+                  devsToLabel += upDev;
+                }
+                stockLabel.Content = devsToLabel;
+            }
+
             if (orderResponseDTO.Costs != null)
             {
                 cost1Tb.Text = orderResponseDTO.Costs.DeviceCosts;

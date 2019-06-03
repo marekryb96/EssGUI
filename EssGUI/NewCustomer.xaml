@@ -48,7 +48,7 @@
             <StackPanel Grid.RowSpan="2" Margin="-33,0,0,0">
                 <TextBox Name="TextBox1" Margin="5" Height="30"/>
                 <TextBox Name="TextBox2" Margin="5" Height="30"/>
-                <TextBox Name="TextBox3" Margin="5" Height="30"/>
+                <TextBox Name="TextBox3" Margin="5" Height="30" TextChanged="TextBox3_TextChanged"/>
                 <TextBox Name="TextBox4" Margin="5" Height="30"/>
                 <TextBox Name="TextBox9" Margin="5" Height="30"/>
                 <TextBox Name="TextBox11" Text="Polska" Margin="5" Height="30"/>

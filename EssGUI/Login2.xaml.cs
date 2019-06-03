@@ -19,6 +19,7 @@ namespace EssGUI
     /// </summary>
     public partial class Login2 : Window
     {
+        private Logic logic = new Logic();
         public Login2()
         {
             InitializeComponent();
@@ -26,7 +27,21 @@ namespace EssGUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+
+            string log = login.Text;
+            String resp = logic.Get("http://localhost:8080/user/resetPassword/" + log);
+            if (resp.Equals("Wysłano"))
+            {
+                MessageBox.Show("Wysłano email");
+
+                Login form = new Login();
+                form.Show();
+                this.Close();
+            }
+            else {
+                MessageBox.Show("Błąd wysyłania emaila");
+            }           
+
         }
     }
 }

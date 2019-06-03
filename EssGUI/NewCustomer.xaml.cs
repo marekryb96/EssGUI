@@ -81,5 +81,10 @@ namespace EssGUI
                 MessageBox.Show("Blad: " + ex.Message);
             }
         }
+
+        private void TextBox3_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

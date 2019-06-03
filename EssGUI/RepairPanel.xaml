@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
         Title="Naprawa"
-        WindowState="Normal" ResizeMode="CanMinimize" Height="639" Width="809">
+        WindowState="Normal" ResizeMode="CanMinimize" Height="676.6" Width="816.8">
     <Grid Margin="0,0,4,0">
         <TabControl FontSize="16">
 
@@ -34,21 +34,23 @@
                             <ColumnDefinition Width="44*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.ColumnSpan="2" Margin="0,0,-20,0">
-                            <Label Content="id" Margin="5" Height="30" FontSize="16"/>
-                            <Label Content="status" Margin="5" Height="30" FontSize="16"/>
-                            <Label Content="problem" Margin="5" Height="30" FontSize="16"/>
-                            <Label Content="model" Margin="5" Height="30" FontSize="16"/>
-                            <Label Content="numer seryjny" Margin="5" Height="30" FontSize="16"/>
-                            <Label Content="telefon" Margin="5" Height="30" FontSize="16"/>
-                            <Label Content="opis naprawy" Margin="5" Height="100" FontSize="16"/>
-                            <Label Content="koszty" Margin="5" Height="30" FontSize="16"/>
-                            <Label Content="wymienione części" Margin="5" Height="30" FontSize="16"/>
-                            <Label Content="usługi" Margin="5" Height="30" FontSize="16"/>
-                            <Label Content="nowy status" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="Id" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="Status" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="Problem" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="Model" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="Numer seryjny" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="Telefon" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="Opis naprawy" Margin="5,5,5.4,5" Height="95" FontSize="16"/>
+                            <Label Content="Koszty" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="Wymienione części" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="Usługi" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="Nowy status" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="Pobrane z magazynu" Margin="5" Height="30" FontSize="16"/>
+
                         </StackPanel>
                     </Grid>
 
-                    <Grid Grid.Column="1" Margin="32,0,-32,0">
+                    <Grid Grid.Column="1" Margin="32,0,5,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="41*"/>
                             <RowDefinition Height="322*"/>
@@ -68,13 +70,17 @@
                             <TextBox Name="TextBox2" Text="0" Margin="5" Height="30"/>
                             <TextBox Name="TextBox3" Text="0" Margin="5" Height="30"/>
 
-                            <ComboBox x:Name="statusBox" Margin="5" Height="25">
+                            <ComboBox x:Name="statusBox" Margin="5" Height="30" SelectionChanged="statusBox_SelectionChanged">
                                 <ComboBoxItem IsSelected="True">w trakcie realizacji</ComboBoxItem>
                                 <ComboBoxItem>oczekiwanie na część</ComboBoxItem>
                                 <ComboBoxItem>oczekiwanie na gwarancję</ComboBoxItem>
                                 <ComboBoxItem>zakończone</ComboBoxItem>
                                 <ComboBoxItem>anulowane</ComboBoxItem>
                             </ComboBox>
+
+                            <Label Name="stockLabel" Margin="5" Height="30" FontSize="16"/>
+
+
 
                             <Button Content="Zapisz" Margin="5,5,5,106" Height="50" Click="Button_Click" FontSize="20"/>
 

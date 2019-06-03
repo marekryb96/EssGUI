@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EssGUI"
         mc:Ignorable="d"
-        Title="Edycja zlecenia" Height="595.976" Width="829.268">
+        Title="Edycja zlecenia" Height="636.776" Width="829.268">
     <Grid>
 
         <Grid>
@@ -15,13 +15,13 @@
 
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="200" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="80*"/>
                     <ColumnDefinition Width="44*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.ColumnSpan="2">
@@ -35,6 +35,7 @@
                     <Label Content="Koszty" Margin="5" Height="33" FontSize="16"/>
                     <Label Content="- Części" Margin="5" Height="33" FontSize="16"/>
                     <Label Content="- Usługi" Margin="5" Height="34" FontSize="16"/>
+                    <Label Content="Pobrane z magazynu" Margin="5" Height="34" FontSize="16"/>
 
                 </StackPanel>
             </Grid>
@@ -67,6 +68,7 @@
                     <Label Content="" Margin="5" Height="25"/>
                     <TextBox Name="cost1Tb" Text="0.0" Margin="5" Height="34" FontSize="16"/>
                     <TextBox Name="cost2Tb" Text="0.0" Margin="5" Height="34" FontSize="16"/>
+                    <Label Name="stockLabel" Margin="5" Height="34" FontSize="16"/>
                     <Button Content="Zapisz" Margin="5,5,5,106" Height="50" Click="Button_Click" FontSize="20"/>
 
                 </StackPanel>

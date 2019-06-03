@@ -9,16 +9,16 @@ namespace EssGUI
     class HistoryResponseDTO
     {
         String id;
-        UserResponseDTO user;
-        OrderResponseDTO order;
+        String userLogin;
+        String orderId;
         OrderStatus prevStatus;
         OrderStatus actualStatus;
         DateTime orderStatusChangeDate;
 
         public string Id { get => id; set => id = value; }
-        public UserResponseDTO User { get => user; set => user = value; }
+        public String UserLogin { get => userLogin; set => userLogin = value; }
         public DateTime OrderStatusChangeDate { get => orderStatusChangeDate; set => orderStatusChangeDate = value; }
-        public OrderResponseDTO Order { get => order; set => order = value; }
+        public String OrderId { get => orderId; set => orderId = value; }
         public OrderStatus PrevStatus { get => prevStatus; set => prevStatus = value; }
         public OrderStatus ActualStatus { get => actualStatus; set => actualStatus = value; }
     }

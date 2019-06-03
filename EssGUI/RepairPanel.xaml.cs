@@ -35,6 +35,17 @@ namespace EssGUI
             modelLabel.Text = orderResponseDTO.Device.Model;
             phoneLabel.Content = orderResponseDTO.Client.PhoneNumber.Number;
             opisBox.Text = orderResponseDTO.DefectDescription;
+
+            var uDevices = orderResponseDTO.UpgradedDevices;
+            string devsToLabel = "";
+            if (uDevices != null)
+            {
+                foreach (String upDev in uDevices)
+                {
+                    devsToLabel += upDev;
+                }
+                stockLabel.Content = devsToLabel;
+            }
             if (orderResponseDTO.OrderStatus == OrderStatus.NEW) statusLabel.Content = "nowe";
             if (orderResponseDTO.OrderStatus == OrderStatus.WAITING_FOR_DEVICE) statusLabel.Content = "oczekiwanie na część zamienną";
             if (orderResponseDTO.OrderStatus == OrderStatus.WARRANTY) statusLabel.Content = "oczekiwanie na rozpatrzenie gwarancji";
@@ -60,6 +71,8 @@ namespace EssGUI
             createOrderRequestDTO.Description = problemLabel.Content.ToString();
             createOrderRequestDTO.DeviceId = orderResponseDTO.Device.Id;         
             createOrderRequestDTO.UserLogin = mw.user.Login;
+
+
 
             if (((ComboBoxItem)statusBox.SelectedItem).Content.ToString() == "w trakcie realizacji")
             {
@@ -189,6 +202,11 @@ namespace EssGUI
         }
 
         private void deviceinfo_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void statusBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

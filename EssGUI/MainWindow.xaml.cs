@@ -660,13 +660,13 @@ namespace EssGUI
                         {
 
                             case "zlecenie":
-                                return (p.Order.Id == filterGrid);
+                                return (p.OrderId == filterGrid);
                             case "poprzedni status":
                                 return (p.PrevStatus.ToString() == filterGrid);
                             case "aktualny status":
                                 return (p.ActualStatus.ToString() == filterGrid);
                             case "użytkownik":
-                                return (p.User.Id == filterGrid);
+                                return (p.UserLogin == filterGrid);
                             case "id":
                                 return (p.Id == filterGrid);
                         }
@@ -674,6 +674,16 @@ namespace EssGUI
                     };
                 }
             }
+        }
+
+        private void refresh6Bt(object sender, RoutedEventArgs e)
+        {
+            historyinfo.ItemsSource = logic.GetAllHistory();
+        }
+
+        private void Refresh(object sender, RoutedEventArgs e)
+        {
+            historyinfo.ItemsSource = logic.GetAllHistory();
         }
     }
 }

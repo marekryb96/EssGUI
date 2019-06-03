@@ -127,6 +127,7 @@
     <Compile Include="test.xaml.cs">
       <DependentUpon>test.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpgradedDevice.cs" />
     <Compile Include="UserEdit.xaml.cs">
       <DependentUpon>UserEdit.xaml</DependentUpon>
     </Compile>

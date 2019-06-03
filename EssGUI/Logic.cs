@@ -48,6 +48,12 @@ namespace EssGUI
             return mappedObject;
         }
 
+        public StockResponseDTO GetStockWithId(String stockId)
+        {
+            String response = Get("http://localhost:8080/stock/" + stockId);
+            StockResponseDTO mappedObject = Deserialize<StockResponseDTO>(response);
+            return mappedObject;
+        }
         public OrderResponseDTO[] GetAllOrders()
         {
             String response = Get("http://localhost:8080/order/");
@@ -175,7 +181,6 @@ namespace EssGUI
             }
             catch (System.Net.WebException ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
                 return "";
             }
         }

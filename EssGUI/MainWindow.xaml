@@ -522,8 +522,8 @@
                         <DataGrid x:Name="historyinfo" AutoGenerateColumns="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionChanged="deviceinfo_SelectionChanged_1" Grid.ColumnSpan="2" FontSize="16" SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding Order.Id}" Header="Zlecenie" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn Binding="{Binding User.Login}" Header="Użytkownik" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding OrderId}" Header="Zlecenie" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Binding="{Binding UserLogin}" Header="Użytkownik" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding OrderStatusChangeDate}" Header="Data" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding PrevStatus}" Header="Poprzedni status" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn Binding="{Binding ActualStatus}" Header="Aktualny Status" IsReadOnly="True" Width="Auto"/>
@@ -532,14 +532,7 @@
                         
                     </Grid>
                     <Grid Grid.Row="3">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-
-                        </Grid.ColumnDefinitions>
-
+                        <Button Name="refr6"  Margin="1028,10,0.2,15.4" Height="45" Content="Odśwież" FontSize="20" Click="Refresh"/>
                     </Grid>
 
                 </Grid>

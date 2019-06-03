@@ -24,9 +24,9 @@
             </Rectangle.Effect>
         </Rectangle>
 
-        <TextBox x:Name="email" HorizontalAlignment="Left" Height="39" Margin="32,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" FontSize="20"/>
+        <TextBox x:Name="login" HorizontalAlignment="Left" Height="39" Margin="32,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" FontSize="20"/>
         <Button Name="send" Content="WYŚLIJ" HorizontalAlignment="Left" Margin="32,376,0,0" VerticalAlignment="Top" Width="306" Height="41" FontSize="22" FontWeight="Bold" Click="Button_Click"/>
-        <Label Content="e-mail" HorizontalAlignment="Left" Margin="32,206,0,0" VerticalAlignment="Top" FontSize="22" RenderTransformOrigin="0.743,0.487"/>
+        <Label Content="Login" HorizontalAlignment="Left" Margin="32,206,0,0" VerticalAlignment="Top" FontSize="22" RenderTransformOrigin="0.743,0.487"/>
         <Label Content="ESS" HorizontalContentAlignment="Center" Margin="10,26,10,0" VerticalAlignment="Top" Height="82" FontSize="60" Foreground="White"/>
 
     </Grid>
