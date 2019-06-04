@@ -45,7 +45,7 @@
                             <Label Content="Wymienione części" Margin="5" Height="30" FontSize="16"/>
                             <Label Content="Usługi" Margin="5" Height="30" FontSize="16"/>
                             <Label Content="Nowy status" Margin="5" Height="30" FontSize="16"/>
-                            <Label Content="Pobrane z magazynu" Margin="5" Height="30" FontSize="16"/>
+                            <Label Content="Pobrane z magazynu" Margin="5" Height="45" FontSize="16"/>
 
                         </StackPanel>
                     </Grid>
@@ -59,23 +59,23 @@
                         </Grid.RowDefinitions>
 
                         <StackPanel Grid.RowSpan="3" Margin="10,0,0,0">
-                            <Label Name ="idLabel" Content="id" Margin="5" Height="30"/>
-                            <Label Name ="statusLabel" Content="id" Margin="5" Height="30"/>
-                            <Label Name ="problemLabel" Content="id" Margin="5" Height="30"/>
+                            <Label Name ="idLabel" Margin="5" Height="30"/>
+                            <Label Name ="statusLabel" Margin="5" Height="30"/>
+                            <Label Name ="problemLabel" Margin="5" Height="30"/>
                             <TextBox Name ="modelLabel" Margin="5" Height="25" TextChanged="modelLabel_TextChanged"/>
                             <TextBox Name ="serialLabel" Margin="5" Height="30"/>
-                            <Label x:Name ="phoneLabel" Content="id" Margin="5" Height="30"/>
+                            <Label x:Name ="phoneLabel" Margin="5" Height="30"/>
                             <TextBox x:Name="opisBox" Margin="5" Height="100" TextChanged="TextBox1_TextChanged"/>
                             <Label Content="" Margin="5" Height="30"/>
                             <TextBox Name="TextBox2" Text="0" Margin="5" Height="30"/>
                             <TextBox Name="TextBox3" Text="0" Margin="5" Height="30"/>
 
                             <ComboBox x:Name="statusBox" Margin="5" Height="30" SelectionChanged="statusBox_SelectionChanged">
-                                <ComboBoxItem IsSelected="True">w trakcie realizacji</ComboBoxItem>
-                                <ComboBoxItem>oczekiwanie na część</ComboBoxItem>
-                                <ComboBoxItem>oczekiwanie na gwarancję</ComboBoxItem>
-                                <ComboBoxItem>zakończone</ComboBoxItem>
-                                <ComboBoxItem>anulowane</ComboBoxItem>
+                                <ComboBoxItem IsSelected="True">W trakcie realizacji</ComboBoxItem>
+                                <ComboBoxItem>Oczekiwanie na część</ComboBoxItem>
+                                <ComboBoxItem>Oczekiwanie na gwarancję</ComboBoxItem>
+                                <ComboBoxItem>Zakończone</ComboBoxItem>
+                                <ComboBoxItem>Anulowane</ComboBoxItem>
                             </ComboBox>
 
                             <Label Name="stockLabel" Margin="5" Height="30" FontSize="16"/>
@@ -128,10 +128,10 @@
                                 <ColumnDefinition Width="190*"/>
                             </Grid.ColumnDefinitions>
                             <ComboBox x:Name="filterBox"  Margin="-15,10,119,0" FontSize="16" Grid.ColumnSpan="2" >
-                                <ComboBoxItem IsSelected="True">id</ComboBoxItem>
-                                <ComboBoxItem>nazwa</ComboBoxItem>
-                                <ComboBoxItem>producent</ComboBoxItem>
-                                <ComboBoxItem>model</ComboBoxItem>
+                                <ComboBoxItem IsSelected="True">Id</ComboBoxItem>
+                                <ComboBoxItem>Nazwa</ComboBoxItem>
+                                <ComboBoxItem>Producent</ComboBoxItem>
+                                <ComboBoxItem>Model</ComboBoxItem>
                             </ComboBox>
                         </Grid>
 

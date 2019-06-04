@@ -248,7 +248,7 @@ namespace EssGUI
             if (item != null)
             {
                 String orderId = Convert.ToString((orderinfo.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
-                String status = (orderinfo.SelectedCells[9].Column.GetCellContent(item) as TextBlock).Text;
+                String status = (orderinfo.SelectedCells[8].Column.GetCellContent(item) as TextBlock).Text;
 
                 OrderResponseDTO orderResponseDTO = this.logic.GetOrderWithId(orderId);
 
@@ -330,15 +330,13 @@ namespace EssGUI
 
                         switch (((ComboBoxItem)filterBox2.SelectedItem).Content.ToString())
                         {
-                            case "id":
+                            case "Id":
                                 return (p.Id.ToString() == filterGrid);
-                            //case "data wystawienia":
-                            //return (p.DateTime.ToString() == filterGrid);
-                            case "koszt usług":
+                            case "Koszt usług":
                                 return (p.FinalLabourCost == filterGrid);
-                            case "koszt części":
+                            case "Koszt części":
                                 return (p.FinalDeviceCost == filterGrid);
-                            case "suma":
+                            case "Suma":
                                 return (p.FinalCost == filterGrid);
                         }
                         return (true);
@@ -365,19 +363,17 @@ namespace EssGUI
 
                         switch (((ComboBoxItem)filterBox3.SelectedItem).Content.ToString())
                         {
-                            case "imię":
-                                return (p.Name == filterGrid);
-                            case "nazwisko":
+                            case "Nazwisko":
                                 return (p.Surname == filterGrid);
-                            case "ulica":
+                            case "Ulica":
                                 return (p.Address.Street == filterGrid);
-                            case "telefon":
+                            case "Nr telefonu":
                                 return (p.PhoneNumber.Number == filterGrid);
-                            case "e-mail":
+                            case "E-mail":
                                 return (p.Email == filterGrid);
-                            case "miejscowość":
+                            case "Miejscowość":
                                 return (p.Address.City == filterGrid);
-                            case "id":
+                            case "Id":
                                 return (p.Id == filterGrid);
                         }
                         return (true);
@@ -414,15 +410,15 @@ namespace EssGUI
 
                         switch (((ComboBoxItem)filterBox4.SelectedItem).Content.ToString())
                         {
-                            case "nazwa":
+                            case "Nazwa":
                                 return (p.Name == filterGrid);
-                            case "numer seryjny":
+                            case "Numer seryjny":
                                 return (p.SerialNumber == filterGrid);
-                            case "producent":
+                            case "Producent":
                                 return (p.Brand == filterGrid);
-                            case "model":
+                            case "Model":
                                 return (p.Model == filterGrid);
-                            case "id":
+                            case "Id":
                                 return (p.Id == filterGrid);
                         }
                         return (true);
@@ -487,7 +483,8 @@ namespace EssGUI
 
         private void addDeviceBt_Click(object sender, RoutedEventArgs e)
         {
-            
+            NewDevice form = new NewDevice(this);
+            form.Show();
         }
 
         private void settlementinfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -534,15 +531,15 @@ namespace EssGUI
                         switch (((ComboBoxItem)filterBox4.SelectedItem).Content.ToString())
                         {
 
-                            case "login":
+                            case "Login":
                                 return (p.Login == filterGrid);
-                            case "name":
+                            case "Name":
                                 return (p.Name == filterGrid);
-                            case "surname":
+                            case "Surname":
                                 return (p.Surname == filterGrid);
-                            case "typ użytkownika":
+                            case "Typ użytkownika":
                                 return (p.UserType.ToString() == filterGrid);
-                            case "id":
+                            case "Id":
                                 return (p.Id == filterGrid);
                         }
                         return (true);
@@ -659,15 +656,15 @@ namespace EssGUI
                         switch (((ComboBoxItem)filterBox6.SelectedItem).Content.ToString())
                         {
 
-                            case "zlecenie":
+                            case "Zlecenie":
                                 return (p.OrderId == filterGrid);
-                            case "poprzedni status":
+                            case "Poprzedni status":
                                 return (p.PrevStatus.ToString() == filterGrid);
-                            case "aktualny status":
+                            case "Aktualny status":
                                 return (p.ActualStatus.ToString() == filterGrid);
-                            case "użytkownik":
+                            case "Użytkownik":
                                 return (p.UserLogin == filterGrid);
-                            case "id":
+                            case "Id":
                                 return (p.Id == filterGrid);
                         }
                         return (true);

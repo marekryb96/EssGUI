@@ -43,8 +43,7 @@ namespace EssGUI
             string devsToLabel = "";
             if (uDevices != null)
             {
-                foreach (String upDev in uDevices)
-                {
+                foreach (String upDev in uDevices){
                   devsToLabel += upDev;
                 }
                 stockLabel.Content = devsToLabel;

@@ -35,11 +35,10 @@ namespace EssGUI
 
             string response = this.logic.Get("http://localhost:8080/user/" + login + "/" + password);
             UserResponseDTO mappedObject = this.logic.Deserialize<UserResponseDTO>(response);
-
-
+                       
             if (mappedObject == null)
             {
-                MessageBox.Show("Niepoprawne dane");
+                MessageBox.Show("Niepoprawna nazwa użytkownika lub hasło");
             }
             else
             {

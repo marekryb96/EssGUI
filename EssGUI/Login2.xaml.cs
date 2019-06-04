@@ -32,14 +32,14 @@ namespace EssGUI
             String resp = logic.Get("http://localhost:8080/user/resetPassword/" + log);
             if (resp.Equals("Wysłano"))
             {
-                MessageBox.Show("Wysłano email");
+                MessageBox.Show("Wysłano email z nowym hasłem");
 
                 Login form = new Login();
                 form.Show();
                 this.Close();
             }
             else {
-                MessageBox.Show("Błąd wysyłania emaila");
+                MessageBox.Show("Wystąpił błąd podczas wysyłania emaila");
             }           
 
         }

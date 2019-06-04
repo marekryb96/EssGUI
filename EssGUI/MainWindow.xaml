@@ -150,10 +150,10 @@
                                 <ColumnDefinition Width="289*"/>
                             </Grid.ColumnDefinitions>
                             <ComboBox x:Name="filterBox2" SelectionChanged="ComboBox_SelectionChanged" Margin="0,10,374,0" FontSize="16" Grid.ColumnSpan="2" >
-                                <ComboBoxItem>koszt usług</ComboBoxItem>
+                                <ComboBoxItem>Koszt usług</ComboBoxItem>
                                 <ComboBoxItem IsSelected="True">Id</ComboBoxItem>
-                                <ComboBoxItem>koszt części</ComboBoxItem>
-                                <ComboBoxItem>suma</ComboBoxItem>
+                                <ComboBoxItem>Koszt części</ComboBoxItem>
+                                <ComboBoxItem>Suma</ComboBoxItem>
                             </ComboBox>
                         </Grid>
 
@@ -233,13 +233,12 @@
                             </Grid.ColumnDefinitions>
 
                             <ComboBox x:Name="filterBox3" IsReadOnly="True" Margin="0,10,381,0" FontSize="16" Grid.ColumnSpan="2" SelectionChanged="filterBox3_SelectionChanged" >
-                                <ComboBoxItem>imię</ComboBoxItem>
-                                <ComboBoxItem IsSelected="True">nazwisko</ComboBoxItem>
-                                <ComboBoxItem>telefon</ComboBoxItem>
-                                <ComboBoxItem>e-mail</ComboBoxItem>
-                                <ComboBoxItem>ulica</ComboBoxItem>
-                                <ComboBoxItem>miejscowość</ComboBoxItem>
-                                <ComboBoxItem>id</ComboBoxItem>
+                                <ComboBoxItem IsSelected="True">Nazwisko</ComboBoxItem>
+                                <ComboBoxItem>Nr telefonu</ComboBoxItem>
+                                <ComboBoxItem>E-mail</ComboBoxItem>
+                                <ComboBoxItem>Ulica</ComboBoxItem>
+                                <ComboBoxItem>Miejscowość</ComboBoxItem>
+                                <ComboBoxItem>Id</ComboBoxItem>
                             </ComboBox>
                         </Grid>
 
@@ -331,10 +330,10 @@
                                 <ColumnDefinition Width="190*"/>
                             </Grid.ColumnDefinitions>
                             <ComboBox x:Name="filterBox4"  Margin="0,10,35,0" FontSize="16" SelectionChanged="filterBox4_SelectionChanged" >
-                                <ComboBoxItem IsSelected="True">nazwa</ComboBoxItem>
-                                <ComboBoxItem>numer seryjny</ComboBoxItem>
-                                <ComboBoxItem>model</ComboBoxItem>
-                                <ComboBoxItem>id</ComboBoxItem>
+                                <ComboBoxItem IsSelected="True">Nazwa</ComboBoxItem>
+                                <ComboBoxItem>Numer seryjny</ComboBoxItem>
+                                <ComboBoxItem>Model</ComboBoxItem>
+                                <ComboBoxItem>Id</ComboBoxItem>
                                 <ComboBoxItem>producent</ComboBoxItem>
                             </ComboBox>
                         </Grid>
@@ -413,10 +412,10 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <ComboBox x:Name="filterBox5"  Margin="0,10,391,0" FontSize="16" SelectionChanged="filterBox5_SelectionChanged" >
-                                <ComboBoxItem IsSelected="True">nazwa użytkownika</ComboBoxItem>
-                                <ComboBoxItem>id</ComboBoxItem>
-                                <ComboBoxItem>login</ComboBoxItem>
-                                <ComboBoxItem>typ użytkownika</ComboBoxItem>
+                                <ComboBoxItem IsSelected="True">Nazwa użytkownika</ComboBoxItem>
+                                <ComboBoxItem>Id</ComboBoxItem>
+                                <ComboBoxItem>Login</ComboBoxItem>
+                                <ComboBoxItem>Typ użytkownika</ComboBoxItem>
                             </ComboBox>
                         </Grid>
 
@@ -498,11 +497,11 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <ComboBox x:Name="filterBox6"  Margin="0,10,391,0" FontSize="16" >
-                                <ComboBoxItem IsSelected="True">użytkownik</ComboBoxItem>
-                                <ComboBoxItem>id</ComboBoxItem>
-                                <ComboBoxItem>zlecenie</ComboBoxItem>
-                                <ComboBoxItem>poprzedni status</ComboBoxItem>
-                                <ComboBoxItem>aktualny status</ComboBoxItem>
+                                <ComboBoxItem IsSelected="True">Użytkownik</ComboBoxItem>
+                                <ComboBoxItem>Id</ComboBoxItem>
+                                <ComboBoxItem>Zlecenie</ComboBoxItem>
+                                <ComboBoxItem>Poprzedni status</ComboBoxItem>
+                                <ComboBoxItem>Aktualny status</ComboBoxItem>
                             </ComboBox>
                         </Grid>
 
